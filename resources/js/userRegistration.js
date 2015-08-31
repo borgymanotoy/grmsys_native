@@ -22,5 +22,6 @@ var loadDummyUserInfo = function(){
 
 var clearUserFields = function(){
 	$('input[type="text"], textarea').val("");
-	$('input').removeAttr('checked').removeAttr('selected');
+	//$('input').removeAttr('checked').removeAttr('selected');
+	$('#rdbGenderMale').iCheck('check');
 };
