@@ -1,8 +1,9 @@
 var addUpdateUser = function(){
-	$.post("../userRegistration.php", $("#formUser").serialize(), function(){
-		alert("User successfully registered.");
-	}).fail(function(msg){
-		alert("Error registering user.\n\n" + msg);
+	$.post("../userRegistration.php", $("#formUser").serialize()).done(function(msg){
+		alert(msg);
+		clearUserFields();
+	}).fail(function(){
+		alert("Error adding/updating user.");
 	});
 };
 
@@ -13,7 +14,7 @@ var loadDummyUserInfo = function(){
 	$("#txtMiddlename").val("Pedrito");
 	$("#txtContactNo").val("(0920) 987-1234");
 	$("#txtAddress").val("Davao City, Philippines");
-	$("#txtBirthdate").val("05-20-1981");
+	$("#txtBirthdate").val("05/20/1981");
 	$("#rdbGenderMale").attr("checked", "true");
 	$("#txtUsername").val("juandelacruz");
 	$("#txtPassword").val("password");
