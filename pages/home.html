@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>(GRMSys): Home</title>
+    <link type="text/css" rel="stylesheet" href='resources/css/home.css' />
+    <link type="text/css" rel="stylesheet" href="resources/css/commons.css" />
+    <link type="text/css" rel="stylesheet" href='resources/css/jquery-ui.min.css' />
+    <link type="text/css" rel="stylesheet" href='resources/css/jquery-ui.theme.min.css' />
+    <script type='text/javascript' src='resources/js/jquery-1.11.1.min.js'></script>
+    <script type='text/javascript' src='resources/js/jquery-ui.min.js'></script>
+    <script type='text/javascript' src='resources/js/common.js'></script>
+</head>
+
+<body text="#2A1FFF">
+    <div class="headerContainer">
+        <div>
+            <img src="resources/images/icons/home.png" class="headerSmallImage" alt="Items" />
+            <span>Home</span>
+        </div>
+        <div class="headerLogout">
+            <a href="javascript:void(0);" onclick="location.href='logout.php'">
+                <span>Logout</span>
+                <img src="resources/images/icons/exit.png" class="headerMenuImage" alt="Logout" title="Logout" />
+            </a>
+        </div>
+    </div>
+	<div class="homeContainer">
+        <table id="tblTools" cellpadding="0" cellspacing="0" border="1">
+               <tbody>
+                   <tr>
+                       <td class="tool"><img src="resources/images/icons/user.png" class="toolImage" alt="Users" onclick="goToUser()" title="Manage Users" /></td>
+                       <td class="tool"><img src="resources/images/icons/people.png" class="toolImage" alt="Members" onclick="goToMember()" title="Manage Members" /></td>
+                       <td class="tool"><img src="resources/images/icons/coffee.png" class="toolImage" alt="Items" onclick="goToItem()" title="Manage Items" /></td>
+                       <td class="tool"><img src="resources/images/icons/coffee.png" class="toolImage" alt="Items" onclick="goToItem()" title="Manage Items" /></td>
+                       <td class="tool"><img src="resources/images/icons/coffee.png" class="toolImage" alt="Items" onclick="goToItem()" title="Manage Items" /></td>
+                   </tr>
+               </tbody>
+        </table>
+    </div>
+    <div class="footerContainer2">
+        <span class="footer">Gym Records Management System (Version 0.0.1)</span>
+    </div>
+</body>
+</html>

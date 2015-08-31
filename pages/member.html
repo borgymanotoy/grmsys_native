@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>(GRMSys): Member Registration</title>
+    <link type="text/css" rel="stylesheet" href="resources/css/home.css" />
+    <link type="text/css" rel="stylesheet" href="resources/css/commons.css" />
+    <link type="text/css" rel="stylesheet" href="resources/css/datepicker.css" />
+    <script type='text/javascript' src='resources/js/jquery-1.11.1.min.js'></script>
+    <script type='text/javascript' src='resources/js/zebra_datepicker.src.js'></script>
+    <script type='text/javascript' src='resources/js/common.js'></script>
+    <script type="text/javascript">
+		$(document).ready(function(){
+            $('#txtMemberStart').Zebra_DatePicker({
+                direction: true,
+                pair: $('#txtMemberEnd')
+            });
+            $('#txtMemberEnd').Zebra_DatePicker({
+                direction: 1
+            });
+            $("img.headerMenuImage").bind("click", function(){
+                goToHome();
+            });
+		});
+    </script>
+</head>
+<body>
+    <div class="headerContainer">
+        <div>
+            <img src="resources/images/icons/people.png" class="headerImage" alt="Members" />
+            <span>User Registration</span>
+        </div>
+        <div class="headerMenuButton">
+            <img src="resources/images/icons/menu.png" class="headerMenuImage" alt="Menu" />
+        </div>
+    </div>
+	<center>
+    	<div align="left">
+            <form id="formMember" name="formMember" method="post" action="">
+                <div class="parentContainer">
+                    <div class="memberInfoContainer">
+                        <p>
+                            <label for="txtMemberId">Identification Number:</label>
+                            <input type="text" id="txtMemberId" name="memberId" placeholder="0" title="Member Identification" />
+                        </p>  
+                        <p>
+                            <label for="txtFirstname">Firstname:</label>
+                            <input type="text" id="txtFirstname" name="firstname" placeholder="Juan" title="Member Firstname" />
+                        </p>
+                        <p>
+                            <label for="txtLastname">Lastname:</label>
+                            <input type="text" id="txtLastname" name="lastname" placeholder="Dela Cruz" title="Member Lastname" />
+                        </p>
+                        <p>
+                            <label for="txtMiddlename">Middlename:</label>
+                            <input type="text" id="txtMiddlename" name="middlename" placeholder="Dimaloko" title="Member Middlename" />
+                        </p>
+                        <p>
+                            <label for="txtContactNo">Contact Number:</label>
+                            <input type="text" id="txtContactNo" name="contactNo" placeholder="(918) 123-4567" title="Member Contact Number" />
+                        </p>
+                        <p>
+                            <label for="txtAddress">Address:</label>
+                            <textarea id="txtAddress" name="address" cols="45" rows="5" placeholder="Address" title="Member Address"></textarea>
+                        </p>
+                        <p>
+                            <label for="txtBirthday">Birthday:</label>
+                            <input type="text" id="txtBirthday" name="birthday" placeholder="September 24, 1997" title="Member Birthday" />
+                        </p>
+                        <p>
+                            <div class="genderContainer">
+                                <input type="radio" id="rdbGenderMale" name="gender" value="Male" />
+                                <label for="rdbGenderMale" class="choiceLabel">Male:</label>
+                                <input type="radio" id="rdbGenderFemale" name="gender" value="Female" />
+                                <label for="rdbGenderFemale" class="choiceLabel">Female:</label>
+                            </div>
+                        </p>
+                        <div class="emergencyContainer">
+                            <h3>In case of Emergency:</h3>
+                            <p>
+                                <label for="txtEmergencyContactPerson">Contact Person:</label>
+                                <input type="text" id="txtEmergencyContactPerson" name="emergencyContactPerson" placeholder="Ibong Adarna" title="Emergency Contact Person" />
+                            </p>
+                            <p>
+                                <label for="txtEmergencyContactNumber">Contact Number:</label>
+                                <input type="text" id="txtEmergencyContactNumber" name="emergencyContactNumber" placeholder="(918) 123-4567" title="Emergency Contact Number" />
+                            </p>
+                            <p>
+                                <label for="txtEmergencyContactRelationship">Contact Relationship:</label>
+                                <input type="text" id="txtEmergencyContactRelationship" name="emergencyContactRelationship" placeholder="The Other Woman" title="Emergency Contact Relationship" />
+                            </p>
+                        </div>
+                    </div>
+                  <div class="membertypeInfoContainer">
+                        <p>
+                    <h4>Type:</h4>
+                            <div class="typeContainer">
+                                <input type="radio" id="rdbTypeWalkin" name="type" value="walk-in" />
+                                <label for="rdbTypeWalkin" class="choiceLabel">Walk-in:</label>
+                                <input type="radio" id="rdbTypeMonthly" name="type" value="monthly" />
+                                <label for="rdbTypeMonthly" class="choiceLabel">Monthly:</label>
+                            </div>
+                        </p>
+                        <p>
+                    <h4>Discount:</h4>
+                    <div class="discountContainer">
+                                <input type="radio" id="rdbDiscountYes" name="discounted" value="yes" />
+                                <label for="rdbDiscountYes" class="choiceLabel">Yes:</label>
+                                <input type="radio" id="rdbDiscountNo" name="discounted" value="no" />
+                                <label for="rdbDiscountNo" class="choiceLabel">No (Regular):</label>
+                          </div>
+                      </p>
+                      <p>
+                          <label for="selServiceType" class="selectLabel">Service Type:</label>
+                          <select id="selServiceType" name="serviceType">
+                              <option value="-1">Please select service type</option>
+                              <option value="1">Boxing</option>
+                              <option value="2">Weights</option>
+                          </select>
+                      </p>
+                        <h3>Monthly Effective:</h3>
+                        <p>
+                          <label for="txtMemberStart" class="small">Start:</label>
+                          <input type="text" id="txtMemberStart" name="memberStart" class="dateField" placeholder="Select Date" title="Member Start" />
+                        </p>
+                        <p>
+                          <label for="txtMemberEnd" class="small">End:</label>
+                          <input type="text" id="txtMemberEnd" name="memberEnd" class="dateField" placeholder="Select Date" title="Member End" />
+                        </p>
+                    </div>
+                  <div class="buttonContainer">
+                          <input type="submit" name="Register" id="btnRegister" value="Register Member" />
+                          <input type="submit" name="Clear" id="btnClear" value="Clear Details" />
+                  </div>
+ 
+                </div>
+            </form>
+        </div>
+    </center>
+    <div class="footerContainer1">
+        <span class="memberFooter">Gym Records Management System (Version 0.0.1)</span>
+    </div>
+</body>
+
+</html>

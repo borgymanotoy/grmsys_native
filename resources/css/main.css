@@ -1,0 +1,157 @@
+@charset "utf-8";
+/* CSS Document */
+/*
+div.parentContainer{
+	position:relative;
+	height: 240px;
+	width: 100%;
+}
+*/
+
+div.barContainer {
+	background: rgba(25, 25, 25, 0.8);
+	height: 20em;
+	width: 100%;
+	position: fixed;
+	top: 50%;
+	margin-top: -10em;
+}
+
+div.loginContainer {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -8em;
+	margin-left: -15em;
+	height: 13.5em;
+	width: 30em;
+	background: rgba(80, 80, 80, 0.75);
+	/* 
+		border-radius: 8px;
+		border: 2px dashed #ccc;
+	*/
+	padding: 15px 25px;
+	border: 2px solid #333;
+}
+
+div.headerContainer, div.footerContainer {
+	width: 100%;
+	background: rgba(20, 20, 20, 0.9);
+}
+
+div.headerContainer {
+	position: absolute;
+	top: 0;
+	height: 5em;
+	margin-bottom: 3em;
+}
+
+div.footerContainer {
+   position: fixed; 
+   left:0px;
+   bottom:0px;
+   height: 3em;
+}
+
+div.headerContainer > div > span {
+    font-family: Impact,"Arial Black","Arial Narrow";
+    font-size: 28px;
+    position: relative;
+    top: 0.3em;
+}
+
+div.footerContainer > span {
+    font-family: Impact,"Arial Black","Arial Narrow";
+    font-size: 14px;
+	color: #ccc;
+	position: relative;
+	top: 35%;
+	float: right;
+	margin-right: 10px;
+}
+
+img.headerImage {
+	padding: 5px;
+	width: 48px;
+	height: 48px;
+	vertical-align: middle;
+}
+
+.sysName {
+    font-family: Impact,"Arial Black","Arial Narrow";
+    font-size: 28px;
+    margin-left: 0.25em;
+	/*
+    position: relative;
+    top: 0;
+	*/
+}
+
+.sysVersion {
+    font-family: Impact,"Arial Black","Arial Narrow";
+    font-size: 14px;
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	color: #ccc;
+	margin-right: 0.25em;
+	/*
+    position: absolute;
+	margin-right: 0.5em;
+	right: 0;
+	top: 0;
+	*/
+}
+
+label {
+	font-size: 16px;
+	font-weight: bolder;
+	width: 100px;
+	display: inline-block;
+}
+
+input[type='text'], input[type='password']{
+    background-color: #666;
+    border: 3px solid #333;
+    border-radius: 5px;
+    color: #ccc;
+    padding: 3px 10px;
+    width: 60%;
+}
+
+
+h1 {
+	font-size: 24px;
+}
+h2 {
+	font-size: 18px;
+}
+h3 {
+	font-size: 16px;
+}
+h4 {
+	font-size: 14px;
+}
+h5 {
+	font-size: 12px;
+}
+h6 {
+	font-size: 10px;
+}
+
+p.buttonContainer {
+	padding-top: 15px;
+}
+
+div.errorStatus {
+  color: red;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 3px 10px;
+  display: inline-block;
+  width: 100%;
+  background-color: #EA9797;
+  position: fixed;
+  top: 50%;
+  margin-top: 8em;
+}

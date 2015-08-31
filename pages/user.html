@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>(GRMSys): User Registration</title>
+        <link type="text/css" rel="stylesheet" href="resources/css/home.css" />
+        <link type="text/css" rel="stylesheet" href="resources/css/commons.css" />
+        <link type="text/css" rel="stylesheet" href="resources/css/datepicker.css" />
+        <script type='text/javascript' src='resources/js/jquery-1.11.1.min.js'></script>
+        <script type='text/javascript' src='resources/js/zebra_datepicker.src.js'></script>
+        <script type='text/javascript' src='resources/js/common.js'></script>
+        <script type='text/javascript' src='resources/js/userRegistration.js'></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#txtBirthdate').Zebra_DatePicker();
+                $("img.headerMenuImage").bind("click", function(){
+                    goToHome();
+                });
+                loadDummyUserInfo();
+            });
+        </script>
+    </head>
+    <body>
+        <div class="headerContainer">
+            <div>
+                <img src="resources/images/icons/user.png" class="headerImage" alt="Members" />
+                <span>User Registration</span>
+            </div>
+            <div class="headerMenuButton">
+                <img src="resources/images/icons/menu.png" class="headerMenuImage" alt="Menu" />
+            </div>
+        </div>
+        <div class="userPageContainer">
+            <div class="userContainer">
+                <span id="spanItemStatus" class="success"></span>
+                <form id="formUser" name="formUser" method="post" action="">
+                    <div class="parentContainer">
+                        <div class="userInfoContainer">
+                            <p>
+                                <label for="txtUserId">Identification Number:</label>
+                                <input type="text" id="txtUserId" name="userId" placeholder="0" title="User Identification" readonly="true" />
+                            </p>  
+                            <p>
+                                <label for="txtFirstname">Firstname:</label>
+                                <input type="text" id="txtFirstname" name="firstname" placeholder="Juan" title="User Firstname" />
+                            </p>
+                            <p>
+                                <label for="txtLastname">Lastname:</label>
+                                <input type="text" id="txtLastname" name="lastname" placeholder="Dela Cruz" title="User Lastname" />
+                            </p>
+                            <p>
+                                <label for="txtMiddlename">Middlename:</label>
+                                <input type="text" id="txtMiddlename" name="middlename" placeholder="Dimaloko" title="User Middlename" />
+                            </p>
+                            <p>
+                                <label for="txtContactNo">Contact Number:</label>
+                                <input type="text" id="txtContactNo" name="contactNo" placeholder="(918) 123-4567" title="User Contact Number" />
+                            </p>
+                            <p>
+                                <label for="txtAddress">Address:</label>
+                                <textarea id="txtAddress" name="address" cols="45" rows="5" placeholder="Address" title="User Address"></textarea>
+                            </p>
+                            <p>
+                                <label for="txtBirthdate">Birthday:</label>
+                                <input type="text" id="txtBirthdate" name="birthday" class="dateField" placeholder="Select Date" title="User Birthday" />
+                            </p>
+                            <p>
+                                <div class="genderContainer">
+                                    <input type="radio" id="rdbGenderMale" name="gender" value="Male" />
+                                    <label for="rdbGenderMale" class="choiceLabel">Male:</label>
+                                    <input type="radio" id="rdbGenderFemale" name="gender" value="Female" />
+                                    <label for="rdbGenderFemale" class="choiceLabel">Female:</label>
+                                </div>
+                            </p>
+                            <p>
+                                <label for="txtUsername" class="UserLabel">Username:</label>
+                                <input type="text" id="txtUsername" name="username" placeholder="username" title="User Username" />
+                            </p>
+                            <p>
+                                <label for="txtPassword" class="UserLabel">Password:</label>
+                                <input type="password" id="txtPassword" name="password" title="User Password" />
+                            </p>
+                        </div>
+                    </div>
+                </form>
+                <div class="buttonContainer">
+                    <button class="submitButton" onclick="addUpdateUser()">Register Member</button>
+                    <button class="submitButton" onclick="clearUserFields()">Clear Details</button>
+                    <!--
+                    <input type="submit" name="Register" id="btnRegister" value="Register Member" />
+                    <input type="submit" name="Clear" id="btnClear" value="Clear Details" />
+                    -->
+                </div>
+            </div>
+            <div class="userListContainer">
+                <i>User List Here</i>
+            </div>
+        </div>
+        <div class="footerContainer2">
+            <span class="footer">Gym Records Management System (Version 0.0.1)</span>
+        </div>
+    </body>
+</html>

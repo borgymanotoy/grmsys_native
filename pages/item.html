@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>(GRMSys): Item Registration</title>
+    <link type="text/css" rel="stylesheet" href="resources/css/home.css" />
+    <link type="text/css" rel="stylesheet" href="resources/css/commons.css" />
+    <script type='text/javascript' src='resources/js/jquery-1.11.1.min.js'></script>
+    <script type='text/javascript' src='resources/js/common.js'></script>
+    <script type="text/javascript">
+		$(document).ready(function(){
+            $("img.headerMenuImage").bind("click", function(){
+                goToHome();
+            });
+		});
+    </script>
+</head>
+<body>
+    <div class="headerContainer">
+        <div>
+            <img src="resources/images/icons/coffee.png" class="headerImage" alt="Items" />
+            <span>Item Registration</span>
+        </div>
+        <div class="headerMenuButton">
+            <img src="resources/images/icons/menu.png" class="headerMenuImage" alt="Menu" />
+        </div>
+    </div>
+	<div class="formContainer">
+        <form id="formItem" name="formItem" method="post" action="">
+            <p>
+                <label for="txtItemId">Identification Number:</label>
+                <input type="text" id="txtItemId" name="itemId" placeholder="0" title="Item Identification" />
+            </p>  
+            <p>
+                <label for="txtItemName">Item Name:</label>
+                <input type="text" id="txtItemName" name="itemName" placeholder="Item Name" title="Name of item" />
+            </p> 
+            <p>
+                <label for="txtItemPrice">Price:</label>
+                <input type="text" id="txtItemPrice" name="itemPrice" placeholder="Item Price" title="Price of item" />
+            </p>
+            <p>
+                <label for="txtItemOtherInfo">Other Info:</label>
+                <textarea id="txtItemOtherInfo" name="otherInfo" cols="45" rows="5" placeholder="Other item info" title="Other Item Information"></textarea>
+            </p>  
+            <div class="buttonContainer">
+                <input type="submit" name="Register" id="btnRegister" value="Register Item" />
+                <input type="submit" name="Clear" id="btnClear" value="Clear Details" />
+            </div>
+        </form>
+    </div>
+    <div class="footerContainer2">
+        <span class="footer">Gym Records Management System (Version 0.0.1)</span>
+    </div>
+</body>
+</html>

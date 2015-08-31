@@ -1,0 +1,310 @@
+@charset "utf-8";
+/* CSS Document */
+body > center > div {
+	width: 850px;
+	padding: 10px;
+	border: 1px solid #333;
+	background: rgba(20, 20, 20, 0.9);
+}
+
+center {
+	margin-top: 8em;
+	margin-bottom: 5em;
+}
+
+.parentContainer {
+	width: 850px;	
+}
+.memberInfoContainer {
+	float: left;
+	border: 1px solid #333;
+	padding: 20px;
+}
+.membertypeInfoContainer {
+	float: right;
+	border: 1px solid #333;
+	padding: 20px;
+}
+.buttonContainer {
+	clear: both;
+	padding: 20px;
+}
+.genderContainer {
+	width: 405px;
+	padding: 10px;
+	background-color: #333;
+}
+.typeContainer, .discountContainer {
+	width: 250px;
+	padding: 10px;
+	background-color: #333;
+}
+label.choiceLabel {
+	font-size:12px;
+	font-weight: bold;
+	width: 80px;
+	display: inline-block;	
+}
+label.selectLabel {
+	font-size:14px;
+	font-weight: bold;
+	width: 100px;
+	display: inline-block;	
+}
+.emergencyContainer {
+	background-color: #333;
+	padding: 10px;
+}
+label {
+	font-size:14px;
+	font-weight: bold;
+	width: 150px;
+	display: inline-block;
+}
+
+label.loginLabel {
+	font-size:14px;
+	font-weight: bold;
+	width: 80px;
+	display: inline-block;
+}
+
+label.small {
+	width: 50px;
+}
+
+input[type='text'], input[type='password'], textarea {
+	width: 250px;	
+	padding: 2px 10px;
+	font-size: 14px;
+	font-weight: bold;
+	border: 2px solid black;
+	background-color: #666;
+	color: #fff;
+}
+
+input.dateField {
+	width: 100px;
+}
+
+textarea {
+	resize: none;
+}
+
+input[type='submit'], input[type='reset'], button.submitButton {
+	font-size:14px;
+	font-weight: bold;
+	padding: 5px 15px;
+	background-color: #333;
+	color: #ccc;
+	cursor: pointer;
+}
+
+select {
+	padding: 3px 10px;
+	border: 2px solid black;
+	font-size: 12px;
+	font-weight: bold;
+	background-color: #666;
+	color: #fff;
+}
+
+div.loginContainer {
+	background-color: #333;
+	width: 370px;
+	height: 135px;
+	padding: 20px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -68px;
+	margin-left: -185px;
+	box-shadow: 10px 10px 5px #333;
+	border-radius: 10px;
+}
+
+div.formContainer {
+	padding: 20px;
+	border: 1px solid #333;
+	background: rgba(20, 20, 20, 0.9);
+	width: 450px;
+	height: 338px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -169px;
+	margin-left: -225px;
+}
+
+div.homeContainer {
+	padding: 20px;
+	border: 1px solid #333;
+	background: rgba(20, 20, 20, 0.9);
+	width: 450px;
+	height: 450px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -225px;
+	margin-left: -225px;
+}
+
+div.userPageContainer {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	margin-top: -300px;
+	margin-left: -600px;
+	width: 1200px;
+	height: 600px;
+	background: rgba(20, 20, 20, 0.9);
+	padding: 10px;
+}
+
+div.userContainer {
+	padding: 20px;
+	border: 1px solid #333;
+	background: rgba(20, 20, 20, 0.9);
+	width: 450px;
+	height: 550px;
+	display: inline-block;
+	/* 
+	position: absolute;
+	top: 50%;
+	left: 75px;
+	margin-top: -275px;
+	margin-left: -225px;
+	*/
+}
+
+span#spanItemStatus {
+	display: block;
+	width: 470px;
+	padding: 10px;
+	background-color: #333;
+	font-size: 12px;
+	margin-left: -20px;
+	margin-top: -20px;
+	font-weight: bold;
+}
+
+span.success {
+	color: mediumspringgreen;
+}
+span.error {
+	color: #FB3222;
+}
+
+div.userListContainer {
+	padding: 20px;
+	border: 1px solid #333;
+	background: rgba(20, 20, 20, 0.9);
+	width: 660px;
+	height: 550px;
+	position: absolute;
+	top: 50%;
+	left: 510px;
+	margin-top: -300px;	
+}
+
+
+div.headerContainer, div.footerContainer1, div.footerContainer2 {
+	width: 99.9%;
+	background: rgba(20, 20, 20, 0.9);
+}
+
+div.headerContainer {
+	position: absolute;
+	top: 0;
+	height: 5em;
+	margin-bottom: 3em;
+}
+
+div.footerContainer1 {
+   height: 3em;
+}
+
+div.footerContainer2 {
+   position: fixed; 
+   left:0px;
+   bottom:0px;
+   height: 3em;
+}
+
+
+div.footerContainer1 > span, div.footerContainer2 > span {
+    font-family: Impact,"Arial Black","Arial Narrow";
+    font-size: 14px;
+	color: #ccc;
+	position: relative;
+	top: 28%;
+	float: right;
+	margin-right: 10px;
+}
+
+div.headerContainer > div > span {
+    font-family: Impact,"Arial Black","Arial Narrow";
+    font-size: 28px;
+    margin-left: 0.25em;
+    position: relative;
+    top: 0.3em;
+}
+
+img.headerSmallImage {
+	padding: 5px;
+	width: 32px;
+	height: 32px;
+	vertical-align: middle;
+}
+img.headerImage {
+	padding: 5px;
+	width: 48px;
+	height: 48px;
+	vertical-align: middle;
+}
+
+div.headerMenuButton {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 60px;
+}
+
+div.headerLogout {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 110px;
+}
+
+div.headerLogout > a:link, div.headerLogout > a:visited, div.headerLogout > a:active {
+	font-family: Impact,"Arial Black","Arial Narrow";
+    font-size: 14px;
+	font-weight: normal;
+	color: #ccc;
+	text-decoration: none;
+} 
+
+img.headerMenuImage {
+	padding: 15px;
+	width: 32px;
+	height: 32px;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+img.toolImage {
+	margin: 15px;
+	width: 64px;
+	height: 64px;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+#tblTools {
+	padding: 10px;
+}
+
+#tblTools > td.tool {
+	padding: 10px;
+}
