@@ -8,5 +8,4 @@
 		$result = mysqli_query($conn, $sqlQuery) or die("Query fail: " . $sqlQuery);
 		include('pages/usersList.html');	
 	}
-	
 ?>
