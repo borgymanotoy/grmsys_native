@@ -23,6 +23,7 @@
 			$sqlUser = "SELECT * FROM USER WHERE username = '".$username."'";
 			$rsUser = mysqli_query($conn, $sqlUser);
 			$user = mysqli_fetch_assoc($rsUser);
+			$_SESSION['user_id'] = $user['id'];
 			$_SESSION['username'] = $user['username'];
 			$_SESSION['password'] = $user['password'];
 			$_SESSION['name'] = generateUserCompleteName($user);

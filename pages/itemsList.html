@@ -1,0 +1,22 @@
+<table class="itemsTable" cellpadding="0" cellspacing="0">
+	<tbody>
+		<caption>Items List</caption>
+		<tr>
+			<th>ID</th>
+			<th>Item Name</th>
+			<th>Price</th>
+		</tr>
+
+		<?php
+			while( $row = mysqli_fetch_array($result) ) { 
+		?>
+		<tr>
+			<td><?php  echo $row['id']; ?></td>
+			<td><?php  echo $row['name']; ?></td>
+			<td><?php  echo $row['price']; ?></td>
+		</tr>
+		<?php
+			}
+		?>
+	</tbody>
+</table>
