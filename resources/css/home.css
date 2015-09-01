@@ -134,7 +134,7 @@ div.formContainer {
 	top: 50%;
 	left: 50%;
 	margin-top: -169px;
-	margin-left: -225px;
+	margin-left: -475px;
 }
 
 div.homeContainer {
@@ -207,6 +207,18 @@ div#dvUserListContainer {
 	left: 510px;
 	margin-top: -300px;
 	overflow-y: auto;
+}
+div.itemListContainer {
+	padding: 20px;
+	border: 1px solid #333;
+	background: rgba(20, 20, 20, 0.9);
+	width: 450px;
+	height: 338px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -169px;
+	margin-left: 25px;
 }
 
 
