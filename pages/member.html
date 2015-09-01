@@ -6,11 +6,16 @@
     <link type="text/css" rel="stylesheet" href="resources/css/home.css" />
     <link type="text/css" rel="stylesheet" href="resources/css/commons.css" />
     <link type="text/css" rel="stylesheet" href="resources/css/datepicker.css" />
+    <link type="text/css" rel="stylesheet" href='resources/css/flat/yellow.css' media="screen">
     <script type='text/javascript' src='resources/js/jquery-1.11.1.min.js'></script>
     <script type='text/javascript' src='resources/js/zebra_datepicker.src.js'></script>
+    <script type='text/javascript' src='resources/js/icheck.min.js'></script>
     <script type='text/javascript' src='resources/js/common.js'></script>
+    <script type='text/javascript' src='resources/js/memberRegistration.js'></script>
     <script type="text/javascript">
 		$(document).ready(function(){
+            $('.myRadioButtons').iCheck({ radioClass: 'iradio_flat-red' });
+
             $('#txtMemberStart').Zebra_DatePicker({
                 direction: true,
                 pair: $('#txtMemberEnd')
@@ -21,6 +26,8 @@
             $("img.headerMenuImage").bind("click", function(){
                 goToHome();
             });
+            //loadDummyMemberInfo();
+            refreshMembersList();
 		});
     </script>
 </head>
@@ -70,9 +77,9 @@
                         </p>
                         <p>
                             <div class="genderContainer">
-                                <input type="radio" id="rdbGenderMale" name="gender" value="Male" />
+                                <input type="radio" id="rdbGenderMale" name="gender" value="Male" class="myRadioButtons" checked />
                                 <label for="rdbGenderMale" class="choiceLabel">Male:</label>
-                                <input type="radio" id="rdbGenderFemale" name="gender" value="Female" />
+                                <input type="radio" id="rdbGenderFemale" name="gender" value="Female" class="myRadioButtons" />
                                 <label for="rdbGenderFemale" class="choiceLabel">Female:</label>
                             </div>
                         </p>
@@ -93,7 +100,7 @@
                         </div>
                     </div>
                     <div id="dvMemberListContainer">
-                        <!-- ?php include('membersList.php'); ? -->
+                        <?php include('membersList.php'); ?>
                         &nbsp;
                     </div>
                     <div class="membertypeInfoContainer">
@@ -101,18 +108,18 @@
                             <p>
                                 <h4>Type:</h4>
                                 <div class="typeContainer">
-                                    <input type="radio" id="rdbTypeWalkin" name="type" value="walk-in" />
+                                    <input type="radio" id="rdbTypeWalkin" name="type" value="walk-in" class="myRadioButtons" checked />
                                     <label for="rdbTypeWalkin" class="choiceLabel">Walk-in:</label>
-                                    <input type="radio" id="rdbTypeMonthly" name="type" value="monthly" />
+                                    <input type="radio" id="rdbTypeMonthly" name="type" value="monthly" class="myRadioButtons" />
                                     <label for="rdbTypeMonthly" class="choiceLabel">Monthly:</label>
                                 </div>
                             </p>
                             <p>
                                 <h4>Discount:</h4>
                                 <div class="discountContainer">
-                                    <input type="radio" id="rdbDiscountYes" name="discounted" value="yes" />
+                                    <input type="radio" id="rdbDiscountYes" name="discounted" value="yes" class="myRadioButtons" />
                                     <label for="rdbDiscountYes" class="choiceLabel">Yes:</label>
-                                    <input type="radio" id="rdbDiscountNo" name="discounted" value="no" />
+                                    <input type="radio" id="rdbDiscountNo" name="discounted" value="no" class="myRadioButtons" checked />
                                     <label for="rdbDiscountNo" class="choiceLabel">No (Regular):</label>
                                 </div>
                             </p>

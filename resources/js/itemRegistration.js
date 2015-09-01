@@ -17,7 +17,7 @@ var refreshItemsList = function(page, sortColumn, order){
 	$("#dvItemListContainer").load(url);
 };
 
-var loadDummyUserInfo = function(){
+var loadDummyItemInfo = function(){
 	$("#txtItemId").val("0");
 	$("#txtItemName").val("Vitamilk");
 	$("#txtItemPrice").val("28.00");

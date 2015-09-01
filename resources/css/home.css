@@ -252,7 +252,7 @@ span.error {
 div#dvUserListContainer {
 	padding: 20px;
 	border: 1px solid #333;
-	background: rgba(20, 20, 20, 0.9);
+	background-color: #333;
 	width: 660px;
 	height: 550px;
 	position: absolute;
@@ -264,7 +264,7 @@ div#dvUserListContainer {
 div#dvItemListContainer {
 	padding: 20px;
 	border: 1px solid #333;
-	background: rgba(20, 20, 20, 0.9);
+	background-color: #333;
 	width: 450px;
 	height: 320px;
 	position: absolute;
