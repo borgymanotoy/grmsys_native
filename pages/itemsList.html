@@ -1,26 +1,22 @@
-<table class="usersTable" cellpadding="0" cellspacing="0">
+<table class="itemsTable" cellpadding="0" cellspacing="0">
 	<tbody>
-		<caption>Users List</caption>
-		<!--<tr>
+		<caption>Items List</caption>
+		<tr>
 			<th>ID</th>
-			<th>Name</th>
+			<th>Item Name</th>
+			<th>Price</th>
 		</tr>
 
+		<?php
+			while( $row = mysqli_fetch_array($result) ) { 
+		?>
 		<tr>
-			<td>14</td>
-			<td>Jejomar Binay</td>
+			<td><?php  echo $row['id']; ?></td>
+			<td><?php  echo $row['name']; ?></td>
+			<td><?php  echo $row['price']; ?></td>
 		</tr>
-		<tr>
-			<td>24</td>
-			<td>Jon jon Binay</td>
-		</tr>
-		<tr>
-			<td>34</td>
-			<td>Nancy Binay</td>
-		</tr>
-		<tr>
-			<td>44</td>
-			<td>Dapat I. Bitay</td>
-		</tr>-->
+		<?php
+			}
+		?>
 	</tbody>
 </table>

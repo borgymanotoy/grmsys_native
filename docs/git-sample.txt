@@ -1,0 +1,15 @@
+'git status' -> List all changed and new files to be added (RED: Modified or New; GREEN: Added and ready for commit)
+'git add -A' -> Add all changes in the current branch
+'git commit -m "comment sa commit nimo usually mga changes nimo..."' -> Commit added files with comment
+
+'git pull origin master' -> sync and get latest changes from the repository (internet server). Note: all changes should be added and committed before calling git pull...
+
+
+* Get all files from github repository
+git clone https://github.com/borgymanotoy/grmsys_native.git
+
+example:
+C:
+cd \wamp\www
+git clone https://github.com/borgymanotoy/grmsys_native.git
+
