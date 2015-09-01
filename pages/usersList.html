@@ -4,23 +4,36 @@
 		<tr>
 			<th>ID</th>
 			<th>Name</th>
+			<th>Contact No.</th>
 		</tr>
 
+		<?php
+			while( $row = mysqli_fetch_array($result) ) { 
+		?>
 		<tr>
-			<td>14</td>
-			<td>Jejomar Binay</td>
+			<td><?php  echo $row['user_id']; ?></td>
+			<td><?php  echo $row['user_name']; ?></td>
+			<td><?php  echo $row['contactno']; ?></td>
 		</tr>
+		<?php
+			}
+		?>
+		<!--
 		<tr>
 			<td>24</td>
 			<td>Jon jon Binay</td>
+			<td>(0912) 345-6789</td>
 		</tr>
 		<tr>
 			<td>34</td>
 			<td>Nancy Binay</td>
+			<td>(0912) 345-6789</td>
 		</tr>
 		<tr>
 			<td>44</td>
 			<td>Dapat I. Bitay</td>
+			<td>(0912) 345-6789</td>
 		</tr>
+		-->
 	</tbody>
 </table>

@@ -2,9 +2,19 @@ var addUpdateUser = function(){
 	$.post("../userRegistration.php", $("#formUser").serialize()).done(function(msg){
 		alert(msg);
 		clearUserFields();
+		refreshUsersList();
 	}).fail(function(){
 		alert("Error adding/updating user.");
 	});
+};
+
+var refreshUsersList = function(page, sortColumn, order){
+	var url = "../usersList.php";
+	if(page) url += "?page=" + page;
+	if(sortColumn) url += "&sortBy=" + sortColumn;
+	if(order) url += "&order=" + order;
+
+	$("#dvUserListContainer").load(url);
 };
 
 var loadDummyUserInfo = function(){

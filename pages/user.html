@@ -6,58 +6,8 @@
         <link type="text/css" rel="stylesheet" href="resources/css/home.css" />
         <link type="text/css" rel="stylesheet" href="resources/css/commons.css" />
         <link type="text/css" rel="stylesheet" href="resources/css/datepicker.css" />
-
-        <style>
-            table.usersTable {
-                /* padding: 10px 25px; */
-                border-left: 5px solid #555;
-                border-bottom: 5px solid #555;
-                border-right: 5px solid #555;
-                width: 99.9%;
-            }
-            table.usersTable > caption {
-                padding: 5px 0px;
-                width: 98.5%;
-                background-color: #F3C00E;
-                border-left: 5px solid #555;
-                border-top: 5px solid #555;
-                border-right: 5px solid #555;
-                color: #363434;
-                font-weight: bold;
-                font-size: 1.25em;
-            }
-
-            table.usersTable > tbody > tr:nth-child(even) { background: #DDDBDB none repeat scroll 0% 0%; }
-            table.usersTable > tbody > tr:nth-child(odd) { background: #EFD98E none repeat scroll 0% 0%; }
-
-            table.usersTable > tbody > tr > th {
-                padding: 5px 10px;
-                font-weight: bold;
-                background-color: #555;
-                font-size: 1.2em;
-            }
-            table.usersTable > tbody > tr > th:nth-child(1){
-                width: 50px;
-                text-align: center;
-            }
-            table.usersTable > tbody > tr > th:nth-child(2){
-                text-align: left;
-            }
-            table.usersTable > tbody > tr > td {
-                padding: 5px 10px;
-                font-weight: normal;
-                /* background-color: #ccc; */
-                color: #222;
-                font-size: 1.1em;
-            }
-            table.usersTable > tbody > tr > td:nth-child(1){
-                width: 50px;
-                text-align: center;
-            }
-            table.usersTable > tbody > tr > td:nth-child(2){
-                text-align: left;
-            }
-        </style>
+        <link type="text/css" rel="stylesheet" href='resources/css/flat/yellow.css' media="screen">
+        <link type="text/css" rel="stylesheet" href="resources/css/users.css" />
 
         <script type='text/javascript' src='resources/js/jquery-1.11.1.min.js'></script>
         <script type='text/javascript' src='resources/js/zebra_datepicker.src.js'></script>
@@ -66,6 +16,8 @@
         <script type='text/javascript' src='resources/js/userRegistration.js'></script>
         <script type="text/javascript">
             $(document).ready(function(){
+                $('.myRadioButtons').iCheck({ radioClass: 'iradio_flat-red' });
+                
                 $('#txtBirthdate').Zebra_DatePicker({
                     format: 'm/d/Y'
                 });
@@ -73,6 +25,7 @@
                     goToHome();
                 });
                 //loadDummyUserInfo();
+                refreshUsersList();
             });
         </script>
     </head>
@@ -122,9 +75,9 @@
                             </p>
                             <p>
                                 <div class="genderContainer">
-                                    <input type="radio" id="rdbGenderMale" name="gender" value="M" checked />
+                                    <input type="radio" id="rdbGenderMale" name="gender" value="M" class="myRadioButtons" checked />
                                     <label for="rdbGenderMale" class="choiceLabel">Male:</label>
-                                    <input type="radio" id="rdbGenderFemale" name="gender" value="F" />
+                                    <input type="radio" id="rdbGenderFemale" name="gender" value="F" class="myRadioButtons" />
                                     <label for="rdbGenderFemale" class="choiceLabel">Female:</label>
                                 </div>
                             </p>
@@ -148,8 +101,8 @@
                     -->
                 </div>
             </div>
-            <div class="userListContainer">
-                <?php include('pages/usersList.html'); ?>
+            <div id="dvUserListContainer">
+                <!-- ?php include('usersList.php'); ? -->
             </div>
         </div>
         <div class="footerContainer2">

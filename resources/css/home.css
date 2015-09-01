@@ -44,6 +44,7 @@ label.choiceLabel {
 	font-weight: bold;
 	width: 80px;
 	display: inline-block;	
+	margin-left: 10px;
 }
 label.selectLabel {
 	font-size:14px;
@@ -195,7 +196,7 @@ span.error {
 	color: #FB3222;
 }
 
-div.userListContainer {
+div#dvUserListContainer {
 	padding: 20px;
 	border: 1px solid #333;
 	background: rgba(20, 20, 20, 0.9);
