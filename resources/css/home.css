@@ -205,7 +205,8 @@ div#dvUserListContainer {
 	position: absolute;
 	top: 50%;
 	left: 510px;
-	margin-top: -300px;	
+	margin-top: -300px;
+	overflow-y: auto;
 }
 
 
