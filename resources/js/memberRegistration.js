@@ -1,3 +1,62 @@
+var initMemberComponents = function(){
+	$("table.membersTable").delegate('td','mouseover mouseleave', function(e) {
+		if (e.type == 'mouseover') {
+			$(this).parent().addClass("hover");
+			$("colgroup").eq($(this).index()).addClass("hover");
+		}
+		else {
+			$(this).parent().removeClass("hover");
+			$("colgroup").eq($(this).index()).removeClass("hover");
+		}
+	});
+
+	$("table.membersTable tr:odd").addClass("odd");
+	$("table.membersTable tr:even").addClass("even");
+	
+	$("table.membersTable tr td").on("click", function(){
+		loadMemberDetails($(this).parent().find(":first-child").html());
+	});
+};
+
+var loadMemberDetails = function(id){
+	if(id){
+		$.getJSON("../getMemberDetails.php?id=" + id, function(data){
+			if(data[0]){
+				$("#txtMemberId").val(data[0].member_id);
+				$("#txtFirstname").val(data[0].firstname);
+				$("#txtLastname").val(data[0].lastname);
+				$("#txtMiddlename").val(data[0].middlename);
+				$("#txtContactNo").val(data[0].contactno);
+				$("#txtAddress").val(data[0].address);
+				$("#txtBirthday").val(data[0].birthdate);
+				
+				if(data[0].gender == 'M')
+					$("#rdbGenderMale").iCheck('check');
+				else
+					$("#rdbGenderFemale").iCheck('check');
+
+				$("#txtEmergencyContactPerson").val(data[0].emergency_contact_person);
+				$("#txtEmergencyContactNumber").val(data[0].emergency_contact_number);
+				$("#txtEmergencyContactRelationship").val(data[0].emergency_contact_relationship);
+				
+				if(data[0].membership_type == 'walk-in')
+					$("#rdbTypeWalkin").iCheck('check');
+				else
+					$("#rdbTypeMonthly").iCheck('check');
+					
+				if(data[0].has_discount == 'Yes')
+					$("#rdbDiscountYes").iCheck('check');
+				else
+					$("#rdbDiscountNo").iCheck('check');
+					
+				$('#selServiceType').val(data[0].service_type);
+				$("#txtMemberStart").val(data[0].monthly_startdate);
+				$("#txtMemberEnd").val(data[0].monthly_enddate);
+			}
+		});
+	}
+};
+
 var addUpdateMember = function(){
 	$.post("../memberRegistration.php", $("#formMember").serialize()).done(function(msg){
 		setMemberStatus(true, msg);
@@ -14,7 +73,9 @@ var refreshMembersList = function(page, sortColumn, order){
 	if(sortColumn) url += "&sortBy=" + sortColumn;
 	if(order) url += "&order=" + order;
 
-	$("#dvMemberListContainer").load(url);
+	$("#dvMemberListContainer").load(url, function(){
+		initMemberComponents();
+	});
 };
 
 var loadDummyMemberInfo = function(){

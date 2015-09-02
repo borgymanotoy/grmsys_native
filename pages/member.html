@@ -31,7 +31,9 @@
             $("input").bind("change", function(){
                 clearMemberStatus();
             });
+
             refreshMembersList();
+            initMemberComponents();
 		});
     </script>
 </head>
@@ -39,7 +41,7 @@
     <div class="headerContainer">
         <div>
             <img src="resources/images/icons/people.png" class="headerImage" alt="Members" />
-            <span>User Registration</span>
+            <span>Member Registration</span>
         </div>
         <div class="headerMenuButton">
             <img src="resources/images/icons/menu.png" class="headerMenuImage" alt="Menu" />
@@ -104,7 +106,7 @@
                         </div>
                     </div>
                     <div id="dvMemberListContainer">
-                        <?php include('membersList.php'); ?>
+                        <!-- ?php include('membersList.php'); ? -->
                         &nbsp;
                     </div>
                     <div class="membertypeInfoContainer">
