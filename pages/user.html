@@ -24,6 +24,9 @@
                 $("img.headerMenuImage").bind("click", function(){
                     goToHome();
                 });
+                $("input").bind("change", function(){
+                    clearUserStatus();
+                });
                 //loadDummyUserInfo();
                 refreshUsersList();
             });
@@ -41,7 +44,7 @@
         </div>
         <div class="userPageContainer">
             <div class="userContainer">
-                <span id="spanItemStatus" class="success"></span>
+                <span id="spanUserStatus" class="success"></span>
                 <form id="formUser" name="formUser" method="post" action="">
                     <div class="parentContainer">
                         <div class="userInfoContainer">
@@ -97,9 +100,7 @@
                     <button class="submitButton" onclick="clearUserFields()">Clear Details</button>
                 </div>
             </div>
-            <div id="dvUserListContainer">
-                <!-- ?php include('usersList.php'); ? -->
-            </div>
+            <div id="dvUserListContainer">&nbsp;</div>
         </div>
         <div class="footerContainer2">
             <span class="footer">Gym Records Management System (Version 0.0.1)</span>

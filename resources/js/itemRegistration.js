@@ -1,10 +1,10 @@
 var addUpdateItem = function(){
 	$.post("../itemRegistration.php", $("#formItem").serialize()).done(function(msg){
-		alert(msg);
+		setItemStatus(true, msg);
 		clearItemFields();
 		refreshItemsList();
 	}).fail(function(){
-		alert("Error adding/updating item.");
+		setItemStatus(false, "Error adding/updating item.");
 	});
 };
 
@@ -17,7 +17,7 @@ var refreshItemsList = function(page, sortColumn, order){
 	$("#dvItemListContainer").load(url);
 };
 
-var loadDummyUserInfo = function(){
+var loadDummyItemInfo = function(){
 	$("#txtItemId").val("0");
 	$("#txtItemName").val("Vitamilk");
 	$("#txtItemPrice").val("28.00");
@@ -26,4 +26,18 @@ var loadDummyUserInfo = function(){
 
 var clearItemFields = function(){
 	$('input[type="text"], textarea').val("");
+};
+
+var setItemStatus = function(isSuccess, msg){
+	var objStatus = $('#spanItemStatus');
+	 objStatus.removeClass("success").removeClass("error");
+	if(isSuccess)
+		objStatus.addClass("success").html(msg);
+	else
+		objStatus.addClass("error").html(msg);	
+};
+
+var clearItemStatus = function(){
+	var objStatus = $('#spanItemStatus');
+	objStatus.removeClass("success").removeClass("error").html("");
 };

@@ -1,19 +1,6 @@
 <?php 
 	require_once('libs/dbconnect.php');
 
-	/*
-	address: Davao City, Philippines
-	birthday: 05-20-1981
-	contactNo: (0920) 987-1234
-	firstname: Juan
-	gender: Male
-	lastname: Dela Cruz
-	middlename: Pedrito
-	password: password
-	userId: 0
-	username: juandelacruz
-	*/
-
 	$userId = mysqli_real_escape_string($conn, $_POST['userId']);
 	$username = mysqli_real_escape_string($conn, $_POST['username']);
 	$password = mysqli_real_escape_string($conn, $_POST['password']);	
