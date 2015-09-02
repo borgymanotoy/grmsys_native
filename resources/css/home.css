@@ -231,7 +231,7 @@ span#spanMemberStatus {
 	margin-bottom: 10px;
 	font-weight: bold;
 }
-span#spanItemStatus {
+span#spanItemStatus, span#spanUserStatus {
 	display: block;
 	width: 470px;
 	padding: 10px;

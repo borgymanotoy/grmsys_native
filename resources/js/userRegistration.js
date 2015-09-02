@@ -1,10 +1,10 @@
 var addUpdateUser = function(){
 	$.post("../userRegistration.php", $("#formUser").serialize()).done(function(msg){
-		alert(msg);
+		setUserStatus(true, msg);
 		clearUserFields();
 		refreshUsersList();
 	}).fail(function(){
-		alert("Error adding/updating user.");
+		setUserStatus(false, "Error adding/updating user.");
 	});
 };
 
@@ -32,6 +32,19 @@ var loadDummyUserInfo = function(){
 
 var clearUserFields = function(){
 	$('input[type="text"], textarea').val("");
-	//$('input').removeAttr('checked').removeAttr('selected');
 	$('#rdbGenderMale').iCheck('check');
+};
+
+var setUserStatus = function(isSuccess, msg){
+	var objStatus = $('#spanUserStatus');
+	 objStatus.removeClass("success").removeClass("error");
+	if(isSuccess)
+		objStatus.addClass("success").html(msg);
+	else
+		objStatus.addClass("error").html(msg);	
+};
+
+var clearUserStatus = function(){
+	var objStatus = $('#spanUserStatus');
+	objStatus.removeClass("success").removeClass("error").html("");
 };

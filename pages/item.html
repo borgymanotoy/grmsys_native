@@ -14,7 +14,9 @@
             $("img.headerMenuImage").bind("click", function(){
                 goToHome();
             });
-            //loadDummyItemInfo();
+            $("input").bind("change", function(){
+                clearItemStatus();
+            });
             refreshItemsList();
 		});
     </script>

@@ -7,6 +7,7 @@
     <link type="text/css" rel="stylesheet" href="resources/css/commons.css" />
     <link type="text/css" rel="stylesheet" href="resources/css/datepicker.css" />
     <link type="text/css" rel="stylesheet" href='resources/css/flat/yellow.css' media="screen">
+    <link type="text/css" rel="stylesheet" href="resources/css/member.css" />
     <script type='text/javascript' src='resources/js/jquery-1.11.1.min.js'></script>
     <script type='text/javascript' src='resources/js/zebra_datepicker.src.js'></script>
     <script type='text/javascript' src='resources/js/icheck.min.js'></script>
@@ -16,6 +17,7 @@
 		$(document).ready(function(){
             $('.myRadioButtons').iCheck({ radioClass: 'iradio_flat-red' });
 
+            $('#txtBirthday').Zebra_DatePicker();
             $('#txtMemberStart').Zebra_DatePicker({
                 direction: true,
                 pair: $('#txtMemberEnd')
@@ -26,7 +28,9 @@
             $("img.headerMenuImage").bind("click", function(){
                 goToHome();
             });
-            //loadDummyMemberInfo();
+            $("input").bind("change", function(){
+                clearMemberStatus();
+            });
             refreshMembersList();
 		});
     </script>
@@ -73,13 +77,13 @@
                         </p>
                         <p>
                             <label for="txtBirthday">Birthday:</label>
-                            <input type="text" id="txtBirthday" name="birthday" placeholder="September 24, 1997" title="Member Birthday" />
+                            <input type="text" id="txtBirthday" name="birthdate" class="dateField" placeholder="Select Date" title="Member Birthday" />
                         </p>
                         <p>
                             <div class="genderContainer">
-                                <input type="radio" id="rdbGenderMale" name="gender" value="Male" class="myRadioButtons" checked />
+                                <input type="radio" id="rdbGenderMale" name="gender" value="M" class="myRadioButtons" checked />
                                 <label for="rdbGenderMale" class="choiceLabel">Male:</label>
-                                <input type="radio" id="rdbGenderFemale" name="gender" value="Female" class="myRadioButtons" />
+                                <input type="radio" id="rdbGenderFemale" name="gender" value="F" class="myRadioButtons" />
                                 <label for="rdbGenderFemale" class="choiceLabel">Female:</label>
                             </div>
                         </p>
@@ -117,9 +121,9 @@
                             <p>
                                 <h4>Discount:</h4>
                                 <div class="discountContainer">
-                                    <input type="radio" id="rdbDiscountYes" name="discounted" value="yes" class="myRadioButtons" />
+                                    <input type="radio" id="rdbDiscountYes" name="discounted" value="1" class="myRadioButtons" />
                                     <label for="rdbDiscountYes" class="choiceLabel">Yes:</label>
-                                    <input type="radio" id="rdbDiscountNo" name="discounted" value="no" class="myRadioButtons" checked />
+                                    <input type="radio" id="rdbDiscountNo" name="discounted" value="0" class="myRadioButtons" checked />
                                     <label for="rdbDiscountNo" class="choiceLabel">No (Regular):</label>
                                 </div>
                             </p>

@@ -24,6 +24,9 @@
                 $("img.headerMenuImage").bind("click", function(){
                     goToHome();
                 });
+                $("input").bind("change", function(){
+                    clearUserStatus();
+                });
                 //loadDummyUserInfo();
                 refreshUsersList();
             });
@@ -41,7 +44,7 @@
         </div>
         <div class="userPageContainer">
             <div class="userContainer">
-                <span id="spanItemStatus" class="success"></span>
+                <span id="spanUserStatus" class="success"></span>
                 <form id="formUser" name="formUser" method="post" action="">
                     <div class="parentContainer">
                         <div class="userInfoContainer">
