@@ -5,8 +5,8 @@
   <SchemaVersion>1.2</SchemaVersion>
   <DatabaseProvider>59f90733-4d68-4fdf-82a7-f0fcbf5460aa</DatabaseProvider>
   <Connection>
-    <Name>grmsys_db.localhost</Name>
-    <ConnectionString>User Id=root;Host=localhost;Database=grmsys_db;Character Set=utf8;</ConnectionString>
+    <Name>grmsys_db.localhost:3333</Name>
+    <ConnectionString>User Id=root;Host=localhost;Port=3333;Database=grmsys_db;Character Set=utf8;</ConnectionString>
   </Connection>
   <Settings>
     <DbDiagramOptions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
@@ -56,7 +56,7 @@
             </Location>
             <Size>
               <Width>231 px</Width>
-              <Height>195 px</Height>
+              <Height>178 px</Height>
             </Size>
             <DbOid>
               <Path>grmsys_db.item</Path>
@@ -75,7 +75,7 @@
             </CustomProperties>
             <Location>
               <X>-130 px</X>
-              <Y>-50 px</Y>
+              <Y>-40 px</Y>
             </Location>
             <Size>
               <Width>180 px</Width>
@@ -144,7 +144,7 @@
               <Port xsi:type="LinkPort">
                 <Location>
                   <X>0 px</X>
-                  <Y>-212.5 px</Y>
+                  <Y>-207.5 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
                 <Align>Bottom</Align>
@@ -497,7 +497,7 @@
               <Port>
                 <Location>
                   <X>0 px</X>
-                  <Y>97.5 px</Y>
+                  <Y>89 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
                 <Align>Right</Align>
@@ -522,7 +522,7 @@
             <BendPoints>
               <PointD>
                 <X>372.5 px</X>
-                <Y>667.5 px</Y>
+                <Y>659 px</Y>
               </PointD>
             </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
@@ -597,7 +597,7 @@
             <BendPoints>
               <PointD>
                 <X>90 px</X>
-                <Y>26.685393258427 px</Y>
+                <Y>36.685393258427 px</Y>
               </PointD>
               <PointD>
                 <X>90 px</X>
@@ -621,7 +621,7 @@
               <Port xsi:type="LinkPort">
                 <Location>
                   <X>-40 px</X>
-                  <Y>-313.032288626339 px</Y>
+                  <Y>-308.032319143917 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
                 <Align>Right</Align>
@@ -825,16 +825,6 @@
                 </CustomProperties>
               </Port>
             </PortAnchors>
-            <BendPoints>
-              <PointD>
-                <X>70 px</X>
-                <Y>-1.25 px</Y>
-              </PointD>
-              <PointD>
-                <X>70 px</X>
-                <Y>8.75 px</Y>
-              </PointD>
-            </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <DbOid>
               <Path>grmsys_db.item_sales.fk_item_sales_member_id</Path>
@@ -851,8 +841,8 @@
             <PortAnchors>
               <Port xsi:type="LinkPort">
                 <Location>
-                  <X>-150 px</X>
-                  <Y>-10 px</Y>
+                  <X>-140 px</X>
+                  <Y>0 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
                 <Align>Right</Align>
@@ -871,10 +861,10 @@
         </Children>
         <ViewPort>
           <ScaleMode>Free</ScaleMode>
-          <Scale>1.15</Scale>
+          <Scale>0.75</Scale>
           <Location>
-            <X>-287.32609416767 px</X>
-            <Y>55.500006915491 px</Y>
+            <X>-244 px</X>
+            <Y>-86.6666666666667 px</Y>
           </Location>
         </ViewPort>
       </Model>
