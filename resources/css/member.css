@@ -52,17 +52,3 @@ table.membersTable > tbody > tr > td:nth-child(1){
 table.membersTable > tbody > tr > td:nth-child(2){
 	text-align: left;
 }
-
-
-tr.hover {
-	background-color: yellow;
-	font-weight: bold;
-	cursor: pointer;
-}
-
-.odd {
-	background: #EFD98E none repeat scroll 0% 0%;
-}
-.even {
-	background: #DDDBDB none repeat scroll 0% 0%;
-}

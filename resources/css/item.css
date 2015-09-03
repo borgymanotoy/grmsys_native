@@ -17,8 +17,10 @@ table.itemsTable > caption {
 	font-size: 1.25em;
 }
 
+/*
 table.itemsTable > tbody > tr:nth-child(even) { background: #DDDBDB none repeat scroll 0% 0%; }
 table.itemsTable > tbody > tr:nth-child(odd) { background: #EFD98E none repeat scroll 0% 0%; }
+*/
 
 table.itemsTable > tbody > tr > th {
 	padding: 5px 10px;

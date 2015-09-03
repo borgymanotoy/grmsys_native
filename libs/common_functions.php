@@ -21,4 +21,14 @@
 		echo "<p><b>[Gender]: </b>" . $_SESSION['gender'] . "</p>";
 		echo "<p><b>[Active]: </b>" . $_SESSION['is_active'] . "</p>";
 	}
+	
+	function convertStringToDate($strDate){
+		//From: MM-DD-YYYY  To: YYYY-MM-DD
+		if($strDate){
+			$nfo = explode('-', $strDate);
+			$fmtDate = $nfo[1] . '-'. $nfo[0] . '-' . $nfo[2];
+			return date('Y-m-d',strtotime($fmtDate));
+		} 
+		return null;
+	}
 ?>

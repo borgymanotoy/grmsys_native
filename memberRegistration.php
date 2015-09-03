@@ -1,5 +1,6 @@
 <?php 
 	require_once('libs/dbconnect.php');
+	require_once('libs/common_functions.php');
 
 	session_start();
 
@@ -23,18 +24,17 @@
 	$has_discount = mysqli_real_escape_string($conn, $_POST['discounted']);
 	$service_type = mysqli_real_escape_string($conn, $_POST['serviceType']);
 
-	$dateBirth = date('Y-m-d',strtotime($birthdate));
-	$dateMStart = date('Y-m-d', strtotime($memberStart));
-	$dateMEnd = date('Y-m-d', strtotime($memberEnd));
+	$dateBirth = convertStringToDate($birthdate);
+	$dateMStart = convertStringToDate($memberStart);
+	$dateMEnd = convertStringToDate($memberEnd);
 
 	$memberId = empty($memberId) ? -1 : $memberId;
 	$loginUserId = mysqli_real_escape_string($conn, $_SESSION['user_id']);
 
 	$sqlCallProcedure = "CALL pAddOrUpdateMemberInfo($memberId, '$firstname', '$lastname', '$middlename', '$contactNo', '$address', '$dateBirth', '$gender', '$emergencyContactPerson', '$emergencyContactNumber', '$emergencyContactRelationship', '$membership_type', '$has_discount', '$service_type', '$dateMStart', '$dateMEnd', '$loginUserId')";
 
-	//echo $sqlCallProcedure;
+	//echo  $sqlCallProcedure;
 
-	//run the store proc
 	$successAddUpdate = mysqli_query($conn, $sqlCallProcedure) or die("Query fail: " . $sqlCallProcedure);
 	if($successAddUpdate){
 		if(0 < $userId)

@@ -18,15 +18,14 @@
             $(document).ready(function(){
                 $('.myRadioButtons').iCheck({ radioClass: 'iradio_flat-red' });
                 
-                $('#txtBirthdate').Zebra_DatePicker({
-                    format: 'm/d/Y'
-                });
+                $('#txtBirthdate').Zebra_DatePicker();
                 $("img.headerMenuImage").bind("click", function(){
                     goToHome();
                 });
                 $("input").bind("change", function(){
                     clearUserStatus();
                 });
+
                 //loadDummyUserInfo();
                 refreshUsersList();
             });
@@ -96,8 +95,9 @@
                     </div>
                 </form>
                 <div class="buttonContainer">
-                    <button class="submitButton" onclick="addUpdateUser()">Register User</button>
+                    <button class="submitButton" onclick="addUpdateUser()">Save Details</button>
                     <button class="submitButton" onclick="clearUserFields()">Clear Details</button>
+                    <button id="btnRemoveUser" class="submitButton" onclick="removeUser()">Remove User</button>
                 </div>
             </div>
             <div id="dvUserListContainer">&nbsp;</div>

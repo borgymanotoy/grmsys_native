@@ -14,8 +14,11 @@ var initMemberComponents = function(){
 	$("table.membersTable tr:even").addClass("even");
 	
 	$("table.membersTable tr td").on("click", function(){
-		loadMemberDetails($(this).parent().find(":first-child").html());
+		var id = $(this).parent().find(":first-child").html();
+		loadMemberDetails(id);
 	});
+
+	$('#btnRemoveMember').hide();
 };
 
 var loadMemberDetails = function(id){
@@ -52,6 +55,8 @@ var loadMemberDetails = function(id){
 				$('#selServiceType').val(data[0].service_type);
 				$("#txtMemberStart").val(data[0].monthly_startdate);
 				$("#txtMemberEnd").val(data[0].monthly_enddate);
+
+				$('#btnRemoveMember').show();
 			}
 		});
 	}
@@ -65,6 +70,13 @@ var addUpdateMember = function(){
 	}).fail(function(){
 		setMemberStatus(false, "Error adding/updating member.");
 	});
+};
+
+var removeMember = function(){
+	var id = $("#txtMemberId").val();
+	if(id){
+		console.log("Remove Member: " + id);
+	}
 };
 
 var refreshMembersList = function(page, sortColumn, order){
@@ -99,6 +111,7 @@ var clearMemberFields = function(){
 	$('#rdbDiscountNo').iCheck('check');
 	$('#selServiceType').val('-1');
 	$("input[type='text'].dateField").val("");
+	$('#btnRemoveMember').hide();
 };
 
 var setMemberStatus = function(isSuccess, msg){
