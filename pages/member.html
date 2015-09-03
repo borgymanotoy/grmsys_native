@@ -33,7 +33,6 @@
             });
 
             refreshMembersList();
-            initMemberComponents();
 		});
     </script>
 </head>
@@ -157,8 +156,9 @@
                 </div>
             </form>
             <div class="buttonContainer">
-                <button class="submitButton" onclick="addUpdateMember()">Register Member</button>
+                <button class="submitButton" onclick="addUpdateMember()">Save Details</button>
                 <button class="submitButton" onclick="clearMemberFields()">Clear Details</button>
+                <button id="btnRemoveMember" class="submitButton" onclick="removeMember()">Remove Member</button>
             </div>
         </div>
     </div>

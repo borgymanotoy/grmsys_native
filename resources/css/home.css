@@ -412,3 +412,16 @@ div#dvMemberListContainer{
 	width: 690px;
 	height: 420px;
 }
+
+tr.hover {
+	background-color: yellow;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.odd {
+	background: #EFD98E none repeat scroll 0% 0%;
+}
+.even {
+	background: #DDDBDB none repeat scroll 0% 0%;
+}

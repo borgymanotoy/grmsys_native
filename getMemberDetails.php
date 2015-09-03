@@ -23,7 +23,6 @@
 	$sqlQuery .= " from vw_members vm\n";
 	$sqlQuery .= " where vm.member_id = " . $memberId;
 
-	$memberDetails = array();
 	if ($result = mysqli_query($conn, $sqlQuery) or die("Query fail: " . $sqlQuery)) {
 		$data = mysqli_fetch_all($result, MYSQLI_ASSOC);
 		header('Content-Type: application/json');

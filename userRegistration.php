@@ -1,5 +1,6 @@
 <?php 
 	require_once('libs/dbconnect.php');
+	require_once('libs/common_functions.php');
 
 	$userId = mysqli_real_escape_string($conn, $_POST['userId']);
 	$username = mysqli_real_escape_string($conn, $_POST['username']);
@@ -13,15 +14,13 @@
 	$birthday = mysqli_real_escape_string($conn, $_POST['birthday']);
 	$gender = mysqli_real_escape_string($conn, $_POST['gender']);
 
-	$time = strtotime($birthday);
-	$dateBirth = date('Y-m-d', $time);
+	$dateBirth = convertStringToDate($birthday);
 
 	$userId = empty($userId) ? -1 : $userId;
 
 	$sqlCallProcedure = "CALL pAddOrUpdateUser($userId, '$username', '$password', '$firstname', '$lastname', '$middlename', '$contactNo', '$address', '$dateBirth', '$gender')";
 
 //*
-	//run the store proc
 	$successAddUpdate = mysqli_query($conn, $sqlCallProcedure) or die("Query fail: " . $sqlCallProcedure);
 	if($successAddUpdate){
 		if(0 < $userId)
