@@ -31,7 +31,7 @@
 	$memberId = empty($memberId) ? -1 : $memberId;
 	$loginUserId = mysqli_real_escape_string($conn, $_SESSION['user_id']);
 
-	$sqlCallProcedure = "CALL pAddOrUpdateMemberInfo($memberId, '$firstname', '$lastname', '$middlename', '$contactNo', '$address', '$dateBirth', '$gender', '$emergencyContactPerson', '$emergencyContactNumber', '$emergencyContactRelationship', '$membership_type', '$has_discount', '$service_type', '$dateMStart', '$dateMEnd', '$loginUserId')";
+	$sqlCallProcedure = "CALL pAddOrUpdateMemberInfo($memberId, '$firstname', '$lastname', '$middlename', '$contactNo', '$address', $dateBirth, '$gender', '$emergencyContactPerson', '$emergencyContactNumber', '$emergencyContactRelationship', '$membership_type', '$has_discount', '$service_type', $dateMStart, $dateMEnd, '$loginUserId')";
 
 	//echo  $sqlCallProcedure;
 

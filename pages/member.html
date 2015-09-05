@@ -8,31 +8,21 @@
     <link type="text/css" rel="stylesheet" href="resources/css/datepicker.css" />
     <link type="text/css" rel="stylesheet" href='resources/css/flat/yellow.css' media="screen">
     <link type="text/css" rel="stylesheet" href="resources/css/member.css" />
+    <link type="text/css" rel="stylesheet" href="resources/css/jquery-ui.min.css" />
+    <link type="text/css" rel="stylesheet" href="resources/css/jquery-ui.theme.min.css" />
+
     <script type='text/javascript' src='resources/js/jquery-1.11.1.min.js'></script>
+    <script type='text/javascript' src='resources/js/jquery-ui.min.js'></script>
+    <script type='text/javascript' src='resources/js/jquery.validate.min.js'></script>
     <script type='text/javascript' src='resources/js/zebra_datepicker.src.js'></script>
     <script type='text/javascript' src='resources/js/icheck.min.js'></script>
     <script type='text/javascript' src='resources/js/jquery.mask.min.js'></script>
     <script type='text/javascript' src='resources/js/common.js'></script>
     <script type='text/javascript' src='resources/js/memberRegistration.js'></script>
     <script type="text/javascript">
+        var roleType = "<?php echo $_SESSION['role_type']; ?>"
 		$(document).ready(function(){
-            $('.myRadioButtons').iCheck({ radioClass: 'iradio_flat-red' });
-
-            $('#txtBirthday').Zebra_DatePicker();
-            $('#txtMemberStart').Zebra_DatePicker({
-                direction: true,
-                pair: $('#txtMemberEnd')
-            });
-            $('#txtMemberEnd').Zebra_DatePicker({
-                direction: 1
-            });
-            $("img.headerMenuImage").bind("click", function(){
-                goToHome();
-            });
-            $("input").bind("change", function(){
-                clearMemberStatus();
-            });
-
+            initMemberComponents();
             refreshMembersList();
 		});
     </script>
@@ -55,7 +45,7 @@
                     <div class="memberInfoContainer">
                         <p>
                             <label for="txtMemberId">Identification Number:</label>
-                            <input type="text" id="txtMemberId" name="memberId" placeholder="0" title="Member Identification" />
+                            <input type="text" id="txtMemberId" name="memberId" placeholder="0" title="Member Identification" readonly="true" />
                         </p>  
                         <p>
                             <label for="txtFirstname">Firstname:</label>
@@ -135,8 +125,8 @@
                                 <label for="selServiceType" class="selectLabel">Service Type:</label>
                                 <select id="selServiceType" name="serviceType">
                                     <option value="-1">Please select service type</option>
-                                    <option value="1">Boxing</option>
-                                    <option value="2">Weights</option>
+                                    <option value="boxing">Boxing</option>
+                                    <option value="weights">Weights</option>
                                 </select>
                             </p>
                             <div class="monthlyEffectivity">
@@ -159,13 +149,14 @@
             <div class="buttonContainer">
                 <button class="submitButton" onclick="addUpdateMember()">Save Details</button>
                 <button class="submitButton" onclick="clearMemberFields()">Clear Details</button>
-                <button id="btnRemoveMember" class="submitButton" onclick="removeMember()">Remove Member</button>
+                <button id="btnRemoveMember" class="submitButton" onclick="showConfirmRemoveMemberDialog()">Remove Member</button>
             </div>
         </div>
     </div>
     <div class="footerContainer1">
         <span class="memberFooter">Gym Records Management System (Version 0.0.1)</span>
     </div>
+    <div id="dialog-box"></div>
 </body>
 
 </html>

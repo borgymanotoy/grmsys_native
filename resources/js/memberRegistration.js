@@ -1,7 +1,31 @@
 var initMemberComponents = function(){
 
 	$("#txtContactNo, #txtEmergencyContactNumber").mask("(000) 000-0000");
+	$('.myRadioButtons').iCheck({ radioClass: 'iradio_flat-red' });
 
+	$('#txtBirthday').Zebra_DatePicker();
+	$('#txtMemberStart').Zebra_DatePicker({
+		direction: true,
+		pair: $('#txtMemberEnd')
+	});
+	$('#txtMemberEnd').Zebra_DatePicker({
+		direction: 1
+	});
+	$("img.headerMenuImage").bind("click", function(){
+		goToHome();
+	});
+	$("input").bind("change", function(){
+		clearMemberStatus();
+	});
+	
+	$('#selServiceType').val('weights');
+
+	$('#btnRemoveMember').hide();
+
+	initializeMemberForm();
+};
+
+var initMemberTable = function(){
 	$("table.membersTable").delegate('td','mouseover mouseleave', function(e) {
 		if (e.type == 'mouseover') {
 			$(this).parent().addClass("hover");
@@ -19,9 +43,65 @@ var initMemberComponents = function(){
 	$("table.membersTable tr td").on("click", function(){
 		var id = $(this).parent().find(":first-child").html();
 		loadMemberDetails(id);
-	});
+	});	
+};
 
-	$('#btnRemoveMember').hide();
+var initializeMemberForm = function(){
+	$("#formMember").validate({
+		onkeyup:false,
+		onkeydown:false,
+		onchange: false,
+		onblur:false,
+		rules: {
+			"firstname": {
+				required:true,
+				maxlength: 40
+			},
+			"lastname": {
+				required:true,
+				maxlength: 40
+			},
+			"emergencyContactPerson": {
+				required:true,
+				maxlength: 100
+			},
+			"emergencyContactNumber": {
+				required:true,
+				maxlength: 100
+			},
+			"emergencyContactRelationship": {
+				required:true,
+				maxlength: 100
+			}
+		},
+		messages: {
+			"firstname": {
+				required: "Please enter first name.",
+				maxlength: "Name should not exceed 40 characters.",
+			},
+			"lastname": {
+				required: "Please enter last name.",
+				maxlength: "Name Password should not exceed 40 characters.",
+			},
+			"emergencyContactPerson": {
+				required: "Please enter username.",
+				maxlength: "Username should not exceed 100 characters.",
+			},
+			"emergencyContactNumber": {
+				required: "Please enter new password.",
+				maxlength: "New Password should not exceed 100 characters."
+			},
+			"emergencyContactRelationship": {
+				required: "Please enter confirm password.",
+				maxlength: "Confirm Password should not exceed 100 characters."
+			}
+		},
+		errorElement: 'div',
+		wrapper: 'div',
+		errorPlacement: function(error, element) {
+			error.insertBefore(element).addClass('msgContainer'); // default function
+		}
+	});
 };
 
 var loadMemberDetails = function(id){
@@ -59,26 +139,36 @@ var loadMemberDetails = function(id){
 				$("#txtMemberStart").val(data[0].monthly_startdate);
 				$("#txtMemberEnd").val(data[0].monthly_enddate);
 
-				$('#btnRemoveMember').show();
+				if(roleType == 'administrator'){
+					$('#btnRemoveMember').show();
+				}
 			}
 		});
 	}
 };
 
 var addUpdateMember = function(){
-	$.post("../memberRegistration.php", $("#formMember").serialize()).done(function(msg){
-		setMemberStatus(true, msg);
-		clearMemberFields();
-		refreshMembersList();
-	}).fail(function(){
-		setMemberStatus(false, "Error adding/updating member.");
-	});
+	if($('#formMember').valid()){
+		$.post("../memberRegistration.php", $("#formMember").serialize()).done(function(msg){
+			setMemberStatus(true, msg);
+			clearMemberFields();
+			refreshMembersList();
+		}).fail(function(){
+			setMemberStatus(false, "Error adding/updating member.");
+		});
+	}
 };
 
 var removeMember = function(){
 	var id = $("#txtMemberId").val();
 	if(id){
-		console.log("Remove Member: " + id);
+		$.post("../deleteMember.php", $("#formMember").serialize()).done(function(msg){
+			setMemberStatus(true, msg);
+			clearMemberFields();
+			refreshMembersList();
+		}).fail(function(){
+			setMemberStatus(false, "Error: Unable to remove member.");
+		});
 	}
 };
 
@@ -89,7 +179,7 @@ var refreshMembersList = function(page, sortColumn, order){
 	if(order) url += "&order=" + order;
 
 	$("#dvMemberListContainer").load(url, function(){
-		initMemberComponents();
+		initMemberTable();
 	});
 };
 
@@ -130,4 +220,24 @@ var setMemberStatus = function(isSuccess, msg){
 var clearMemberStatus = function(){
 	var objStatus = $('#spanMemberStatus');
 	objStatus.removeClass("success").removeClass("error").html("");
+};
+
+var showConfirmRemoveMemberDialog = function(){
+	$("#dialog-box").html('Do you want to remove member?');
+	$("#dialog-box").dialog({
+		modal: true,
+		title: "GRMSys Members",
+		resizable: false,
+		height: "auto",
+		width: "auto",
+		buttons: {
+			"Remove Member": function () {
+				removeMember();
+				$(this).dialog('close');
+			},
+			"Cancel": function () {
+				$(this).dialog('close');
+			},
+		}
+	});
 };
