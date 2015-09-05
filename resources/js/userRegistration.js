@@ -3,7 +3,7 @@ var initUserComponents = function(){
 	$('.myRadioButtons').iCheck({ radioClass: 'iradio_flat-red' });
 	
 	$('#txtBirthdate').Zebra_DatePicker();
-	$("img.headerMenuImage").bind("click", function(){
+	$("div.headerIconLabel").bind("click", function(){
 		goToHome();
 	});
 	$("input").bind("change", function(){

@@ -33,6 +33,7 @@
 			$_SESSION['gender'] = $user['gender'];
 			$_SESSION['is_active'] = $user['is_active'];
 			$_SESSION['role_type'] = $user['role_type'];
+			$_SESSION['display_role_type'] = getDisplayRole($user['role_type']);
 		}
 	}
 

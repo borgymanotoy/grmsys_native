@@ -10,6 +10,17 @@
     <script type='text/javascript' src='resources/js/jquery-1.11.1.min.js'></script>
     <script type='text/javascript' src='resources/js/jquery-ui.min.js'></script>
     <script type='text/javascript' src='resources/js/common.js'></script>
+    <script type="text/javascript">
+        var roleType = "<?php echo $_SESSION['role_type']; ?>"
+        $(document).ready(function(){
+            if('administrator' == roleType){
+                $('div.homeContainer area:nth-child(1)').bind('click', function(){ location.href='user.php'; }).css('cursor', 'pointer');
+            }
+            else {
+                $('div.homeContainer area:nth-child(1)').css('cursor', 'not-allowed');
+            }
+        });
+    </script>
 </head>
 
 <body text="#2A1FFF">
@@ -26,20 +37,18 @@
         </div>
     </div>
 	<div class="homeContainer">
-        <table id="tblTools" cellpadding="0" cellspacing="0" border="1">
-               <tbody>
-                   <tr>
-                       <td class="tool"><img src="resources/images/icons/user.png" class="toolImage" alt="Users" onclick="goToUser()" title="Manage Users" /></td>
-                       <td class="tool"><img src="resources/images/icons/people.png" class="toolImage" alt="Members" onclick="goToMember()" title="Manage Members" /></td>
-                       <td class="tool"><img src="resources/images/icons/coffee.png" class="toolImage" alt="Items" onclick="goToItem()" title="Manage Items" /></td>
-                       <td class="tool"><img src="resources/images/icons/coffee.png" class="toolImage" alt="Items" onclick="goToItem()" title="Manage Items" /></td>
-                       <td class="tool"><img src="resources/images/icons/coffee.png" class="toolImage" alt="Items" onclick="goToItem()" title="Manage Items" /></td>
-                   </tr>
-               </tbody>
-        </table>
+        <img src="resources/images/home/home_tools2.png" class="homeToolButtons" alt="Home Tools" usemap="#homeToolsMap" />
+        <map name="homeToolsMap">
+            <area shape="rect" coords="0,0,200,500" href="javascript:void(0);" alt="User Registration" title="User Registration">
+            <area shape="rect" coords="200,0,400,500" href="javascript:void(0);"  onclick="location.href='member.php'" alt="Member Registration" title="Member Registration">
+            <area shape="rect" coords="400,0,600,500" href="javascript:void(0);"  onclick="location.href='item.php'" alt="Product(Item) Registration" title="Product(Item) Registration">
+            <area shape="rect" coords="600,0,800,500" href="javascript:void(0);"  onclick="location.href='item.php'" alt="Workout Registration" title="Workout Registration">
+            <area shape="rect" coords="800,0,1000,500" href="javascript:void(0);"  onclick="location.href='item.php'" alt="Sell Product(Item)" title="Sell Product(Item)">
+        </map>
     </div>
     <div class="footerContainer2">
-        <span class="footer">Gym Records Management System (Version 0.0.1)</span>
+        <span class="footer left">Welcome <b><?php echo $_SESSION['name']; ?></b><?php echo $_SESSION['display_role_type']; ?> !</span>
+        <span class="footer right"><b>Gym Records Management System (Version 0.0.1)</b></span>
     </div>
 </body>
 </html>

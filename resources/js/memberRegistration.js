@@ -11,7 +11,7 @@ var initMemberComponents = function(){
 	$('#txtMemberEnd').Zebra_DatePicker({
 		direction: 1
 	});
-	$("img.headerMenuImage").bind("click", function(){
+	$("div.headerIconLabel").bind("click", function(){
 		goToHome();
 	});
 	$("input").bind("change", function(){

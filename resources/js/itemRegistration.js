@@ -1,5 +1,5 @@
 var initItemComponents = function(){
-	$("img.headerMenuImage").bind("click", function(){
+	$("div.headerIconLabel").bind("click", function(){
 		goToHome();
 	});
 	$("input").bind("change", function(){

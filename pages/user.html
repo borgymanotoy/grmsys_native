@@ -29,13 +29,16 @@
         </script>
     </head>
     <body>
-        <div class="headerContainer">
-            <div>
-                <img src="resources/images/icons/user.png" class="headerImage" alt="Members" />
+        <div class="headerContainer" title="Return to home page">
+            <div class="headerIconLabel">
+                <img src="resources/images/icons/user.png" class="headerSmallImage" alt="Members" />
                 <span>User Registration</span>
             </div>
-            <div class="headerMenuButton">
-                <img src="resources/images/icons/menu.png" class="headerMenuImage" alt="Menu" />
+            <div class="headerLogout" title="Logout">
+                <a href="javascript:void(0);" onclick="location.href='logout.php'">
+                    <span>Logout</span>
+                    <img src="resources/images/icons/exit.png" class="headerMenuImage" alt="Logout" title="Logout" />
+                </a>
             </div>
         </div>
         <div class="userPageContainer">
@@ -115,7 +118,8 @@
             <div id="dvUserListContainer">&nbsp;</div>
         </div>
         <div class="footerContainer2">
-            <span class="footer">Gym Records Management System (Version 0.0.1)</span>
+            <span class="footer left">Welcome <b><?php echo $_SESSION['name']; ?></b><?php echo $_SESSION['display_role_type']; ?> !</span>
+            <span class="footer right"><b>Gym Records Management System (Version 0.0.1)</b></span>
         </div>
         <div id="popupSecurity">
             <form id="formUserSecurity" name="formUserSecurity" method="post" action="">

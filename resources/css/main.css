@@ -61,9 +61,10 @@ div.headerContainer > div > span {
 }
 
 div.footerContainer > span {
-    font-family: Impact,"Arial Black","Arial Narrow";
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 14px;
-	color: #ccc;
+	font-weight: bold;
+	color: #f3c00e;
 	position: relative;
 	top: 35%;
 	float: right;

@@ -6,7 +6,7 @@
 			if( !empty($user['middlename']) ){
 				$completeName .= ' ' . strtoupper(substr($user['middlename'], 0, 1)) . '. ';
 			}
-			if( !empty($user['lastname']) ) $completeName .= ' ' . $user['firstname'];
+			if( !empty($user['lastname']) ) $completeName .= ' ' . $user['lastname'];
 		}
 		return $completeName;
 	}
@@ -30,5 +30,13 @@
 			return '\'' . date('Y-m-d',strtotime($fmtDate)) . '\'';
 		} 
 		return 'null';
+	}
+	
+	function getDisplayRole($roleType){
+		switch ($roleType){
+			case 'administrator': return ' (Administrator)';
+			case 'attendant': return ' (Attendant)';
+			default: return '';
+		}
 	}
 ?>
