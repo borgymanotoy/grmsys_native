@@ -61,7 +61,7 @@ table.usersTable > tbody > tr > td:nth-child(2){
   max-width: 300px ;
   display : inline-block;
   position: relative;
-  top     : -37px;
+  top     : -45px;
   left    : 10px;
 }
 #formUserSecurity div.msgContainer{
