@@ -73,7 +73,11 @@ var loadItemDetails = function(id){
 				$("#txtItemPrice").val(numberWithCommas(data[0].item_price));
 				$("#txtItemOtherInfo").val(data[0].item_infos);
 				
-				$('#btnRemoveItem').show();
+                if(roleType == 'administrator'){
+                    $('#btnRemoveItem').show();
+                }
+				
+				$('#formItem').valid();
 			}
 		});
 	}
@@ -94,7 +98,13 @@ var addUpdateItem = function(){
 var removeItem = function(){
 	var id = $("#txtItemId").val();
 	if(id){
-		console.log("Remove Item: " + id);
+		$.post("../deleteItem.php", $("#formItem").serialize()).done(function(msg){
+			setItemStatus(true, msg);
+			clearItemFields();
+			refreshItemsList();
+		}).fail(function(){
+			setItemStatus(false, "Error: Unable to remove item.");
+		});
 	}
 };
 
