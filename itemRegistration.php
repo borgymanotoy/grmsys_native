@@ -11,6 +11,10 @@
 	$loginUserId = mysqli_real_escape_string($conn, $_SESSION['user_id']);
 
 	$itemId = empty($itemId) ? -1 : $itemId;
+	if(!empty($itemPrice)){
+		$itemPrice = str_replace(',', '', $itemPrice);
+	}
+
 	$sqlCallProcedure = "CALL pAddOrUpdateItem($itemId, '$itemName', '$itemPrice', '$otherInfo', '$loginUserId')";
 	
 	//echo $sqlCallProcedure;

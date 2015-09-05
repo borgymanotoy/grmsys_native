@@ -12,6 +12,7 @@
 	$sqlQuery .= " 	   vu.address,\n";
 	$sqlQuery .= " 	   date_format(vu.birthdate, '%m-%d-%Y') as birthdate,\n";
 	$sqlQuery .= " 	   vu.gender,\n";
+	$sqlQuery .= " 	   vu.role_type,\n";
 	$sqlQuery .= " 	   vu.username,\n";
 	$sqlQuery .= "     vu.password\n";
 	$sqlQuery .= " from vw_users vu\n";

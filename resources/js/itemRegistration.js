@@ -1,4 +1,49 @@
 var initItemComponents = function(){
+	$("img.headerMenuImage").bind("click", function(){
+		goToHome();
+	});
+	$("input").bind("change", function(){
+		clearItemStatus();
+	});
+	$('.currency').autoNumeric('init');
+	$('#btnRemoveItem').hide();
+
+	initializeItemForm();
+};
+
+var initializeItemForm = function(){
+	$("#formItem").validate({
+		onkeyup:false,
+		onkeydown:false,
+		onchange: false,
+		onblur:false,
+		rules: {
+			"itemName": {
+				required:true,
+				maxlength: 50
+			},
+			"itemPrice": {
+				required:true
+			}
+		},
+		messages: {
+			"itemName": {
+				required: "Please enter item name.",
+				maxlength: "Item name should not exceed 50 characters.",
+			},
+			"itemPrice": {
+				required: "Please enter item price."
+			}
+		},
+		errorElement: 'div',
+		wrapper: 'div',
+		errorPlacement: function(error, element) {
+			error.insertBefore(element).addClass('msgContainer'); // default function
+		}
+	});
+};
+
+var initializeItemTable = function(){
 	$("table.itemsTable").delegate('td','mouseover mouseleave', function(e) {
 		if (e.type == 'mouseover') {
 			$(this).parent().addClass("hover");
@@ -15,11 +60,8 @@ var initItemComponents = function(){
 	
 	$("table.itemsTable tr td").on("click", function(){
 		var id = $(this).parent().find(":first-child").html();
-		//console.log("[ID]: " + id);
 		loadItemDetails(id);
 	});
-	
-	$('#btnRemoveItem').hide();
 };
 
 var loadItemDetails = function(id){
@@ -28,7 +70,7 @@ var loadItemDetails = function(id){
 			if(data[0]){
 				$("#txtItemId").val(data[0].item_id);
 				$("#txtItemName").val(data[0].item_name);
-				$("#txtItemPrice").val(data[0].item_price);
+				$("#txtItemPrice").val(numberWithCommas(data[0].item_price));
 				$("#txtItemOtherInfo").val(data[0].item_infos);
 				
 				$('#btnRemoveItem').show();
@@ -38,13 +80,15 @@ var loadItemDetails = function(id){
 };
 
 var addUpdateItem = function(){
-	$.post("../itemRegistration.php", $("#formItem").serialize()).done(function(msg){
-		setItemStatus(true, msg);
-		clearItemFields();
-		refreshItemsList();
-	}).fail(function(){
-		setItemStatus(false, "Error adding/updating item.");
-	});
+	if($('#formItem').valid()){
+		$.post("../itemRegistration.php", $("#formItem").serialize()).done(function(msg){
+			setItemStatus(true, msg);
+			clearItemFields();
+			refreshItemsList();
+		}).fail(function(){
+			setItemStatus(false, "Error adding/updating item.");
+		});
+	}
 };
 
 var removeItem = function(){
@@ -61,7 +105,7 @@ var refreshItemsList = function(page, sortColumn, order){
 	if(order) url += "&order=" + order;
 
 	$("#dvItemListContainer").load(url, function(){
-		initItemComponents();
+		initializeItemTable();
 	});
 };
 
@@ -89,4 +133,44 @@ var setItemStatus = function(isSuccess, msg){
 var clearItemStatus = function(){
 	var objStatus = $('#spanItemStatus');
 	objStatus.removeClass("success").removeClass("error").html("");
+};
+
+var showMessageDialog = function(msg){
+	$("#dialog-box").html(msg);
+	$("#dialog-box").dialog({
+		modal: true,
+		title: "GRMSys Items",
+		resizable: false,
+		height: "auto",
+		width: "auto",
+		buttons: {
+			"OK": function () {
+				$(this).dialog('close');
+			}
+		}
+	});
+};
+
+var showConfirmRemoveItemDialog = function(){
+	$("#dialog-box").html('Do you want to remove item?');
+	$("#dialog-box").dialog({
+		modal: true,
+		title: "GRMSys Items",
+		resizable: false,
+		height: "auto",
+		width: "auto",
+		buttons: {
+			"Remove Item": function () {
+				removeItem();
+				$(this).dialog('close');
+			},
+			"Cancel": function () {
+				$(this).dialog('close');
+			},
+		}
+	});
+};
+
+var numberWithCommas = function(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };

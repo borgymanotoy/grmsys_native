@@ -13,12 +13,13 @@
 	$contactNo = mysqli_real_escape_string($conn, $_POST['contactNo']);
 	$birthday = mysqli_real_escape_string($conn, $_POST['birthday']);
 	$gender = mysqli_real_escape_string($conn, $_POST['gender']);
+	$role_type = mysqli_real_escape_string($conn, $_POST['roleType']);
 
 	$dateBirth = convertStringToDate($birthday);
 
 	$userId = empty($userId) ? -1 : $userId;
 
-	$sqlCallProcedure = "CALL pAddOrUpdateUser($userId, '$username', '$password', '$firstname', '$lastname', '$middlename', '$contactNo', '$address', '$dateBirth', '$gender')";
+	$sqlCallProcedure = "CALL pAddOrUpdateUser($userId, '$username', '$password', '$firstname', '$lastname', '$middlename', '$contactNo', '$address', $dateBirth, '$gender', '$role_type')";
 
 //*
 	$successAddUpdate = mysqli_query($conn, $sqlCallProcedure) or die("Query fail: " . $sqlCallProcedure);

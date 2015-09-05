@@ -32,6 +32,7 @@
 			if( !empty($user['birthdate']) ) $_SESSION['birthdate'] = $user['birthdate'];
 			$_SESSION['gender'] = $user['gender'];
 			$_SESSION['is_active'] = $user['is_active'];
+			$_SESSION['role_type'] = $user['role_type'];
 		}
 	}
 

@@ -7,16 +7,15 @@
     <link type="text/css" rel="stylesheet" href="resources/css/commons.css" />
     <link type="text/css" rel="stylesheet" href="resources/css/item.css" />
     <script type='text/javascript' src='resources/js/jquery-1.11.1.min.js'></script>
+    <script type='text/javascript' src='resources/js/jquery-ui.min.js'></script>
+    <script type='text/javascript' src='resources/js/jquery.validate.min.js'></script>
+    <script type='text/javascript' src='resources/js/autoNumeric.js'></script>
     <script type='text/javascript' src='resources/js/common.js'></script>
     <script type='text/javascript' src='resources/js/itemRegistration.js'></script>
     <script type="text/javascript">
+        var roleType = "<?php echo $_SESSION['role_type']; ?>"
 		$(document).ready(function(){
-            $("img.headerMenuImage").bind("click", function(){
-                goToHome();
-            });
-            $("input").bind("change", function(){
-                clearItemStatus();
-            });
+            initItemComponents();
             refreshItemsList();
 		});
     </script>
@@ -45,7 +44,7 @@
                 </p> 
                 <p>
                     <label for="txtItemPrice">Price:</label>
-                    <input type="text" id="txtItemPrice" name="itemPrice" placeholder="Item Price" title="Price of item" />
+                    <input type="text" id="txtItemPrice" name="itemPrice" class="currency" placeholder="Item Price" title="Price of item" />
                 </p>
                 <p>
                     <label for="txtItemOtherInfo">Other Info:</label>

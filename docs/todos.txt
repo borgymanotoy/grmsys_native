@@ -1,0 +1,18 @@
+FUNCTIONALITIES
+*add/view member or Register Member [OK]
+*View member profile/ tracking of membership status(view the user, query(user)) - [OK: load user/member/item details]
+*user registration/ authentication [OK]
+*item registration [OK]
+*item sales [TODO]
+*workout registration (member attendance & workout program) [TODO]
+*daily income report [TODO]
+*update/add/delete of member [OK]
+* Change User Password
+
+
+authentication
+*user
+	-contact num string/char [OK]
+	-cannot access other users [TODO: just waiting for the home image]
+	-password encrytion [OK]
+	-

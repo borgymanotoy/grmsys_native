@@ -8,26 +8,23 @@
         <link type="text/css" rel="stylesheet" href="resources/css/datepicker.css" />
         <link type="text/css" rel="stylesheet" href='resources/css/flat/yellow.css' media="screen">
         <link type="text/css" rel="stylesheet" href="resources/css/users.css" />
+        <link type="text/css" rel="stylesheet" href="resources/css/jquery-ui.min.css" />
+        <link type="text/css" rel="stylesheet" href="resources/css/jquery-ui.theme.min.css" />
 
         <script type='text/javascript' src='resources/js/jquery-1.11.1.min.js'></script>
+        <script type='text/javascript' src='resources/js/jquery-ui.min.js'></script>
+        <script type='text/javascript' src='resources/js/jquery.validate.min.js'></script>
         <script type='text/javascript' src='resources/js/zebra_datepicker.src.js'></script>
         <script type='text/javascript' src='resources/js/icheck.min.js'></script>
+        <script type='text/javascript' src='resources/js/jquery.mask.min.js'></script>
         <script type='text/javascript' src='resources/js/common.js'></script>
         <script type='text/javascript' src='resources/js/userRegistration.js'></script>
         <script type="text/javascript">
+            var roleType = "<?php echo $_SESSION['role_type']; ?>"
             $(document).ready(function(){
-                $('.myRadioButtons').iCheck({ radioClass: 'iradio_flat-red' });
-                
-                $('#txtBirthdate').Zebra_DatePicker();
-                $("img.headerMenuImage").bind("click", function(){
-                    goToHome();
-                });
-                $("input").bind("change", function(){
-                    clearUserStatus();
-                });
-
+                initUserComponents();
+                refreshUsersList();                
                 //loadDummyUserInfo();
-                refreshUsersList();
             });
         </script>
     </head>
@@ -65,7 +62,7 @@
                             </p>
                             <p>
                                 <label for="txtContactNo">Contact Number:</label>
-                                <input type="text" id="txtContactNo" name="contactNo" placeholder="(918) 123-4567" title="User Contact Number" />
+                                <input type="text" id="txtContactNo" name="contactNo" class="contactno" placeholder="(918) 123-4567" title="User Contact Number" />
                             </p>
                             <p>
                                 <label for="txtAddress">Address:</label>
@@ -83,21 +80,36 @@
                                     <label for="rdbGenderFemale" class="choiceLabel">Female:</label>
                                 </div>
                             </p>
-                            <p>
-                                <label for="txtUsername" class="UserLabel">Username:</label>
-                                <input type="text" id="txtUsername" name="username" placeholder="username" title="User Username" />
+                            <p class="roleTypeContainer">
+                                <label for="selRoleype">Role Type:</label>
+                                <select id="selRoleype" name="roleType">
+                                    <option value="">Please select role type</option>
+                                    <option value="administrator">Administrator</option>
+                                    <option value="attendant">Attendant</option>
+                                </select>
                             </p>
-                            <p>
-                                <label for="txtPassword" class="UserLabel">Password:</label>
-                                <input type="password" id="txtPassword" name="password" title="User Password" />
-                            </p>
+                            <div id="divSecurity">
+                                <p>
+                                    <label for="txtUsername" class="UserLabel">Username:</label>
+                                    <input type="text" id="txtUsername" name="username" placeholder="username" title="User Username" />
+                                </p>
+                                <p>
+                                    <label for="txtPassword" class="UserLabel">Password:</label>
+                                    <input type="password" id="txtPassword" name="password" title="User Password" />
+                                </p>
+                                <p>
+                                    <label for="txtConfirmPassword" class="UserLabel">Confirm Password:</label>
+                                    <input type="password" id="txtConfirmPassword" name="confirmpassword" title="Confirm Password" />
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </form>
                 <div class="buttonContainer">
-                    <button class="submitButton" onclick="addUpdateUser()">Save Details</button>
-                    <button class="submitButton" onclick="clearUserFields()">Clear Details</button>
-                    <button id="btnRemoveUser" class="submitButton" onclick="removeUser()">Remove User</button>
+                    <button class="submitButton" onclick="addUpdateUser()">Save</button>
+                    <button class="submitButton" onclick="clearUserFields()">Clear</button>
+                    <button id="btnRemoveUser" class="submitButton" onclick="showConfirmRemoveUserDialog()">Remove</button>
+                    <button id="btnChangePassword" class="submitButton" onclick="showChangePassword()">Change Password</button>
                 </div>
             </div>
             <div id="dvUserListContainer">&nbsp;</div>
@@ -105,5 +117,26 @@
         <div class="footerContainer2">
             <span class="footer">Gym Records Management System (Version 0.0.1)</span>
         </div>
+        <div id="popupSecurity">
+            <form id="formUserSecurity" name="formUserSecurity" method="post" action="">
+                <p>
+                    <label for="txtSUsername" class="UserLabel">Username:</label>
+                    <input type="text" id="txtSUsername" name="susername" placeholder="username" title="User Username" readonly="true" />
+                </p>
+                <p>
+                    <label for="txtSCurrentPassword" class="UserLabel">Current Password:</label>
+                    <input type="password" id="txtSCurrentPassword" name="currentPassword" title="Current User Password" />
+                </p>
+                <p>
+                    <label for="txtSNewPassword" class="UserLabel">New Password:</label>
+                    <input type="password" id="txtSNewPassword" name="newPassword" title="New Password" />
+                </p>
+                <p>
+                    <label for="txtSConfirmPassword" class="UserLabel">Confirm Password:</label>
+                    <input type="password" id="txtSConfirmPassword" name="confirm_password" title="Confirm Password" />
+                </p>
+            </form>
+        </div>
+        <div id="dialog-box"></div>
     </body>
 </html>

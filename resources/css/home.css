@@ -162,10 +162,10 @@ div.userPageContainer {
 	position: relative;
 	top: 50%;
 	left: 50%;
-	margin-top: -300px;
+	margin-top: -320px;
 	margin-left: -600px;
 	width: 1200px;
-	height: 600px;
+	height: 640px;
 	background: rgba(20, 20, 20, 0.9);
 	padding: 10px;
 }
@@ -175,7 +175,7 @@ div.userContainer {
 	border: 1px solid #333;
 	background: rgba(20, 20, 20, 0.9);
 	width: 450px;
-	height: 550px;
+	height: 542px;
 	display: inline-block;
 }
 
@@ -258,7 +258,7 @@ div#dvUserListContainer {
 	position: absolute;
 	top: 50%;
 	left: 510px;
-	margin-top: -300px;
+	margin-top: -320px;
 	overflow-y: auto;
 }
 div#dvItemListContainer {

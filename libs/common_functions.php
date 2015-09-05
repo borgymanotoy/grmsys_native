@@ -27,8 +27,8 @@
 		if($strDate){
 			$nfo = explode('-', $strDate);
 			$fmtDate = $nfo[1] . '-'. $nfo[0] . '-' . $nfo[2];
-			return date('Y-m-d',strtotime($fmtDate));
+			return '\'' . date('Y-m-d',strtotime($fmtDate)) . '\'';
 		} 
-		return null;
+		return 'null';
 	}
 ?>

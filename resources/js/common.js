@@ -22,7 +22,6 @@ var redirectPage = function(url){
 };
 
 var showStatusMessage = function(msg){
-	console.log(msg);
 	$("#dialog-box").html(msg);
 	$("#dialog-box").dialog({
 		resizable: false,
@@ -30,6 +29,22 @@ var showStatusMessage = function(msg){
 		title: "Gym Records Management",
 		height: 200,
 		width: 400,
+		buttons: {
+			"OK": function () {
+				$(this).dialog('close');
+			}
+		}
+	});
+};
+
+var showGrmSysMessageDialog = function(title, msg){
+	$("#dialog-box").html(msg);
+	$("#dialog-box").dialog({
+		modal: true,
+		title: title,
+		resizable: false,
+		height: "auto",
+		width: "auto",
 		buttons: {
 			"OK": function () {
 				$(this).dialog('close');

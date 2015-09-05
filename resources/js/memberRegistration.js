@@ -1,4 +1,7 @@
 var initMemberComponents = function(){
+
+	$("#txtContactNo, #txtEmergencyContactNumber").mask("(000) 000-0000");
+
 	$("table.membersTable").delegate('td','mouseover mouseleave', function(e) {
 		if (e.type == 'mouseover') {
 			$(this).parent().addClass("hover");

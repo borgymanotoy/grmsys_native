@@ -50,3 +50,59 @@ table.itemsTable > tbody > tr > td:nth-child(1){
 table.itemsTable > tbody > tr > td:nth-child(2){
 	text-align: left;
 }
+
+/* Status Message */
+#formItem div.msgContainer{
+  width: auto;
+  max-width: 300px ;
+  display : inline-block;
+  position: relative;
+  top     : -37px;
+  left    : 10px;
+}
+div.msgContainer{
+  left    : 0 !important;
+}
+div.msgContainer div.error{
+  width        : auto;
+  min-width    : 170px;
+  max-width    : 300px;
+  position     : absolute;
+  background   : #FF7D7D;
+  border-radius: 3px;
+  padding      : 5px 5px;
+  color        : #FFFFFF;
+  font-size    : 13px;
+  z-index      : 3;
+  font-weight  : normal;
+  -webkit-box-sizing: border-box; /* Safari, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;
+}
+div.msgContainer div.error{
+  min-width    : 210px !important;
+}
+div.msgContainer div.error:before,
+div.msgContainer div.error:after {
+  top           : 26px;
+  left          : 50px;
+  border        : solid transparent;
+  content       : " ";
+  height        : 0;
+  width         : 0;
+  position      : absolute;
+  pointer-events: none;
+  z-index       : 4;
+}
+div.msgContainer div.error:after{
+  border-color    : rgba(136, 183, 213, 0);
+  border-top-color: #FF7D7D;
+  border-width    : 8px;
+  margin-left     : -8px;
+}
+div.msgContainer div.error:before{
+  border-color    : rgba(194, 225, 245, 0);
+  border-top-color: #FFFFFF;
+  border-width    : 10px;
+  margin-left     : -10px;
+}
