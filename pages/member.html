@@ -99,8 +99,14 @@
                         </div>
                     </div>
                     <div id="dvMemberListContainer">
-                        <!-- ?php include('membersList.php'); ? -->
-                        &nbsp;
+                        <div id="dvSearch">
+                            <p>
+                                <label for="txtSearchKey">Search key:</label>
+                                <input type="text" id="txtSearchKey" name="searchkey" placeholder="Search Member" title="Search member by ID, name, etc" />
+                                <img src="resources/images/icons/empty-icon.png" class="clearSearchButton" onclick="clearSearchKeys();" title="Clear Search Fields" />
+                            </p> 
+                        </div>
+                        <div id="dvList"></div>
                     </div>
                     <div class="membertypeInfoContainer">
                         <div class="typeDiscountContainer">

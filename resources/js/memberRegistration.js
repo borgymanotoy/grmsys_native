@@ -22,6 +22,11 @@ var initMemberComponents = function(){
 
 	$('#btnRemoveMember').hide();
 
+	$('#txtSearchKey').bind('keyup', function(){
+		var searchkey = $(this).val();
+		searchMemberList(searchkey);
+	});
+
 	initializeMemberForm();
 };
 
@@ -134,7 +139,7 @@ var loadMemberDetails = function(id){
 					$("#rdbDiscountYes").iCheck('check');
 				else
 					$("#rdbDiscountNo").iCheck('check');
-					
+
 				$('#selServiceType').val(data[0].service_type);
 				$("#txtMemberStart").val(data[0].monthly_startdate);
 				$("#txtMemberEnd").val(data[0].monthly_enddate);
@@ -153,8 +158,8 @@ var addUpdateMember = function(){
 			setMemberStatus(true, msg);
 			clearMemberFields();
 			refreshMembersList();
-		}).fail(function(){
-			setMemberStatus(false, "Error adding/updating member.");
+		}).fail(function(error){
+			setMemberStatus(false, "Save Member Error: " + error.statusText);
 		});
 	}
 };
@@ -166,10 +171,18 @@ var removeMember = function(){
 			setMemberStatus(true, msg);
 			clearMemberFields();
 			refreshMembersList();
-		}).fail(function(){
-			setMemberStatus(false, "Error: Unable to remove member.");
+		}).fail(function(error){
+			setMemberStatus(false, "Remove Member Error: " + error.statusText);
 		});
 	}
+};
+
+var searchMemberList = function(searchKey){
+	var url = "../membersList.php";
+	if(searchKey) url += "?searchKey=" + searchKey;
+	$("#dvList").load(url, function(){
+		initMemberTable();
+	});
 };
 
 var refreshMembersList = function(page, sortColumn, order){
@@ -178,7 +191,7 @@ var refreshMembersList = function(page, sortColumn, order){
 	if(sortColumn) url += "&sortBy=" + sortColumn;
 	if(order) url += "&order=" + order;
 
-	$("#dvMemberListContainer").load(url, function(){
+	$("#dvList").load(url, function(){
 		initMemberTable();
 	});
 };
@@ -207,6 +220,16 @@ var clearMemberFields = function(){
 	$('#btnRemoveMember').hide();
 };
 
+var clearSearchKeys = function(){
+	$('#txtSearchKey').val('');
+	refreshMembersList();
+};
+
+var clearMemberStatus = function(){
+	var objStatus = $('#spanMemberStatus');
+	objStatus.removeClass("success").removeClass("error").html("");
+};
+
 var setMemberStatus = function(isSuccess, msg){
 	var objStatus = $('#spanMemberStatus');
 	 objStatus.removeClass("success").removeClass("error");
@@ -214,12 +237,6 @@ var setMemberStatus = function(isSuccess, msg){
 		objStatus.addClass("success").html(msg);
 	else
 		objStatus.addClass("error").html(msg);	
-};
-
-
-var clearMemberStatus = function(){
-	var objStatus = $('#spanMemberStatus');
-	objStatus.removeClass("success").removeClass("error").html("");
 };
 
 var showConfirmRemoveMemberDialog = function(){

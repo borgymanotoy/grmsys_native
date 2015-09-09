@@ -5,19 +5,228 @@
     <title>(GRMSys): Workout registration</title>
     <link type="text/css" rel="stylesheet" href="resources/css/home.css" />
     <link type="text/css" rel="stylesheet" href="resources/css/commons.css" />
+    <link type="text/css" rel="stylesheet" href="resources/css/datepicker.css" />
+    <link type="text/css" rel="stylesheet" href='resources/css/flat/yellow.css' media="screen">
+    <link type="text/css" rel="stylesheet" href="resources/css/jquery-ui.min.css" />
+    <link type="text/css" rel="stylesheet" href="resources/css/jquery-ui.theme.min.css" />
+
+    <style>
+        p.amountDue {
+            font-size: 24px;
+            font-weight: bold;
+            padding: 10px;
+            border: 2px solid #222;
+        }
+        p.amountDue > label {
+            font-size: 24px;
+            width: 60px;
+            color: #A79E9E;
+        }
+        p.amountDue > span {
+            font-size: 28px;
+            color: #BC2A2A;
+        }
+    </style>
+
+    <script type='text/javascript' src='resources/js/jquery-1.11.1.min.js'></script>
+    <script type='text/javascript' src='resources/js/jquery-ui.min.js'></script>
+    <script type='text/javascript' src='resources/js/jquery.validate.min.js'></script>
+    <script type='text/javascript' src='resources/js/zebra_datepicker.src.js'></script>
+    <script type='text/javascript' src='resources/js/icheck.min.js'></script>
+    <script type='text/javascript' src='resources/js/jquery.mask.min.js'></script>
+    <script type='text/javascript' src='resources/js/common.js'></script>
+    <script type='text/javascript' src='resources/js/date.js'></script>
+    <script type="text/javascript">
+        var roleType = "<?php echo $_SESSION['role_type']; ?>"
+        $(document).ready(function(){
+            $('#txtSearchKey').autocomplete({
+                source:'searchMember.php', 
+                minLength:3,
+                select: function(event,ui){
+                    event.preventDefault();
+                    $("#txtSearchKey").val(ui.item.label);
+                    
+                    var id = ui.item.value;
+                    if(id) loadMemberDetails(id);
+                },
+                // optional
+                html: true, 
+                // optional (if other layers overlap the autocomplete list)
+                open: function(event, ui) {
+                    $(".ui-autocomplete").css("z-index", 1000);
+                }
+            });
+          
+            $('#txtMemberStart').Zebra_DatePicker({
+                direction: true,
+                pair: $('#txtMemberEnd')
+            });
+            $('#txtMemberEnd').Zebra_DatePicker({
+                direction: 1
+            });
+        });
+
+        var loadMemberDetails = function(id){
+            console.log('loadMemberDetails()');
+            if(id){
+                $.getJSON("../getMemberDetails.php?id=" + id, function(data){
+                    if(data[0]){
+                        $("#txtMemberId").val(data[0].member_id);
+                        $("#txtFirstname").val(data[0].firstname);
+                        $("#txtLastname").val(data[0].lastname);
+                        $("#txtMiddlename").val(data[0].middlename);
+                        $("#txtContactNo").val(data[0].contactno);
+                        $("#txtAddress").val(data[0].address);
+                        $("#txtBirthday").val(data[0].birthdate);
+                        $("#txtMemberGender").val(data[0].gender == 'M' ? 'Male' : 'Female');
+
+                        $('#txtMemberType').val(data[0].membership_type);
+                        $('#txtDiscounted').val(data[0].has_discount);
+                        $('#selServiceType').val(data[0].service_type);
+                        $("#txtMemberStart").val(data[0].monthly_startdate);
+                        $("#txtMemberEnd").val(data[0].monthly_enddate);
+                        
+                        var dtStart = Date.parse(data[0].monthly_startdate);
+                        var dtEnd = Date.parse(data[0].monthly_enddate);
+                        var dtNow = Date.today();
+                        
+                        if(0 <= Date.compare(dtNow, dtStart) && 0 >= Date.compare(dtNow, dtEnd)){
+                            //TODO: Due amount computations here
+                            console.log('Monthly Membership is still active.');
+                        }
+                        else {
+                            console.log('Monthly Membership is expired.');
+                        }
+                        
+                    }
+                });
+            }
+        };
+
+        var clearSearchKeys = function(){
+            $('#txtSearchKey').val('');
+        };
+
+        var clearDetails = function(){
+            $('#txtSearchKey').val('');
+            $("#txtMemberId").val('');
+            $("#txtFirstname").val('');
+            $("#txtLastname").val('');
+            $("#txtMiddlename").val('');
+            $("#txtContactNo").val('');
+            $("#txtAddress").val('');
+            $("#txtBirthday").val('');
+            $("#txtMemberGender").val('');
+        };
+    </script>
 </head>
 <body>
-  <div class="formContainer">
-    <form id="formWorkoutRegistration" name="formWorkoutRegistration" method="post" action="">
-      <p>
-          <label for="txtMemberId">Identification Number:</label>
-          <input type="text" id="txtMemberId" name="memberId" placeholder="0" title="Member Identification" readonly="true" />
-      </p> 
-      <p>
-          <label for="txtMemberName">Name:</label>
-          <input type="text" id="txtMemberName" placeholder="0" title="Member Name" readonly="true" />
-      </p>
-    </form>
-  </div>
+    <div class="headerContainer">
+        <div class="headerIconLabel" title="Return to home page">
+            <img src="resources/images/icons/muscle.png" class="headerSmallImage" alt="Members" />
+            <span>Workout Registration</span>
+        </div>
+        <div class="headerLogout" title="Logout">
+            <a href="javascript:void(0);" onclick="location.href='logout.php'">
+                <span>Logout</span>
+                <img src="resources/images/icons/exit.png" class="headerMenuImage" alt="Logout" title="Logout" />
+            </a>
+        </div>
+    </div>
+    <div class="memberPageContainer">
+        <div class="memberContainer">
+          <span id="spanMemberStatus" class="success"></span>
+          <div class="searchContainer">
+            <form id="formSearchMember" name="formSearchMember" method="get" action="">
+              <p>
+                  <label for="txtSearchKey">Search key:</label>
+                  <input type="text" id="txtSearchKey" name="searchMember" placeholder="Search Member" title="Search member by ID, name, etc" />
+                  <img src="resources/images/icons/empty-icon.png" class="clearSearchButton" onclick="clearSearchKeys();" title="Clear Search Fields" />
+              </p> 
+            </form>
+          </div>
+          <div class="memberInfoContainer">
+              <p>
+                  <label for="txtMemberId">Member ID:</label>
+                  <input type="text" id="txtMemberId" placeholder="0" title="Member Identification" readonly="true" />
+              </p>  
+              <p>
+                  <label for="txtFirstname">Firstname:</label>
+                  <input type="text" id="txtFirstname" placeholder="Juan" title="Member Firstname" readonly="true" />
+              </p>
+              <p>
+                  <label for="txtLastname">Lastname:</label>
+                  <input type="text" id="txtLastname" placeholder="Dela Cruz" title="Member Lastname" readonly="true" />
+              </p>
+              <p>
+                  <label for="txtMiddlename">Middlename:</label>
+                  <input type="text" id="txtMiddlename" placeholder="Dimaloko" title="Member Middlename" readonly="true" />
+              </p>
+              <p>
+                  <label for="txtContactNo">Contact Number:</label>
+                  <input type="text" id="txtContactNo" placeholder="(918) 123-4567" title="Member Contact Number" readonly="true" />
+              </p>
+              <p>
+                  <label for="txtAddress">Address:</label>
+                  <textarea id="txtAddress" cols="45" rows="3" placeholder="Address" title="Member Address" readonly="true"></textarea>
+              </p>
+              <p>
+                  <label for="txtBirthday">Birthday:</label>
+                  <input type="text" id="txtBirthday" class="dateField" placeholder="Birthdate" title="Member Birthday" readonly="true" />
+              </p>
+              <p>
+                  <label for="memberGender">Gender:</label>
+                  <input type="text" id="txtMemberGender" placeholder="Male or Female" title="Member Gender" readonly="true" />
+              </p>
+          </div>
+        </div>
+        <div class="memberTypeInfoContainer">
+            <p>
+                <label for="txtMemberType">Membership Type:</label>
+                <input type="text" id="txtMemberType" placeholder="Membership Type" title="Membership Type" readonly="true" />
+            </p>
+            <p>
+                <label for="txtDiscounted">Has Discount:</label>
+                <input type="text" id="txtDiscounted" placeholder="Discount" title="Member has discount" readonly="true" />
+            </p>
+            <p class="serviceTypeContainer">
+                <label for="selServiceType" class="selectLabel">Service Type:</label>
+                <select id="selServiceType" name="serviceType">
+                    <option value="-1">Please select service type</option>
+                    <option value="boxing">Boxing</option>
+                    <option value="weights">Weights</option>
+                </select>
+            </p>
+            <div class="monthlyEffectivity">
+                <h3>Monthly Effective:</h3>
+                <p>
+                    <div class="dateContainer">
+                        <label for="txtMemberStart" class="smaller">Start:</label>
+                        <input type="text" id="txtMemberStart" name="memberStart" class="dateField" placeholder="Select Date" title="Member Start" />
+                    </div>
+                    <div class="dateContainer">
+                        <label for="txtMemberEnd" class="smaller">End:</label>
+                        <input type="text" id="txtMemberEnd" name="memberEnd" class="dateField" placeholder="Select Date" title="Member End" />
+                    </div>
+                </p>
+            </div>
+            <div class="amountDue">
+                <p class="amountDue">
+                    <label>Due:</label>
+                    <span>Php</span>
+                    <span id="spanAmountDue" class="due" title="Amount Due">0.00</span>
+                </p>
+            </div>
+        </div>
+        <div class="buttonContainer workoutRegButtons">
+            <button class="submitButton" onclick="registerMemberWorkout()">Save Details</button>
+            <button class="submitButton" onclick="clearDetails()">Clear Details</button>
+        </div>
+    </div>
+    <div class="footerContainer1">
+        <span class="footer left">Welcome <b><?php echo $_SESSION['name']; ?></b><?php echo $_SESSION['display_role_type']; ?> !</span>
+        <span class="footer right"><b>Gym Records Management System (Version 0.0.1)</b></span>
+    </div>
+    <div id="dialog-box"></div>
 </body>
 </html>

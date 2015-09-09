@@ -15,6 +15,12 @@ var initUserComponents = function(){
 	$('#selRoleype').val('');
 	$('#btnRemoveUser, #btnChangePassword').hide();
 
+	$('#txtSearchKey').bind('keyup', function(){
+		var searchkey = $(this).val();
+		searchUserList(searchkey);
+	});
+
+	//loadDummyUserInfo();
 	initializeUserForm();
 	initializeSecurityForm();
 };
@@ -221,8 +227,8 @@ var addUpdateUser = function(){
 			setUserStatus(true, msg);
 			clearUserFields();
 			refreshUsersList();
-		}).fail(function(){
-			setUserStatus(false, "Error adding/updating user.");
+		}).fail(function(error){
+			setUserStatus(false, "Save Error: " + error.statusText);
 		});
 	}
 };
@@ -234,10 +240,18 @@ var removeUser = function(){
 			setUserStatus(true, msg);
 			clearUserFields();
 			refreshUsersList();
-		}).fail(function(){
-			setUserStatus(false, "Error: Unable to remove user.");
+		}).fail(function(error){
+			setUserStatus(false, "Remove User Error: " + error.statusText);
 		});
 	}
+};
+
+var searchUserList = function(searchKey){
+	var url = "../usersList.php";
+	if(searchKey) url += "?searchKey=" + searchKey;
+	$("#dvList").load(url, function(){
+		initUserTable();
+	});
 };
 
 var refreshUsersList = function(page, sortColumn, order){
@@ -246,37 +260,24 @@ var refreshUsersList = function(page, sortColumn, order){
 	if(sortColumn) url += "&sortBy=" + sortColumn;
 	if(order) url += "&order=" + order;
 
-	$("#dvUserListContainer").load(url, function(){
+	$("#dvList").load(url, function(){
 		initUserTable();
 	});
 };
 
 var loadDummyUserInfo = function(){
 	$("#txtUserId").val("0");
-	$("#txtFirstname").val("Juan");
-	$("#txtLastname").val("Dela Cruz");
-	$("#txtMiddlename").val("Pedrito");
-	//$("#txtContactNo").val("(0920) 987-1234");
-	//$("#txtAddress").val("Davao City, Philippines");
-	//$("#txtBirthdate").val("05/20/1981");
+	$("#txtFirstname").val("wong");
+	$("#txtLastname").val("hone");
+	$("#txtMiddlename").val("fei");
+	$("#txtContactNo").val("(0920) 888-8888");
+	$("#txtAddress").val("Davao City, Philippines");
+	$("#txtBirthdate").val("02/28/1966");
 	$("#rdbGenderMale").attr("checked", "true");
 	$('#selRoleype').val('attendant');
-	$("#txtUsername").val("juandelacruz");
+	$("#txtUsername").val("wfhong");
 	$("#txtPassword").val("password");
 	$("#txtConfirmPassword").val("password");
-};
-
-var clearUserFields = function(){
-	$('input[type="text"], textarea').val("");
-	$("#txtUsername").val("").attr('disabled', false);
-	$('input[type="password"]').val('').attr('disabled', false);
-	$("#txtUsername, #txtPassword, #txtConfirmPassword").attr('readonly', false);
-	$('#rdbGenderMale').iCheck('check');
-	$('#selRoleype').val('');
-	$('#divSecurity').show();
-	$('#btnRemoveUser, #btnChangePassword').hide();
-
-	clearSecurityDetails();
 };
 
 var setUserStatus = function(isSuccess, msg){
@@ -288,10 +289,32 @@ var setUserStatus = function(isSuccess, msg){
 		objStatus.addClass("error").html(msg);	
 };
 
+var clearUserFields = function(){
+	$('input[type="text"], textarea').val("");
+	$("#txtUsername").val("").attr('disabled', false);
+	$('input[type="password"]').val('').attr('disabled', false);
+	$("#txtUsername, #txtPassword, #txtConfirmPassword").attr('readonly', false);
+	$('#rdbGenderMale').iCheck('check');
+	$('#selRoleype').val('');
+	$('#divSecurity').show();
+	$('#btnRemoveUser, #btnChangePassword').hide();
+	clearSecurityDetails();
+};
+
 var clearUserStatus = function(){
 	var objStatus = $('#spanUserStatus');
 	objStatus.removeClass("success").removeClass("error").html("");
 	$("input[type='text'], input[type='password'], textarea").css("border", "2px solid #000");
+	$('#txtFirstname, #txtLastname, #txtMiddlename').removeClass('error');
+};
+
+var clearSearchKeys = function(){
+	$('#txtSearchKey').val('');
+	refreshUsersList();
+};
+
+var clearSecurityDetails = function(){
+	$('#txtSCurrentPassword, #txtSNewPassword, #txtSConfirmPassword').val('');	
 };
 
 var showChangePassword = function(){
@@ -319,8 +342,8 @@ var updateUserPassword = function(){
 	$.post("../updateUserPassword.php", $("#formUserSecurity").serialize()).done(function(msg){
 		setUserStatus(true, msg);
 		clearSecurityDetails();
-	}).fail(function(){
-		setUserStatus(false, "Error: Invalid username/password.");
+	}).fail(function(error){
+		setUserStatus(false, "Login Error: " + error.statusText);
 	});
 };
 
@@ -358,8 +381,4 @@ var showConfirmRemoveUserDialog = function(){
 			},
 		}
 	});
-};
-
-var clearSecurityDetails = function(){
-	$('#txtSCurrentPassword, #txtSNewPassword, #txtSConfirmPassword').val('');	
 };

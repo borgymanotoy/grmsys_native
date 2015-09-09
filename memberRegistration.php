@@ -35,14 +35,23 @@
 
 	//echo  $sqlCallProcedure;
 
-	$successAddUpdate = mysqli_query($conn, $sqlCallProcedure) or die("Query fail: " . $sqlCallProcedure);
-	if($successAddUpdate){
-		if(0 < $userId)
+	mysqli_query($conn, $sqlCallProcedure);
+	$errNo  = mysqli_errno($conn);
+	$errMSg = mysqli_error($conn);
+	
+	if(0 < $errNo){
+		if($errNo == 1062)
+			header('HTTP/1.0 500 Unable to add existing member.');
+		else
+			header('HTTP/1.0 500 DB Error (' . $errNo . ': ' . $errMSg. ')' );
+		exit(0);
+	}
+	else {
+		if(0 < $memberId)
 			echo "Successfully updated member!";
 		else
 			echo "Successfully registered member!";
 	}
-	else {
-		header('HTTP/1.0 500 Error in adding or updating member info.');
-	}
+	
+	exit(0);
 ?>

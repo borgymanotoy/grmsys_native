@@ -27,7 +27,11 @@ center {
 	bottom: 10px;
 	left: 500px;
 	width: 650px;
-	background-color: #333;
+	background: rgba(40, 40, 40, 0.8) none repeat scroll 0% 0%;
+}
+.workoutRegButtons {
+	position: absolute;
+	top: 620px;
 }
 .buttonContainer {
 	clear: both;
@@ -36,7 +40,7 @@ center {
 .genderContainer {
 	width: 405px;
 	padding: 10px;
-	background-color: #333;
+	background: rgba(40, 40, 40, 0.8) none repeat scroll 0% 0%;
 }
 .typeContainer, .discountContainer {
 	width: 250px;
@@ -57,7 +61,7 @@ label.selectLabel {
 	display: inline-block;	
 }
 .emergencyContainer {
-	background-color: #333;
+	background: rgba(40, 40, 40, 0.8) none repeat scroll 0% 0%;
 	padding: 10px;
 }
 label {
@@ -90,6 +94,8 @@ input[type='text'], input[type='password'], textarea {
 	border: 2px solid black;
 	background-color: #666;
 	color: #fff;
+	display: inline-block;
+	vertical-align: middle;
 }
 
 input.dateField {
@@ -195,14 +201,28 @@ div.memberPageContainer{
     position: relative;
     top: 0;
     width: 1200px;
+	display: block;
 }
+
 div.memberContainer {
 	padding: 10px;
 	border: 1px solid #333;
 	background: rgba(20, 20, 20, 0.9);
 	width: 460px;
-	height: 640px;
+	height: 620px;
 	display: inline-block;
+	position: absolute;
+}
+
+div.memberTypeInfoContainer {
+	padding: 10px;
+	border: 1px solid #333;
+	background: rgba(20, 20, 20, 0.9);
+	width: 270px;
+	height: 500px;
+	display: inline-block;
+	position: absolute;
+	left: 500px;
 }
 
 div.itemPageContainer {
@@ -258,7 +278,7 @@ span.error {
 div#dvUserListContainer {
 	padding: 20px;
 	border: 1px solid #333;
-	background-color: #333;
+	background: rgba(40, 40, 40, 0.8) none repeat scroll 0% 0%;
 	width: 660px;
 	height: 550px;
 	position: absolute;
@@ -270,7 +290,7 @@ div#dvUserListContainer {
 div#dvItemListContainer {
 	padding: 20px;
 	border: 1px solid #333;
-	background-color: #333;
+	background: rgba(40, 40, 40, 0.8) none repeat scroll 0% 0%;
 	width: 450px;
 	height: 320px;
 	position: absolute;
@@ -408,6 +428,7 @@ img.toolImage {
 
 .dateContainer {
 	display: inline-block;
+	margin-bottom: 15px;
 }
 
 div.monthlyEffectivity {
@@ -434,7 +455,7 @@ div.serviceTypeMonthlyEffectivityContainer {
 
 div#dvMemberListContainer{
 	border: 1px solid #333;
-	background-color: #333;
+	background: rgba(20, 20, 20, 0.8) none repeat scroll 0% 0%;
 	position: absolute;
 	left: 500px;
 	top: 10px;
@@ -453,4 +474,25 @@ tr.hover {
 }
 .even {
 	background: #DDDBDB none repeat scroll 0% 0%;
+}
+
+input[type='submit'].searchButton {
+	padding: 0 2px;
+	background: transparent url("../images/icons/findsmall.png") no-repeat scroll 0px 0px;
+	border: 0px none;
+	width: 20px;
+	cursor: pointer;
+}
+
+img.clearSearchButton {
+	display:inline-block;
+	vertical-align: middle;
+}
+
+#txtFirstname.error, #txtLastname.error, #txtMiddlename.error {
+	border-color: #FB3222;
+}
+
+label[for='txtSearchKey'] {
+  width: 100px;
 }

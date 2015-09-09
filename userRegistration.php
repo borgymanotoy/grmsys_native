@@ -21,17 +21,23 @@
 
 	$sqlCallProcedure = "CALL pAddOrUpdateUser($userId, '$username', '$password', '$firstname', '$lastname', '$middlename', '$contactNo', '$address', $dateBirth, '$gender', '$role_type')";
 
-//*
-	$successAddUpdate = mysqli_query($conn, $sqlCallProcedure) or die("Query fail: " . $sqlCallProcedure);
-	if($successAddUpdate){
+	mysqli_query($conn, $sqlCallProcedure);
+	$errNo  = mysqli_errno($conn);
+	$errMSg = mysqli_error($conn);
+
+	if(0 < $errNo){
+		if($errNo == 1062)
+			header('HTTP/1.0 500 Unable to add existing user.');
+		else
+			header('HTTP/1.0 500 DB Error (' . $errNo . ': ' . $errMSg. ').' );
+		exit(0);
+	}
+	else {
 		if(0 < $userId)
 			echo "Successfully updated user!";
 		else
 			echo "Successfully registered user!";
 	}
-	else {
-		header('HTTP/1.0 500 Error in adding or updating user info.');
-	}
-//*/	
 
+	exit(0);
 ?>

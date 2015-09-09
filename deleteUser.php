@@ -4,16 +4,18 @@
 
 	$userId = mysqli_real_escape_string($conn, $_POST['userId']);	
 
-	$has_error = false;
-	
 	if(0 < $userId){
 		$sqlCallProcedure = "CALL pRemoveUser($userId)";
-		$successAddUpdate = mysqli_query($conn, $sqlCallProcedure) or die("Query fail: " . $sqlCallProcedure);
-		if(!$successAddUpdate) $has_error = true;
+		$successAddUpdate = mysqli_query($conn, $sqlCallProcedure);
+		$errNo  = mysqli_errno($conn);
+		$errMSg = mysqli_error($conn);
+		
+		if(0 < $errNo){
+			header('HTTP/1.0 500 DB Error (' . $errNo . ': ' . $errMSg. ')' );
+			exit(0);
+		}
+		
+		if($successAddUpdate) echo "Successfully removed user!";
 	}
-
-	if($has_error)
-		header('HTTP/1.0 500 Error removing user!');
-	else
-		echo "Successfully removed user!";	
+	exit(0);
 ?>

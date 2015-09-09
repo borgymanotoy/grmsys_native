@@ -16,17 +16,24 @@
 	}
 
 	$sqlCallProcedure = "CALL pAddOrUpdateItem($itemId, '$itemName', '$itemPrice', '$otherInfo', '$loginUserId')";
-	
-	//echo $sqlCallProcedure;
 
-	$successAddUpdate = mysqli_query($conn, $sqlCallProcedure) or die("Query fail: " . $sqlCallProcedure);
-	if($successAddUpdate){
+	mysqli_query($conn, $sqlCallProcedure);
+	$errNo  = mysqli_errno($conn);
+	$errMSg = mysqli_error($conn);
+	
+	if(0 < $errNo){
+		if($errNo == 1062)
+			header('HTTP/1.0 500 Unable to add existing product(item).');
+		else
+			header('HTTP/1.0 500 DB Error (' . $errNo . ': ' . $errMSg. ')' );
+		exit(0);
+	}
+	else {
 		if(0 < $itemId)
 			echo "Successfully updated item!";
 		else
 			echo "Successfully registered item!";
 	}
-	else {
-		header('HTTP/1.0 500 Error in adding or updating item info.');
-	}
+
+	exit(0);
 ?>

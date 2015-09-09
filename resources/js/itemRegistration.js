@@ -8,6 +8,11 @@ var initItemComponents = function(){
 	$('.currency').autoNumeric('init');
 	$('#btnRemoveItem').hide();
 
+	$('#txtSearchKey').bind('keyup', function(){
+		var searchkey = $(this).val();
+		searchItemList(searchkey);
+	});
+
 	initializeItemForm();
 };
 
@@ -89,8 +94,8 @@ var addUpdateItem = function(){
 			setItemStatus(true, msg);
 			clearItemFields();
 			refreshItemsList();
-		}).fail(function(){
-			setItemStatus(false, "Error adding/updating item.");
+		}).fail(function(error){
+			setItemStatus(false, "Save Item Error: " + error.statusText);
 		});
 	}
 };
@@ -101,11 +106,19 @@ var removeItem = function(){
 		$.post("../deleteItem.php", $("#formItem").serialize()).done(function(msg){
 			setItemStatus(true, msg);
 			clearItemFields();
-			refreshItemsList();
+			refreshItemsList(error);
 		}).fail(function(){
-			setItemStatus(false, "Error: Unable to remove item.");
+			setItemStatus(false, "Remove Item Error: " + error.statusText);
 		});
 	}
+};
+
+var searchItemList = function(searchKey){
+	var url = "../itemsList.php";
+	if(searchKey) url += "?searchKey=" + searchKey;
+	$("#dvList").load(url, function(){
+		initializeItemTable();
+	});
 };
 
 var refreshItemsList = function(page, sortColumn, order){
@@ -114,7 +127,7 @@ var refreshItemsList = function(page, sortColumn, order){
 	if(sortColumn) url += "&sortBy=" + sortColumn;
 	if(order) url += "&order=" + order;
 
-	$("#dvItemListContainer").load(url, function(){
+	$("#dvList").load(url, function(){
 		initializeItemTable();
 	});
 };
@@ -143,6 +156,11 @@ var setItemStatus = function(isSuccess, msg){
 var clearItemStatus = function(){
 	var objStatus = $('#spanItemStatus');
 	objStatus.removeClass("success").removeClass("error").html("");
+};
+
+var clearSearchKeys = function(){
+	$('#txtSearchKey').val('');
+	refreshItemsList();
 };
 
 var showMessageDialog = function(msg){
