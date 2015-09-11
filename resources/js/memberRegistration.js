@@ -130,7 +130,7 @@ var loadMemberDetails = function(id){
 				$("#txtEmergencyContactNumber").val(data[0].emergency_contact_number);
 				$("#txtEmergencyContactRelationship").val(data[0].emergency_contact_relationship);
 				
-				if(data[0].membership_type == 'walk-in')
+				if(data[0].membership_type == 'daily')
 					$("#rdbTypeWalkin").iCheck('check');
 				else
 					$("#rdbTypeMonthly").iCheck('check');
@@ -140,7 +140,7 @@ var loadMemberDetails = function(id){
 				else
 					$("#rdbDiscountNo").iCheck('check');
 
-				$('#selServiceType').val(data[0].service_type);
+				$('#selServiceType').val(data[0].service_type_code);
 				$("#txtMemberStart").val(data[0].monthly_startdate);
 				$("#txtMemberEnd").val(data[0].monthly_enddate);
 

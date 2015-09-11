@@ -1,0 +1,48 @@
+div.amountDue {
+	position: absolute;
+	width: 92%;
+	bottom: 0;
+}
+p.amountDue {
+	font-size: 24px;
+	font-weight: bold;
+	padding: 10px;
+	border: 2px solid #222;
+}
+p.amountDue > label {
+	font-size: 24px;
+	width: 60px;
+	color: #A79E9E;
+}
+p.amountDue > span {
+	font-size: 28px;
+	color: #BC2A2A;
+}
+.memberTypeDetails {
+	font-size: 18px;
+	font-weight: bold;
+	color: #BC2A2A;
+}
+
+div#dvSearch { width: 360px; }
+input#txtSearchKey {
+	width: 200px;
+}
+
+div#dvList {
+	min-height: 100px;
+	max-height: 450px;
+	width: 100%;
+	overflow-y: auto;
+}
+
+select#selServiceType{
+	width: 150px;
+}
+
+label[for="txtAttendanceSearchKey"] {
+    width: 60px;
+}
+input#txtAttendanceSearchKey {
+	width: 240px;	
+}

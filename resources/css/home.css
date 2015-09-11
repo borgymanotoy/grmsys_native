@@ -22,20 +22,30 @@ center {
 }
 .membertypeInfoContainer {
 	border: 1px solid #333;
-	padding: 20px;
+	padding: 0 20px;
 	position: absolute;
-	bottom: 10px;
+	top: 458px;
 	left: 500px;
 	width: 650px;
 	background: rgba(40, 40, 40, 0.8) none repeat scroll 0% 0%;
+	
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
 }
 .workoutRegButtons {
 	position: absolute;
-	top: 620px;
+	top: 450px;
+	left: 20px;
 }
 .buttonContainer {
 	clear: both;
 	padding: 10px 0;
+}
+.workoutRegButtons {
+	clear: both;
+	padding: 20px 0;
 }
 .genderContainer {
 	width: 405px;
@@ -193,7 +203,7 @@ div.userContainer {
 
 div.memberPageContainer{
 	background: rgba(20, 20, 20, 0.9) none repeat scroll 0 0;
-    height: 660px;
+    height: 650px;
     left: 50%;
     margin-left: -600px;
     margin-top: 100px;
@@ -204,12 +214,26 @@ div.memberPageContainer{
 	display: block;
 }
 
+div.workoutRegistrationPageContainer{
+	background: rgba(20, 20, 20, 0.9) none repeat scroll 0 0;
+    height: 525px;
+    left: 50%;
+    margin-left: -600px;
+    margin-top: 100px;
+    padding: 10px;
+    position: relative;
+    top: 0;
+    width: 1200px;
+	display: block;
+}
+
+
 div.memberContainer {
 	padding: 10px;
 	border: 1px solid #333;
 	background: rgba(20, 20, 20, 0.9);
 	width: 460px;
-	height: 620px;
+	/* height: 500px; */
 	display: inline-block;
 	position: absolute;
 }
@@ -436,7 +460,7 @@ div.monthlyEffectivity {
 }
 
 p.serviceTypeContainer {
-	padding: 20px 0;
+	padding: 5px 0;
 }
 
 div.typeDiscountContainer {
@@ -460,7 +484,20 @@ div#dvMemberListContainer{
 	left: 500px;
 	top: 10px;
 	width: 690px;
-	height: 420px;
+	height: 440px;
+	max-height: 440px;
+	overflow-y: auto;
+}
+
+div#dvAttendanceListContainer{
+	border: 1px solid #333;
+	background: rgba(20, 20, 20, 0.8) none repeat scroll 0% 0%;
+	position: absolute;
+	left: 800px;
+	top: 10px;
+	width: 360px;
+	height: 510px;
+	padding: 5px 25px;
 }
 
 tr.hover {

@@ -15,11 +15,13 @@
 	$sqlQuery .= " 	   vm.emergency_contact_person,\n";
 	$sqlQuery .= "     vm.emergency_contact_number,\n";
 	$sqlQuery .= "     vm.emergency_contact_relationship,\n";
-	$sqlQuery .= "     vm.membership_type,\n";
+	$sqlQuery .= "     vm.member_type,\n";
 	$sqlQuery .= "     vm.has_discount,\n";
+	$sqlQuery .= "     vm.service_type_code,\n";
 	$sqlQuery .= "     vm.service_type,\n";
 	$sqlQuery .= " 	   date_format(vm.monthly_startdate, '%m-%d-%Y') as monthly_startdate,\n";
-	$sqlQuery .= " 	   date_format(vm.monthly_enddate, '%m-%d-%Y') as monthly_enddate\n";
+	$sqlQuery .= " 	   date_format(vm.monthly_enddate, '%m-%d-%Y') as monthly_enddate,\n";
+	$sqlQuery .= " 	   vm.amount_due as amount_due\n";
 	$sqlQuery .= " from vw_members vm\n";
 	$sqlQuery .= " where vm.member_id = " . $memberId;
 

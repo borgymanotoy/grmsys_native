@@ -108,3 +108,9 @@ div.msgContainer div.error:before{
   border-width    : 10px;
   margin-left     : -10px;
 }
+
+#dvMemberListContainer > div#dvList {
+  min-height: 100px;
+  max-height: 325px;
+  overflow-y: auto;
+}
