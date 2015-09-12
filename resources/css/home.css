@@ -36,7 +36,7 @@ center {
 }
 .workoutRegButtons {
 	position: absolute;
-	top: 450px;
+	top: 470px;
 	left: 20px;
 }
 .buttonContainer {
@@ -270,7 +270,7 @@ div.itemContainer {
 	display: inline-block;
 }
 
-span#spanMemberStatus {
+span#spanMemberStatus, span#spanMemberWorkoutStatus {
 	display: block;
 	width: 460px;
 	padding: 10px;

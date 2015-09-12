@@ -10,6 +10,7 @@
     <link type="text/css" rel="stylesheet" href="resources/css/jquery-ui.min.css" />
     <link type="text/css" rel="stylesheet" href="resources/css/jquery-ui.theme.min.css" />
     <link type="text/css" rel="stylesheet" href="resources/css/transactionPage.css" />
+    <link type="text/css" rel="stylesheet" href="resources/css/workoutLog.css" />
 
     <script type='text/javascript' src='resources/js/jquery-1.11.1.min.js'></script>
     <script type='text/javascript' src='resources/js/jquery-ui.min.js'></script>
@@ -24,6 +25,7 @@
         var roleType = "<?php echo $_SESSION['role_type']; ?>"
         $(document).ready(function(){
             initWorkoutRegistrationComponents();
+            refreshAttendanceList();
         });
     </script>
 </head>
@@ -42,7 +44,7 @@
     </div>
     <div class="workoutRegistrationPageContainer">
         <div class="memberContainer">
-          <span id="spanMemberStatus" class="success"></span>
+          <span id="spanMemberWorkoutStatus" class="success"></span>
           <div class="searchContainer">
             <form id="formSearchMember" name="formSearchMember" method="get" action="">
               <p>
@@ -88,80 +90,83 @@
           </div>
         </div>
         <div class="memberTypeInfoContainer">
-            <input type="hidden" id="hndLoadedMemberId" name="loadedMemberId" value="" />
-            <p>
-                <div>
-                    <input type="hidden" id="hndLoadedMemberType" name="loadedMemberType" value="" />
-                    <label for="spnMemberType">Membership Type:</label>
-                    <span id="spnMemberType" class="memberTypeDetails">Daily</span>
+            <form id="formWorkoutRegistration" name="formWorkoutRegistration" method="post" action="">
+                <input type="hidden" id="hndLoadedMemberId" name="loadedMemberId" value="" />
+                <p>
+                    <div>
+                        <input type="hidden" id="hndLoadedMemberType" name="loadedMemberType" value="" />
+                        <label for="spnMemberType">Membership Type:</label>
+                        <span id="spnMemberType" class="memberTypeDetails">Daily</span>
+                    </div>
+                </p>
+                <p>
+                    <div>
+                        <input type="hidden" id="hndLoadedHasDiscount" name="loadedHasDiscount" value="" />
+                        <label for="spnHasDiscount">Has Discount:</label>
+                        <span id="spnHasDiscount" class="memberTypeDetails">No</span>
+                    </div>
+                </p>
+                <p class="serviceTypeContainer">
+                    <input type="hidden" id="hndLoadedServiceType" name="loadedServiceType" value="" />
+                    <input type="hidden" id="hndSTPriceDaily" name="stPriceDaily" value="" />
+                    <input type="hidden" id="hndSTPriceDiscountedDaily" name="stPriceDiscountedDaily" value="" />
+                    <input type="hidden" id="hndSTPriceMonthly" name="stPriceMonthly" value="" />
+                    <input type="hidden" id="hndSTPriceDiscountedMonthly" name="stPriceDiscountedMonthly" value="" />
+                    <label for="selServiceType" class="selectLabel">Service Type:</label>
+                    <select id="selServiceType" name="serviceType">
+                        <option value="-1">-Please select-</option>
+                        <option value="boxing">Boxing</option>
+                        <option value="weights">Weights</option>
+                    </select>
+                </p>
+                <div class="monthlyEffectivity">
+                    <h3>Monthly Effective:</h3>
+                    <p>
+                        <div class="dateContainer">
+                            <input type="hidden" id="hndLoadedMStartDate" name="loadedMStartDate" value="" />
+                            <label for="txtMemberStart" class="smaller">Start:</label>
+                            <input type="text" id="txtMemberStart" name="memberStart" class="dateField" placeholder="Select Date" title="Member Start" />
+                        </div>
+                        <div class="dateContainer">
+                            <input type="hidden" id="hndLoadedMEndDate" name="loadedMEndDate" value="" />
+                            <label for="txtMemberEnd" class="smaller">End:</label>
+                            <input type="text" id="txtMemberEnd" name="memberEnd" class="dateField" placeholder="Select Date" title="Member End" />
+                        </div>
+                    </p>
+                    <p>
+                        <div>
+                            <input type="hidden" id="hndLoadedMonthlyStatus" name="loadedMonthlyStatus" value="No" />
+                            <label for="spnMonthlyStatus">Monthly Active Status:</label>
+                            <span id="spnMonthlyStatus" class="memberTypeDetails">No</span>
+                        </div>
+                    </p>
+                    <p>
+                        <div>
+                            <label for="txtRemarks">Remarks:</label>
+                            <textarea id="txtRemarks" name="otherInfo" placeholder="Remarks"></textarea>
+                        </div>
+                    </p>
+                    <p>
+                        <div>
+                            <input type="checkbox" id="chkPaid" name="amountPaid" value="Paid" class="myCheckboxes" />
+                            <input type="hidden" id="hdPaid" name="paid" value="" />
+                            <label for="chkPaid" style="margin-left: 7px;">Amount Paid</label>
+                        </div>
+                    </p>
                 </div>
-            </p>
-            <p>
-                <div>
-                    <input type="hidden" id="hndLoadedHasDiscount" name="loadedHasDiscount" value="" />
-                    <label for="spnHasDiscount">Has Discount:</label>
-                    <span id="spnHasDiscount" class="memberTypeDetails">No</span>
+                <div class="amountDue">
+                    <p class="amountDue">
+                        <input type="hidden" id="hndLoadedPriceDaily" name="loadedPriceDaily" value="" />
+                        <input type="hidden" id="hndLoadedPriceDiscountedDaily" name="loadedPriceDiscountedDaily" value="" />
+                        <input type="hidden" id="hndLoadedPriceMonthly" name="loadedPriceMonthly" value="" />
+                        <input type="hidden" id="hndLoadedPriceDiscountedMonthly" name="loadedPriceDiscountedMonthly" value="" />
+                        <input type="hidden" id="hndLoadedAmountDue" name="loadedAmountDue" value="" />
+                        <label>Due:</label>
+                        <span>Php</span>
+                        <span id="spanAmountDue" class="due" title="Amount Due">0.00</span>
+                    </p>
                 </div>
-            </p>
-            <p class="serviceTypeContainer">
-                <input type="hidden" id="hndLoadedServiceType" name="loadedServiceType" value="" />
-                <input type="hidden" id="hndSTPriceDaily" name="stPriceDaily" value="" />
-                <input type="hidden" id="hndSTPriceDiscountedDaily" name="stPriceDiscountedDaily" value="" />
-                <input type="hidden" id="hndSTPriceMonthly" name="stPriceMonthly" value="" />
-                <input type="hidden" id="hndSTPriceDiscountedMonthly" name="stPriceDiscountedMonthly" value="" />
-                <label for="selServiceType" class="selectLabel">Service Type:</label>
-                <select id="selServiceType" name="serviceType">
-                    <option value="-1">-Please select-</option>
-                    <option value="boxing">Boxing</option>
-                    <option value="weights">Weights</option>
-                </select>
-            </p>
-            <div class="monthlyEffectivity">
-                <h3>Monthly Effective:</h3>
-                <p>
-                    <div class="dateContainer">
-                        <input type="hidden" id="hndLoadedMStartDate" name="loadedMStartDate" value="" />
-                        <label for="txtMemberStart" class="smaller">Start:</label>
-                        <input type="text" id="txtMemberStart" name="memberStart" class="dateField" placeholder="Select Date" title="Member Start" />
-                    </div>
-                    <div class="dateContainer">
-                        <input type="hidden" id="hndLoadedMEndDate" name="loadedMEndDate" value="" />
-                        <label for="txtMemberEnd" class="smaller">End:</label>
-                        <input type="text" id="txtMemberEnd" name="memberEnd" class="dateField" placeholder="Select Date" title="Member End" />
-                    </div>
-                </p>
-                <p>
-                    <div>
-                        <label for="spnMonthlyStatus">Monthly Active Status:</label>
-                        <span id="spnMonthlyStatus" class="memberTypeDetails">No</span>
-                    </div>
-                </p>
-                <p>
-                    <div>
-                        <label for="txtRemarks">Remarks:</label>
-                        <textarea id="txtRemarks" name="otherInfo" placeholder="Remarks"></textarea>
-                    </div>
-                </p>
-                <p>
-                    <div>
-                        <input type="checkbox" id="chkPaid" class="myCheckboxes" />
-                        <input type="hidden" id="hdPaid" name="paid" value="" />
-                        <label for="chkPaid" style="margin-left: 7px;">Amount Paid</label>
-                    </div>
-                </p>
-            </div>
-            <div class="amountDue">
-                <p class="amountDue">
-                    <input type="hidden" id="hndLoadedPriceDaily" name="loadedPriceDaily" value="" />
-                    <input type="hidden" id="hndLoadedPriceDiscountedDaily" name="loadedPriceDiscountedDaily" value="" />
-                    <input type="hidden" id="hndLoadedPriceMonthly" name="loadedPriceMonthly" value="" />
-                    <input type="hidden" id="hndLoadedPriceDiscountedMonthly" name="loadedPriceDiscountedMonthly" value="" />
-                    <input type="hidden" id="hndLoadedAmountDue" name="loadedAmountDue" value="" />
-                    <label>Due:</label>
-                    <span>Php</span>
-                    <span id="spanAmountDue" class="due" title="Amount Due">0.00</span>
-                </p>
-            </div>
+            </form>
         </div>
         <div id="dvAttendanceListContainer">
             <div id="dvSearch">

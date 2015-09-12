@@ -44,7 +44,7 @@
     <PropertyValue Name="IgnoreColumnDefaultValues">false</PropertyValue>
     <PropertyValue Name="IgnoreUdfs">true</PropertyValue>
     <PropertyValue Name="WriteLog">false</PropertyValue>
-    <PropertyValue Name="LogFileName" xml:space="preserve">Backup.log</PropertyValue>
+    <PropertyValue Name="LogFileName" xml:space="preserve">D:\projects\grmsys_native\dbscripts\Backup.log</PropertyValue>
     <PropertyValue Name="ErrorHandlingMode">0</PropertyValue>
     <PropertyValue Name="IncludeDrop">true</PropertyValue>
     <PropertyValue Name="IncludeIfExists">true</PropertyValue>

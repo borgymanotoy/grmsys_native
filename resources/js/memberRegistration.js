@@ -134,7 +134,7 @@ var loadMemberDetails = function(id){
 				$("#txtEmergencyContactNumber").val(data[0].emergency_contact_number);
 				$("#txtEmergencyContactRelationship").val(data[0].emergency_contact_relationship);
 				
-				if(data[0].membership_type == 'daily')
+				if(data[0].membership_type == 'Daily')
 					$("#rdbTypeWalkin").iCheck('check');
 				else
 					$("#rdbTypeMonthly").iCheck('check');

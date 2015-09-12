@@ -114,3 +114,7 @@ div.msgContainer div.error:before{
   max-height: 325px;
   overflow-y: auto;
 }
+
+label[for='selServiceType']{
+  width: 150px;
+}
