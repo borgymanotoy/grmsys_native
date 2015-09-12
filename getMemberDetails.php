@@ -17,6 +17,10 @@
 	$sqlQuery .= "     vm.emergency_contact_relationship,\n";
 	$sqlQuery .= "     vm.member_type,\n";
 	$sqlQuery .= "     vm.has_discount,\n";
+	$sqlQuery .= "     vm.price_daily,\n";
+	$sqlQuery .= "     vm.price_daily_discounted,\n";
+	$sqlQuery .= "     vm.price_monthly,\n";
+	$sqlQuery .= "     vm.price_monthly_discounted,\n";
 	$sqlQuery .= "     vm.service_type_code,\n";
 	$sqlQuery .= "     vm.service_type,\n";
 	$sqlQuery .= " 	   date_format(vm.monthly_startdate, '%m-%d-%Y') as monthly_startdate,\n";

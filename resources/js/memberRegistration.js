@@ -1,5 +1,9 @@
 var initMemberComponents = function(){
 
+	$("div.headerIconLabel").bind("click", function(){
+		goToHome();
+	});
+
 	$("#txtContactNo, #txtEmergencyContactNumber").mask("(000) 000-0000");
 	$('.myRadioButtons').iCheck({ radioClass: 'iradio_flat-red' });
 
@@ -11,9 +15,9 @@ var initMemberComponents = function(){
 	$('#txtMemberEnd').Zebra_DatePicker({
 		direction: 1
 	});
-	$("div.headerIconLabel").bind("click", function(){
-		goToHome();
-	});
+
+	loadServiceType($('#selServiceType'));
+
 	$("input").bind("change", function(){
 		clearMemberStatus();
 	});

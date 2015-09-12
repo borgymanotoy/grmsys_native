@@ -91,18 +91,24 @@
             <input type="hidden" id="hndLoadedMemberId" name="loadedMemberId" value="" />
             <p>
                 <div>
+                    <input type="hidden" id="hndLoadedMemberType" name="loadedMemberType" value="" />
                     <label for="spnMemberType">Membership Type:</label>
                     <span id="spnMemberType" class="memberTypeDetails">Daily</span>
                 </div>
             </p>
             <p>
                 <div>
+                    <input type="hidden" id="hndLoadedHasDiscount" name="loadedHasDiscount" value="" />
                     <label for="spnHasDiscount">Has Discount:</label>
                     <span id="spnHasDiscount" class="memberTypeDetails">No</span>
                 </div>
             </p>
             <p class="serviceTypeContainer">
                 <input type="hidden" id="hndLoadedServiceType" name="loadedServiceType" value="" />
+                <input type="hidden" id="hndSTPriceDaily" name="stPriceDaily" value="" />
+                <input type="hidden" id="hndSTPriceDiscountedDaily" name="stPriceDiscountedDaily" value="" />
+                <input type="hidden" id="hndSTPriceMonthly" name="stPriceMonthly" value="" />
+                <input type="hidden" id="hndSTPriceDiscountedMonthly" name="stPriceDiscountedMonthly" value="" />
                 <label for="selServiceType" class="selectLabel">Service Type:</label>
                 <select id="selServiceType" name="serviceType">
                     <option value="-1">-Please select-</option>
@@ -146,6 +152,10 @@
             </div>
             <div class="amountDue">
                 <p class="amountDue">
+                    <input type="hidden" id="hndLoadedPriceDaily" name="loadedPriceDaily" value="" />
+                    <input type="hidden" id="hndLoadedPriceDiscountedDaily" name="loadedPriceDiscountedDaily" value="" />
+                    <input type="hidden" id="hndLoadedPriceMonthly" name="loadedPriceMonthly" value="" />
+                    <input type="hidden" id="hndLoadedPriceDiscountedMonthly" name="loadedPriceDiscountedMonthly" value="" />
                     <input type="hidden" id="hndLoadedAmountDue" name="loadedAmountDue" value="" />
                     <label>Due:</label>
                     <span>Php</span>
@@ -158,7 +168,7 @@
                 <p>
                     <label for="txtAttendanceSearchKey">Search:</label>
                     <input type="text" id="txtAttendanceSearchKey" name="attendanceSearchkey" placeholder="Search Member" title="Search member by ID, name, etc" />
-                    <img src="resources/images/icons/empty-icon.png" class="clearSearchButton" onclick="clearSearchKeys();" title="Clear Search Fields" />
+                    <img src="resources/images/icons/empty-icon.png" class="clearSearchButton" onclick="clearSearchAttendance();" title="Clear Search Fields" />
                 </p> 
             </div>
             <div id="dvList"></div>

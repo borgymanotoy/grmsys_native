@@ -21,6 +21,18 @@ var redirectPage = function(url){
     $(location).attr('href', url);
 };
 
+//Call this method inside initializeComponents and use the id 'selServiceType' to the select field
+var loadServiceType = function(objSel){
+	if(objSel){
+		$.getJSON("../populateServiceTpes.php").done(function(data){
+			$(objSel).empty().append('<option value=\'-1\'>- Please select -</option>');
+			$.each(data, function(i, obj){
+				$(objSel).append('<option value=' + obj.type_code + '>' + obj.type_name + '</option>');
+			});
+		});
+	}
+};
+
 var showStatusMessage = function(msg){
 	$("#dialog-box").html(msg);
 	$("#dialog-box").dialog({
