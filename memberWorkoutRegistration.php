@@ -12,11 +12,13 @@
 	$memberStart = mysqli_real_escape_string($conn, $_POST['memberStart']);
 	$memberEnd = mysqli_real_escape_string($conn, $_POST['memberEnd']);
 	$loadedAmountDue = mysqli_real_escape_string($conn, $_POST['loadedAmountDue']);
+	$dueAmount = mysqli_real_escape_string($conn, $_POST['dueAmount']);
+	
 	$otherInfo = mysqli_real_escape_string($conn, $_POST['otherInfo']);
 	$amountPaid = mysqli_real_escape_string($conn, $_POST['amountPaid']);
 	$loadedMonthlyStatus = mysqli_real_escape_string($conn, $_POST['loadedMonthlyStatus']);
 
-	$amountPaid = empty($amountPaid) ? 'unpaid' : $amountPaid;
+	$amountPaid = empty($amountPaid) ? 'Unpaid' : $amountPaid;
 
 	$dateMStart = convertStringToDate($memberStart);
 	$dateMEnd = convertStringToDate($memberEnd);

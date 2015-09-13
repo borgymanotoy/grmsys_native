@@ -1,0 +1,546 @@
+/* Font Properties */
+@font-face {
+  font-family: 'OpenSanRegular';
+  src        : url('../webfonts/opensans-regular-webfont.eot');
+  src        : url('../webfonts/opensans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../webfonts/opensans-regular-webfont.woff') format('woff'),
+  url('../webfonts/opensans-regular-webfont.ttf') format('truetype'),
+  url('../webfonts/opensans-regular-webfont.svg#webfontregular') format('svg');
+  font-weight: normal;
+  font-style : normal;
+}
+@font-face {
+  font-family: 'OpenSanBold';
+  src        : url('../webfonts/opensans-bold-webfont.eot');
+  src        : url('../webfonts/opensans-bold-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../webfonts/opensans-bold-webfont.woff') format('woff'),
+  url('../webfonts/opensans-bold-webfont.ttf') format('truetype'),
+  url('../webfonts/opensans-bold-webfont.svg#open_sansbold') format('svg');
+  font-weight: normal;
+  font-style : normal;
+}
+
+@font-face {
+  font-family: 'OpenSanExtraBold';
+  src        : url('../webfonts/opensans-extrabold-webfont.eot');
+  src        : url('../webfonts/opensans-extrabold-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../webfonts/opensans-extrabold-webfont.woff') format('woff'),
+  url('../webfonts/opensans-extrabold-webfont.ttf') format('truetype'),
+  url('../webfonts/opensans-extrabold-webfont.svg#open_sansextrabold') format('svg');
+  font-weight: normal;
+  font-style : normal;
+}
+
+.menuContainer {
+  width           : 98.7%;
+  height          : 40px;
+  padding-left    : 10px;
+  padding-right   : 10px;
+  margin-bottom   : 5px;
+  display         : inline-block;
+  *display        : inline;
+  *zoom           : 1;
+  position: absolute;
+  top: 50px;
+  background-color: #F3C00E;
+  color: black;
+}
+/*
+div.cssmenu.menuAlignToSearchBox>ul>li>a>span:nth-of-type(1){
+  width            : 32px;
+  height           : 32px;
+  padding-left     : 0px;
+  top              : 6.4px;
+  left             : 2px;
+  display          : inline-block;
+  position         : relative;
+  background-repeat: no-repeat;
+}
+*/
+.cssmenu {
+  padding: 0;
+  margin : 0;
+  border : 0;
+  width  : 670px;
+  height : 40px;
+}
+.cssmenu ul,
+.cssmenu li {
+  list-style : none;
+  margin     : 0;
+  padding    : 0;
+  font-weight: bold;
+}
+.cssmenu ul {
+  position  : relative;
+}
+.cssmenu ul li {
+  float         : left;
+  min-height    : 1px;
+  vertical-align: middle;
+  text-align: left;
+}
+.cssmenu ul li.hover,
+.cssmenu ul li:hover {
+  position: relative;
+  z-index : 599;
+  cursor  : default;
+}
+li.noATag{margin-top: 10px;}
+li.noATag>span{color: #445555; font-size: 12px;}
+.cssmenu ul ul {
+  visibility: hidden;
+  position  : absolute;
+  top       : 100%;
+  left      : 0;
+  z-index   : 598;
+  width     : 100%;
+}
+.cssmenu ul ul li {
+  float: none;
+}
+.cssmenu ul ul ul {
+  top  : 0;
+  left : 190px;
+  width: 220px;
+}
+.cssmenu ul li:hover > ul {
+  visibility: visible;
+}
+.cssmenu ul ul {
+  bottom: 0;
+  left  : 0;
+}
+.cssmenu ul ul {
+  margin-top: 0;
+}
+.cssmenu ul ul li {
+  font-weight: normal;
+}
+.cssmenu a, .cssmenu ul ul li>span {
+  display        : block;
+  line-height    : 1em;
+  text-decoration: none;
+}
+/* Custom CSS Styles */
+.cssmenu > ul {
+  *display: inline-block;
+}
+.cssmenu:after,
+.cssmenu ul:after {
+  content: '';
+  display: block;
+  clear  : both;
+}
+.cssmenu ul {
+  text-transform: uppercase;
+}
+.cssmenu ul ul {
+  text-transform: none;
+  min-width     : 190px;
+}
+.cssmenu ul ul a, .cssmenu ul ul li>span {
+  line-height: 150%;
+  width      : 165px;
+  padding    : 16px 23px 16px 1px;
+  font-size  : 12px;
+}
+.cssmenu ul ul ul {
+  border-top: 0 none;
+}
+.cssmenu ul ul li {
+  position: relative;
+}
+.cssmenu ul ul li:hover > a {
+  font-weight: bold;
+}
+.cssmenu ul ul li:last-child:hover > a {
+  -moz-border-radius     : 0 0 0 3px;
+  -webkit-border-radius  : 0 0 0 3px;
+  border-radius          : 0 0 0 3px;
+  -moz-background-clip   : padding;
+  -webkit-background-clip: padding-box;
+  background-clip        : padding-box;
+}
+.cssmenu ul ul li.has-sub > a:after {
+  content   : '\25B6';
+  position  : absolute;
+  top       : 50%;
+  right     : 8px;
+  margin-top: -8px;
+}
+.cssmenu ul li.has-sub > a:after {
+  content    : '+';
+  margin-left: 5px;
+}
+.cssmenu ul li.last>a{
+  padding: 16px 5px 16px 5px;
+  width: 160px;
+  background: rgba(204, 204, 204, 0.9);
+ }
+.cssmenu ul li.last>a:hover{
+  background: rgba(20, 20, 20, 0.9);
+  color: #ddd;
+}
+.cssmenu ul li.last ul {
+  left : auto;
+  right: 0;
+}
+.cssmenu ul li.last ul ul {
+  left : auto;
+  right: 99.5%;
+}
+.cssmenu a {
+  padding   : 0 20px;
+}
+.cssmenu > ul > li > a {
+  line-height: 40px;
+  font-size  : 12px;
+}
+.cssmenu li a, .cssmenu li span {
+  padding-left: 15px;
+}
+.cssmenu li.current {
+  padding-left  : 25px;
+  padding-right : 25px;
+  padding-top   : 16px;
+  padding-bottom: 16px;
+}
+ul.users li>span{padding: 16px 2px 16px 22px !important;}
+ul.users li a>span{padding: 16px 0 16px 19px !important;}
+ul.users li.last a>span{padding: 0 0 0 20px !important; font-weight: bold;}
+
+ul.account li a>span{padding: 16px 0 16px 30px !important;}
+ul.account li.has-sub ul li>a{width: 135px !important;}
+ul.account li.has-sub ul li a>span{padding: 16px 0 16px 50px !important;}
+ul.account li.has-sub ul li.branchPadding a>span{padding: 16px 0 16px 40px !important;}
+ul.account li.has-sub ul li.spanPadding a>span{padding: 16px 0 16px 36px !important;}
+ul.account li.has-sub ul li.compLoadPadding a>span{padding: 16px 0 16px 32px !important;}
+
+ul.reports li.has-sub>a:after{right: 28px !important;}
+ul.reports li>a{padding: 16px 5px 16px 5px; width: 160px;}
+ul.reports li.has-sub:nth-child(1) span{padding: 16px 23px 16px 20px; width: 127px;}
+ul.reports li a>span{padding: 16px 5px 16px 15px; width: 145px;}
+ul.reports ul li{left: -19px;}
+ul.reports li.last a>span{padding-left: 20px; font-weight: bold;}
+ul.reports li.has-sub:nth-child(1) li.last a>span,
+ul.reports li.has-sub:nth-child(2) li.last a>span{padding-left: 50px;}
+
+ul.utilities li a>span,
+ul.utilities li>span{padding: 16px 0 16px 28px !important; width: 150px !important;}
+ul.utilities li a>span{padding: 16px 0 16px 22px !important; width: 150px !important;}
+ul.utilities li.has-sub>a:after{right: 22px !important;}
+ul.utilities li>a{padding: 16px 5px 16px 8px;}
+ul.utilities ul li{left: -11px;}
+ul.utilities li.last a>span{padding-left: 20px !important; font-weight: bold;}
+ul.utilities li.last2 a>span{padding-left: 20px !important;}
+ul.utilities li.last3 a>span{padding-left: 20px !important;}
+
+.containerForSearchAndLogin{display: inline-block; width: 430px;}
+.searchContainer {
+  width       : 172px;
+  height      : 48px;
+  float       : left;
+  align-items : center;
+  display     : inline-flex;
+  padding-left: 18px;
+}
+.searchBox {
+  border-radius   : 5px;
+  font-family     : "OpenSanRegular";
+  font-size       : 12px;
+  font-weight     : bold;
+  padding         : 5px 10px;
+  display         : inline-block;
+  width           : 150px;
+  height          : 25px;
+}
+.search-button {
+  height    : 20px;
+  width     : 20px;
+  position  : relative;
+  display   : inline-block;
+  right     : 25px;
+  top       : 3px;
+  background: none;
+  border    : none;
+  cursor    : pointer;
+}
+.search-button>img{
+  vertical-align: baseline;
+}
+.userIcon {
+    width         : 30px;
+    height        : 30px;
+    display       : inline-block;
+    border-radius : 5px;
+    border-radius : 5px;
+    position      : relative;
+    top           : 6px;
+    vertical-align: baseline;
+}
+.loginMenu p:hover {
+  cursor : pointer;
+  opacity: .8;
+}
+.menuAlignToSearchBox {
+  position: relative;
+  float   : left;
+}
+.loginContainer{
+  border-color: #333333;
+  width       : 235px;
+  height      : 48px;
+  float       : right;
+  z-index     : 3;
+}
+
+/* logIn Form properties*/
+.loginFormContainer {
+  width        : 180px;
+  height       : auto;
+  border-radius: 7px;
+  z-index      : 999;
+  position     : absolute;
+  display      : none;
+  font-family  : "OpenSanRegular";
+}
+.arrow-up {
+  width        : 0;
+  height       : 0;
+  border-left  : 12px solid transparent;
+  border-right : 12px solid transparent;
+  bottom       : -2px;
+  right        : 130px;
+  margin-top   : -11px;
+  margin-left  : -60px;
+}
+.loginMenu {
+  width      : 250px;
+  height     : 48px;
+  border     : none;
+  font-size  : 11px;
+  color      : #445555;
+  line-height: 45px;
+  display    : inline-flex;
+}
+div.loginMenu>div{display: inline-block; width: 160px; text-align: left;}
+.loginMenu a { margin: 0 6px;}
+ #loginForm ul{
+  text-align  : left;
+  margin-top  : 5px;
+  margin-bottom: 0;
+  padding-left: 0;
+  font-family : "OpenSanRegular";
+  overflow    : hidden;
+ }
+ #loginForm li {
+  list-style-type: none;
+  height         : 35px;
+  width          : 250px;
+  display        : inline-block;
+  overflow       : hidden;
+  margin-bottom  : 5px;
+  margin-top     : 5px;
+ }
+ #loginForm a{
+  text-decoration: none;
+  text-align     : left;
+  margin-top     : -3px;
+  font-size: 13px;
+ }
+.floatingMenuContainer {
+  position   : fixed;
+  top        : -5px;
+  z-index    : 99999;
+  width      : 970px;
+  margin-left: -495px;
+}
+#loginForm ul>li>a{
+  width        : 180px;
+  display      : inline-block;
+  padding-right: 10px;
+  padding-top   : 5px;
+  padding-bottom: 8px;
+}
+.paddingRight{padding-right: 100px;}
+#loginForm ul>li>a.changePwd{padding-right: 20px !important;}
+#loginForm ul>li>a:hover{
+  overflow      : hidden;
+  padding-top   : 5px;
+  padding-bottom: 8px;
+  position      : static;
+  font-weight: bold;
+}
+#loginForm ul li.hasSubMenu>ul.tools,
+#loginForm ul li.hasSubMenu>ul.tools2{
+  display: none;
+}
+#loginForm ul li.hasSubMenu:hover>a,
+#loginForm ul li.hasSubMenu2:hover>a{
+  font-weight: bold;
+}
+#loginForm ul li.hasSubMenu>a:after,
+#loginForm ul li.hasSubMenu2>a:after{
+  content   : '\25B6';
+  position  : absolute;
+  top       : 50%;
+  right     : 8px;
+  margin-top: 35px;
+}
+#loginForm ul li.hasSubMenu2>a:after{
+  margin-top: 15px;
+}
+#loginForm ul li.hasSubMenu:hover>ul.tools,
+#loginForm ul li.hasSubMenu2:hover>ul.tools2{
+  display : inline-block;
+  position: absolute;
+  z-index : 5;
+  top     : 136px;
+  left    : 180px;
+}
+#loginForm ul li.hasSubMenu2:hover>ul.tools2{
+  top: 91px;
+}
+#loginForm ul li.hasSubMenu:hover>ul.tools>li.subMenu,
+#loginForm ul li.hasSubMenu2:hover>ul.tools2>li.subMenu2{
+  width     : 140px;
+  position  : relative;
+  display   : inline-block;
+}
+#loginForm ul li.hasSubMenu2:hover>ul.tools2>li.subMenu2{
+  top: 2.4px;
+  padding-top: 1px;
+}
+#loginForm ul li.hasSubMenu:hover>ul.tools>li.subMenu>a,
+#loginForm ul li.hasSubMenu2:hover>ul.tools2>li.subMenu2>a{
+  display     : inline-block;
+  height      : 20px;
+  padding-left: 8px;
+  padding-top : 10px;
+}
+#loginForm ul li.hasSubMenu:hover>ul.tools>li.subMenu>a,
+#loginForm ul li.hasSubMenu2:hover>ul.tools2>li.subMenu2>a{
+   padding-right: 9px;
+}
+#loginForm ul li.hasSubMenu:hover>ul.tools>li.subMenu>a:hover,
+#loginForm ul li.hasSubMenu2:hover>ul.tools2>li.subMenu2>a:hover{
+  font-weight: bold;
+}
+#loginForm img{
+  margin-bottom : -10px;
+  margin-right  : 8px;
+  padding-left  : 10px;
+  padding-right : 5px;
+  vertical-align: baseline;
+}
+.loginContainer div>span{
+  font-family: 'OpenSanBold';
+  width: 220px;
+  min-width: 200px;
+}
+
+/* START: Popup Dialog (Search) */
+#divDialog, #divErrorLogin { display:none; }
+.dialogStyle {
+  font-family     : "OpenSanRegular";
+  font-size       : 12px;
+  background-color: #FF5151;
+  color           : #FFFFFF;
+  padding         : 10px;
+  border-radius   :5px;
+  width           : 600px;
+  height          : 250px;
+  margin-left     : auto;
+  margin-right    : auto;
+  position        : absolute;
+}
+.errorDialog{
+  background-color: #FF5151;
+  padding         : 10px 10px 15px 10px;
+  border-radius   :5px;
+  width           : 400px;
+  height          : auto;
+  text-align      : center;
+  cursor          : pointer;
+}
+#spanErrorMsg{
+  font-family: "OpenSanRegular";
+  font-size  : 16px;
+  font-weight: bold;
+  color      : #FFFFFF;
+  height     : 32px;
+  display    : inline-block;
+/* Vertical Centering */
+
+/* Firefox */
+  display       :-moz-box;
+  -moz-box-pack :center;
+  -moz-box-align:center;
+
+/* Safari, Opera, and Chrome */
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+
+/* Internet Explorer 10 */
+  display       :-ms-flexbox;
+  -ms-flex-pack :left;
+  -ms-flex-align:center;
+}
+.closeImage {
+  float : right;
+  top   : -18px;
+  left  : 593px;
+  width : 24px;
+  height: 24px;
+}
+.popupLineTop {
+  color     : #ffffff;
+  background: #ffffff;
+  width     : 560px;
+  height    : 4px;
+}
+.popupLineBottom {
+  color     : #ffffff;
+  background: #ffffff;
+  width     : 600px;
+  height    : 4px;
+}
+.searchInfo {
+  padding      : 5px 20px 17px 20px;
+  margin-top   : 7px;
+  margin-bottom: 7px;
+  height       : 190px;
+}
+.searchLabel {
+  font-family   : "OpenSanRegular";
+  font-size     : 12px;
+  font-weight   : bold;
+  color         : #333333;
+  width         : 200px;
+  display       : inline-block;
+  vertical-align: top;
+}
+.searchValue {
+  font-family: "OpenSanRegular";
+  font-size  : 12px;
+  font-weight: bold;
+  color      : #ffffff;
+  width      : 300px;
+  display    : inline-block;
+}
+.floatingMenuContainer {
+  left       : 50%;
+  margin-left: -495px;
+  position   : fixed;
+  top        : -5px;
+  width      : 970px;
+  z-index    : 99999;
+}
+
+.hidden, #dialogCurrencyConverter{ display: none; }
+/* END */
+a:link, a:visited, a:valid, a:hover {
+  color: #111;
+}

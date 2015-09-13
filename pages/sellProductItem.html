@@ -34,7 +34,7 @@
     <div class="headerContainer">
         <div class="headerIconLabel" title="Return to home page">
             <img src="resources/images/icons/muscle.png" class="headerSmallImage" alt="Members" />
-            <span>Workout Registration</span>
+            <span>Sell Product Item</span>
         </div>
         <div class="headerLogout" title="Logout">
             <a href="javascript:void(0);" onclick="location.href='logout.php'">
@@ -93,8 +93,7 @@
           </div>
         </div>
         <div class="memberTypeInfoContainer">
-            <form id="formWorkoutRegistration" name="formWorkoutRegistration" method="post" action="">
-                <input type="hidden" id="hndLoadedMemberId" name="loadedMemberId" value="" />
+            <form id="formSellProductItem" name="formSellProductItem" method="post" action="">
                 <p>
                     <div>
                         <input type="hidden" id="hndLoadedMemberType" name="loadedMemberType" value="" />
@@ -152,6 +151,7 @@
                     <p>
                         <div>
                             <input type="checkbox" id="chkPaid" name="amountPaid" value="Paid" class="myCheckboxes" />
+                            <input type="hidden" id="hdPaid" name="paid" value="" />
                             <label for="chkPaid" style="margin-left: 7px;">Amount Paid</label>
                         </div>
                     </p>

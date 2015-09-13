@@ -93,9 +93,12 @@ var computeAmountDue = function(){
 	var loadedPriceDiscountedDaily   = parseFloat($('#hndLoadedPriceDiscountedDaily').val());
 	var isActiveMontly               = $("#spnMonthlyStatus").html();
 
+	console.log("loadedMemberId: " + loadedMemberId);
+
 	if(loadedMemberId){
 		$.getJSON("../computeAmountDue.php?serviceType=" + serviceType).done(function(data){
-			$.each(data, function(i, obj){
+			if(data[0]){
+				var obj = data[0];
 				$("#hndSTPriceDaily").val(obj.price_daily);
 				$("#hndSTPriceDiscountedDaily").val(obj.price_daily_discounted);
 				$("#hndSTPriceMonthly").val(obj.price_monthly);
@@ -107,17 +110,16 @@ var computeAmountDue = function(){
 					if(loadedMemberType == 'Monthly'){
 						if(st_price_daily > loadedPriceDaily){
 							var amt = st_price_daily - loadedPriceDaily;
-							if(loadedHasDiscount == 'Yes') 
-								amt = st_price_daily_discounted - loadedPriceDiscountedDaily;
-							else{
-								amt = st_price_daily - loadedPriceDaily;
-							}
+							if(loadedHasDiscount == 'Yes')  amt = st_price_daily_discounted - loadedPriceDiscountedDaily;
+							$("#hndLoadedAmountDue").val(amt);
 							$("#spanAmountDue").html(amt.toFixed(2));
-							$('#hndLoadedAmountDue').val(amt);
+							$("#chkPaid").iCheck('uncheck');
 						}
-						else
-							$("#spanAmountDue").html('0.00');
+						else{
 							$('#hndLoadedAmountDue').val('0');
+							$("#spanAmountDue").html('0.00');
+							$("#chkPaid").iCheck('check');
+						}
 					}
 					else {
 						if(loadedHasDiscount == 'Yes'){
@@ -152,7 +154,7 @@ var computeAmountDue = function(){
 						$("#spanAmountDue").html(st_price_regular.toFixed(2));
 					}
 				}
-			});
+			}
 		});
 	}
 
@@ -200,11 +202,11 @@ var loadMemberDetails = function(id){
 				var amount_due = parseFloat(data[0].amount_due).toFixed(2);
 				$("#spanAmountDue").html(amount_due);
 
-				if(data[0].amount_due <= 0){
-					$("#chkPaid").iCheck("uncheck").iCheck('disable');
+				if(data[0].member_type == 'Monthly'){
+					$("#chkPaid").iCheck("check"); //.iCheck('disable');
 				}
 				else {
-					$("#chkPaid").iCheck('enable');
+					$("#chkPaid").iCheck('uncheck');
 				}
 			}
 		});
@@ -213,13 +215,18 @@ var loadMemberDetails = function(id){
 
 var registerMemberWorkout = function(){
 	if($('#hndLoadedMemberId').val() && !$('#hndLoadedWorkoutId').val()){
-		$.post("../memberWorkoutRegistration.php", $("#formWorkoutRegistration").serialize()).done(function(msg){
-			setMemberWorkoutStatus(true, msg);
-			clearDetails();
-			refreshAttendanceList();
-		}).fail(function(error){
-			setMemberWorkoutStatus(false, "Save Workout Registration Error: " + error.statusText);
-		});
+		if($('#chkPaid').is(':checked')){
+			$.post("../memberWorkoutRegistration.php", $("#formWorkoutRegistration").serialize()).done(function(msg){
+				setMemberWorkoutStatus(true, msg);
+				clearDetails();
+				refreshAttendanceList();
+			}).fail(function(error){
+				setMemberWorkoutStatus(false, "Save Workout Registration Error: " + error.statusText);
+			});
+		}
+		else {
+			setMemberWorkoutStatus(false, "Registration will not proceed unless payment is received.");
+		}
 	}
 }
 
@@ -353,9 +360,9 @@ var clearDetails = function(){
 	$("#txtMemberGender").val('');
 	
 	$('#hndLoadedMemberId').val("Daily");
-	$('#spnMemberType, #hndLoadedMemberId').html("Daily");
+	$('#spnMemberType').html("Daily");
 	$('#hndLoadedHasDiscount').val("No");
-	$('#spnHasDiscount, #hndLoadedHasDiscount').html("No");
+	$('#spnHasDiscount').html("No");
 	$('#hndLoadedServiceType').val("");
 	$('#selServiceType').val("-1");
 	$("#txtMemberStart, #hndLoadedMStartDate").val("");
@@ -368,7 +375,7 @@ var clearDetails = function(){
 	$("#spnMonthlyStatus").html("No");
 	$("#hndLoadedPriceDaily, #hndLoadedPriceDiscountedDaily, #hndLoadedPriceMonthly, #hndLoadedPriceDiscountedMonthly").val('');
 	$("#hndSTPriceDaily, #hndSTPriceDiscountedDaily, #hndSTPriceMonthly, #hndSTPriceDiscountedMonthly").val('');
-	$("#hndLoadedAmountDue").html("0");
+	$("#hndLoadedAmountDue").val("0");
 	$("#spanAmountDue").html("0.00");
 	$('#txtRemarks').val('');
 

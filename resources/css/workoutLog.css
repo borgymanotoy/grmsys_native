@@ -52,3 +52,13 @@ table.workoutLogTable > tbody > tr > td:nth-child(1){
 table.workoutLogTable > tbody > tr > td:nth-child(2){
 	text-align: left;
 }
+
+p.pSearchContainer {
+	width: 400px;
+}
+
+div.linkBar > a {
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 14px;
+}

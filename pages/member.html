@@ -8,6 +8,7 @@
     <link type="text/css" rel="stylesheet" href="resources/css/datepicker.css" />
     <link type="text/css" rel="stylesheet" href='resources/css/flat/yellow.css' media="screen">
     <link type="text/css" rel="stylesheet" href="resources/css/member.css" />
+    <link type="text/css" rel="stylesheet" href='resources/css/homeStyleMenu.css'>
     <link type="text/css" rel="stylesheet" href="resources/css/jquery-ui.min.css" />
     <link type="text/css" rel="stylesheet" href="resources/css/jquery-ui.theme.min.css" />
 
@@ -28,7 +29,7 @@
     </script>
 </head>
 <body>
-    <div class="headerContainer">
+    <div class="headerContainer" title="Return to home page">
         <div class="headerIconLabel" title="Return to home page">
             <img src="resources/images/icons/people.png" class="headerSmallImage" alt="Members" />
             <span>Member Registration</span>
@@ -40,6 +41,7 @@
             </a>
         </div>
     </div>
+    <?php include('_home_menu.html'); ?>
     <div class="memberPageContainer">
         <div class="memberContainer">
             <span id="spanMemberStatus" class="success"></span>
