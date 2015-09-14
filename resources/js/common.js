@@ -29,6 +29,7 @@ var loadServiceType = function(objSel){
 			$.each(data, function(i, obj){
 				$(objSel).append('<option value=' + obj.type_code + '>' + obj.type_name + '</option>');
 			});
+			$(objSel).val('weights');
 		});
 	}
 };

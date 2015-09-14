@@ -305,7 +305,7 @@
             </CustomProperties>
             <Location>
               <X>990 px</X>
-              <Y>450 px</Y>
+              <Y>460 px</Y>
             </Location>
             <Size>
               <Width>224 px</Width>
@@ -360,7 +360,7 @@
             <BendPoints>
               <PointD>
                 <X>960 px</X>
-                <Y>498.75 px</Y>
+                <Y>508.75 px</Y>
               </PointD>
               <PointD>
                 <X>960 px</X>
@@ -388,7 +388,7 @@
               <Port xsi:type="LinkPort">
                 <Location>
                   <X>267 px</X>
-                  <Y>224.75 px</Y>
+                  <Y>234.75 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
                 <Align>Left</Align>
@@ -443,7 +443,7 @@
             <BendPoints>
               <PointD>
                 <X>970 px</X>
-                <Y>596.25 px</Y>
+                <Y>606.25 px</Y>
               </PointD>
               <PointD>
                 <X>970 px</X>
@@ -467,7 +467,7 @@
               <Port xsi:type="LinkPort">
                 <Location>
                   <X>225 px</X>
-                  <Y>-10.09375 px</Y>
+                  <Y>-0.09375 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
                 <Align>Left</Align>
@@ -858,13 +858,180 @@
               <Y>2 px</Y>
             </CommentOffset>
           </Model>
+          <Model xsi:type="TableModel">
+            <CustomProperties>
+              <OID>52</OID>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <Location>
+              <X>1380 px</X>
+              <Y>190 px</Y>
+            </Location>
+            <Size>
+              <Width>275 px</Width>
+              <Height>225 px</Height>
+            </Size>
+            <DbOid>
+              <Path>grmsys_db.service_type</Path>
+              <TypeName>Table</TypeName>
+            </DbOid>
+            <Compartments>
+              <ConstraintsCollapsed>True</ConstraintsCollapsed>
+              <IndexesCollapsed>True</IndexesCollapsed>
+              <TriggersCollapsed>True</TriggersCollapsed>
+            </Compartments>
+          </Model>
+          <Model xsi:type="RelationLinkModel">
+            <CustomProperties>
+              <OID>53</OID>
+              <Comment>54</Comment>
+              <OutModel>9</OutModel>
+              <InModel>52</InModel>
+              <OutPort>55</OutPort>
+              <InPort>56</InPort>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <PortAnchors>
+              <Port>
+                <Location>
+                  <X>0 px</X>
+                  <Y>223 px</Y>
+                </Location>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Right</Align>
+                <CustomProperties>
+                  <OID>55</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>0 px</X>
+                  <Y>23 px</Y>
+                </Location>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Left</Align>
+                <CustomProperties>
+                  <OID>56</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+            </PortAnchors>
+            <IsManuallyRouted>false</IsManuallyRouted>
+            <DbOid>
+              <Path>grmsys_db.membership_type.fk_membership_type_default_service_type</Path>
+              <TypeName>ForeignKey</TypeName>
+            </DbOid>
+          </Model>
+          <Model xsi:type="RelationCommentModel">
+            <CustomProperties>
+              <OID>54</OID>
+              <HolderModel>53</HolderModel>
+              <Port>57</Port>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <PortAnchors>
+              <Port xsi:type="LinkPort">
+                <Location>
+                  <X>-84.5 px</X>
+                  <Y>0 px</Y>
+                </Location>
+                <Anchors>None</Anchors>
+                <Align>Right</Align>
+                <CustomProperties>
+                  <OID>57</OID>
+                  <PortType>FixedAnchor</PortType>
+                </CustomProperties>
+                <LinkPortAnchor>OutPoint</LinkPortAnchor>
+              </Port>
+            </PortAnchors>
+            <CommentOffset>
+              <X>22 px</X>
+              <Y>2 px</Y>
+            </CommentOffset>
+          </Model>
+          <Model xsi:type="RelationLinkModel">
+            <CustomProperties>
+              <OID>58</OID>
+              <Comment>59</Comment>
+              <OutModel>16</OutModel>
+              <InModel>52</InModel>
+              <OutPort>60</OutPort>
+              <InPort>61</InPort>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <PortAnchors>
+              <Port>
+                <Location>
+                  <X>0 px</X>
+                  <Y>97.5 px</Y>
+                </Location>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Right</Align>
+                <CustomProperties>
+                  <OID>60</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>137.5 px</X>
+                  <Y>0 px</Y>
+                </Location>
+                <Anchors>Left Right</Anchors>
+                <Align>Bottom</Align>
+                <CustomProperties>
+                  <OID>61</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+            </PortAnchors>
+            <BendPoints>
+              <PointD>
+                <X>1517.5 px</X>
+                <Y>557.5 px</Y>
+              </PointD>
+            </BendPoints>
+            <IsManuallyRouted>false</IsManuallyRouted>
+            <DbOid>
+              <Path>grmsys_db.workout_sales.fk_workout_sales_service_type</Path>
+              <TypeName>ForeignKey</TypeName>
+            </DbOid>
+          </Model>
+          <Model xsi:type="RelationCommentModel">
+            <CustomProperties>
+              <OID>59</OID>
+              <HolderModel>58</HolderModel>
+              <Port>62</Port>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <PortAnchors>
+              <Port xsi:type="LinkPort">
+                <Location>
+                  <X>-151.75 px</X>
+                  <Y>0 px</Y>
+                </Location>
+                <Anchors>None</Anchors>
+                <Align>Right</Align>
+                <CustomProperties>
+                  <OID>62</OID>
+                  <PortType>FixedAnchor</PortType>
+                </CustomProperties>
+                <LinkPortAnchor>OutPoint</LinkPortAnchor>
+              </Port>
+            </PortAnchors>
+            <CommentOffset>
+              <X>22 px</X>
+              <Y>2 px</Y>
+            </CommentOffset>
+          </Model>
         </Children>
         <ViewPort>
           <ScaleMode>Free</ScaleMode>
           <Scale>0.75</Scale>
           <Location>
             <X>-244 px</X>
-            <Y>-86.6666666666667 px</Y>
+            <Y>-43.9999987284343 px</Y>
           </Location>
         </ViewPort>
       </Model>

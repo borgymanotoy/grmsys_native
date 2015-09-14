@@ -142,6 +142,7 @@ var loadDummyItemInfo = function(){
 var clearItemFields = function(){
 	$('input[type="text"], textarea').val("");
 	$('#btnRemoveItem').hide();
+	$('div.msgContainer').hide();
 };
 
 var setItemStatus = function(isSuccess, msg){

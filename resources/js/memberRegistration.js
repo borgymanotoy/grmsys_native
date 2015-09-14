@@ -17,12 +17,11 @@ var initMemberComponents = function(){
 	});
 
 	loadServiceType($('#selServiceType'));
-
 	$("input").bind("change", function(){
 		clearMemberStatus();
 	});
 	
-	$('#selServiceType').val('weights');
+	//$('#selServiceType').val('weights');
 
 	$('#btnRemoveMember').hide();
 
@@ -219,9 +218,10 @@ var clearMemberFields = function(){
 	$('#rdbGenderMale').iCheck('check');
 	$('#rdbTypeWalkin').iCheck('check');
 	$('#rdbDiscountNo').iCheck('check');
-	$('#selServiceType').val('-1');
+	//$('#selServiceType').val('weights');
 	$("input[type='text'].dateField").val("");
 	$('#btnRemoveMember').hide();
+	$('div.msgContainer').hide();
 };
 
 var clearSearchKeys = function(){

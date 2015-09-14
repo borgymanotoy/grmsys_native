@@ -294,10 +294,12 @@ var clearUserFields = function(){
 	$("#txtUsername").val("").attr('disabled', false);
 	$('input[type="password"]').val('').attr('disabled', false);
 	$("#txtUsername, #txtPassword, #txtConfirmPassword").attr('readonly', false);
+	$('#txtFirstname, #txtLastname').removeClass('error');
 	$('#rdbGenderMale').iCheck('check');
 	$('#selRoleype').val('');
 	$('#divSecurity').show();
 	$('#btnRemoveUser, #btnChangePassword').hide();
+	$('div.msgContainer').hide();
 	clearSecurityDetails();
 };
 
