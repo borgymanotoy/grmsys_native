@@ -81,3 +81,21 @@ div#dvItemSoldTotalPriceContainer {
     top: 350px;
     width: 350px
 }
+
+div.dvClearAll {
+	position: absolute;
+	top: 490px;
+	right: 10px;
+}
+
+div.dvClearAll > img {
+	width: 64px;
+	height: 64px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+div.dvClearAll > img:hover {
+	box-shadow: 0px 0px 5px #555;
+	background-color: #555;
+	border-radius: 5px;
+}

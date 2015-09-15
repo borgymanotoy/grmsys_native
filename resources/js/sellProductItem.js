@@ -124,6 +124,15 @@ var clearSearchItems = function(){
 
 var clearDetails = function(){
 	$("#txtItemQuantitiy, #txtOtherInfo").val('');
-	$("#hndLoadedAmountDue").html('0.00');
+	$("#hndItemTotalAmount").val('0');
+	$("#spanItemTotalAmount").html('0.00');
 	clearSearchItems();
+};
+
+var clearEverything = function(){
+	clearDetails();
+	$('#txtMemberSearchKey, #txtMemberId, #txtMemberName').val('');
+	$('#hndItemTotalAmount, #hndGrandTotalAmount, #hndLoadedMemberId').val('');
+	$('#spanItemTotalAmount, #spanGrandTotalAmount').html('0.00');
+	$('#dvList').empty();
 };

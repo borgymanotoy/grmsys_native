@@ -33,7 +33,7 @@
 <body>
     <div class="headerContainer">
         <div class="headerIconLabel" title="Return to home page">
-            <img src="resources/images/icons/muscle.png" class="headerSmallImage" alt="Members" />
+            <img src="resources/images/icons/cart.png" class="headerSmallImage" alt="Members" />
             <span>Sell Product Item</span>
         </div>
         <div class="headerLogout" title="Logout">
@@ -109,10 +109,10 @@
                 <textarea id="txtOtherInfo" name="otherInfo" cols="45" rows="5" placeholder="N/A" title="Other information"></textarea>
             </p>
             <p class="amountDue">
-                <input type="hidden" id="hndLoadedAmountDue" name="loadedAmountDue" value="" />
+                <input type="hidden" id="hndItemTotalAmount" name="loadedAmountDue" value="" />
                 <label>Price:</label>
-                <span>Php</span>
-                <span id="spanAmountDue" class="due" title="Amount Due">0.00</span>
+                <span style="margin-left: 10px;">Php</span>
+                <span id="spanItemTotalAmount" class="due" title="Amount Due">0.00</span>
             </p>
         </div>
         <div id="dvItemSoldListContainer">
@@ -120,15 +120,18 @@
         </div>
         <div id="dvItemSoldTotalPriceContainer">
             <p class="amountDue">
-                <input type="hidden" id="hndLoadedAmountDue" name="loadedAmountDue" value="" />
+                <input type="hidden" id="hndGrandTotalAmount" name="loadedAmountDue" value="" />
                 <label>Due:</label>
                 <span>Php</span>
-                <span id="spanAmountDue" class="due" title="Amount Due">0.00</span>
+                <span id="spanGrandTotalAmount" class="due" title="Amount Due">0.00</span>
             </p>
         </div>
         <div class="sellProductButtons">
             <button class="submitButton" onclick="registerMemberWorkout()">Sell Product Item</button>
             <button class="submitButton" onclick="clearDetails()">Clear Items</button>
+        </div>
+        <div class="dvClearAll">
+            <img src="resources/images/icons/shop-cart-add-icon.png" title="Clear all fields and list." onclick="clearEverything();" />
         </div>
     </div>
     <div class="footerContainer2">
