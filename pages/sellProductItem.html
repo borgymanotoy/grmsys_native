@@ -10,7 +10,7 @@
     <link type="text/css" rel="stylesheet" href="resources/css/jquery-ui.min.css" />
     <link type="text/css" rel="stylesheet" href="resources/css/jquery-ui.theme.min.css" />
     <link type="text/css" rel="stylesheet" href="resources/css/transactionPage.css" />
-    <link type="text/css" rel="stylesheet" href="resources/css/workoutLog.css" />
+    <link type="text/css" rel="stylesheet" href="resources/css/sellProductItem.css" />
     <link type="text/css" rel="stylesheet" href='resources/css/homeStyleMenu.css'>
 
     <script type='text/javascript' src='resources/js/jquery-1.11.1.min.js'></script>
@@ -21,12 +21,12 @@
     <script type='text/javascript' src='resources/js/jquery.mask.min.js'></script>
     <script type='text/javascript' src='resources/js/common.js'></script>
     <script type='text/javascript' src='resources/js/date.js'></script>
-    <script type='text/javascript' src='resources/js/workoutRegistration.js'></script>
+    <script type='text/javascript' src='resources/js/sellProductItem.js'></script>
     <script type="text/javascript">
         var roleType = "<?php echo $_SESSION['role_type']; ?>"
         $(document).ready(function(){
-            initWorkoutRegistrationComponents();
-            refreshAttendanceList();
+            initSellProductItemComponents();
+            //refreshSoldProductsList();
         });
     </script>
 </head>
@@ -44,15 +44,44 @@
         </div>
     </div>
     <?php include('_home_menu.html'); ?>
-    <div class="workoutRegistrationPageContainer">
-        <div class="memberContainer">
-          <span id="spanMemberWorkoutStatus" class="success"></span>
-          <div class="searchContainer">
+    <div class="sellProductItemPageContainer">
+        <div class="itemDetailsContainer">
+          <span id="spanSellProductItemStatus" class="success"></span>
+          <div class="searchItemContainer">
+            <form id="formSearcItem" name="formSearcItem" method="get" action="">
+              <p class="pItemSearchContainer">
+                  <label for="txtItemSearchKey">Search Item:</label>
+                  <input type="text" id="txtItemSearchKey" name="searcItem" placeholder="Search Item" title="Search item by ID, name, etc" />
+                  <img src="resources/images/icons/empty-icon.png" class="clearSearchButton" onclick="clearSearchItems();" title="Clear Search Fields" />
+              </p> 
+            </form>
+          </div>
+          <div class="itemInfoContainer">
+            <p>
+                <label for="txtItemId">Identification Number:</label>
+                <input type="text" id="txtItemId" name="itemId" placeholder="0" title="Item Identification" readonly="true" />
+            </p>  
+            <p>
+                <label for="txtItemName">Item Name:</label>
+                <input type="text" id="txtItemName" name="itemName" placeholder="Item Name" title="Name of item" readonly="true" />
+            </p> 
+            <p>
+                <label for="txtItemPrice">Price:</label>
+                <input type="text" id="txtItemPrice" name="itemPrice" class="currency" placeholder="Item Price" title="Price of item" readonly="true" />
+            </p>
+            <p>
+                <label for="txtItemOtherInfo">Other Info:</label>
+                <textarea id="txtItemOtherInfo" name="otherInfo" cols="45" rows="5" placeholder="Other item info" title="Other Item Information" readonly="true"></textarea>
+            </p>  
+          </div>
+        </div>
+        <div class="memberDetailsContainer">
+          <div class="searchMemberContainer">
             <form id="formSearchMember" name="formSearchMember" method="get" action="">
-              <p class="pSearchContainer">
-                  <label for="txtSearchKey">Search key:</label>
-                  <input type="text" id="txtSearchKey" name="searchMember" placeholder="Search Member" title="Search member by ID, name, etc" />
-                  <img src="resources/images/icons/empty-icon.png" class="clearSearchButton" onclick="clearSearchKeys();" title="Clear Search Fields" />
+              <p class="pSearchMemberContainer">
+                  <label for="txtMemberSearchKey">Search Member:</label>
+                  <input type="text" id="txtMemberSearchKey" name="searchMember" placeholder="ID or Name" title="Search member by ID, name, etc" />
+                  <img src="resources/images/icons/empty-icon.png" class="clearSearchButton" onclick="clearSearchMembers();" title="Clear Search Fields" />
               </p> 
             </form>
           </div>
@@ -63,126 +92,43 @@
                   <input type="text" id="txtMemberId" placeholder="0" title="Member Identification" readonly="true" />
               </p>  
               <p>
-                  <label for="txtFirstname">Firstname:</label>
-                  <input type="text" id="txtFirstname" placeholder="Juan" title="Member Firstname" readonly="true" />
-              </p>
-              <p>
-                  <label for="txtLastname">Lastname:</label>
-                  <input type="text" id="txtLastname" placeholder="Dela Cruz" title="Member Lastname" readonly="true" />
-              </p>
-              <p>
-                  <label for="txtMiddlename">Middlename:</label>
-                  <input type="text" id="txtMiddlename" placeholder="Dimaloko" title="Member Middlename" readonly="true" />
-              </p>
-              <p>
-                  <label for="txtContactNo">Contact Number:</label>
-                  <input type="text" id="txtContactNo" placeholder="(918) 123-4567" title="Member Contact Number" readonly="true" />
-              </p>
-              <p>
-                  <label for="txtAddress">Address:</label>
-                  <textarea id="txtAddress" cols="45" rows="3" placeholder="Address" title="Member Address" readonly="true"></textarea>
-              </p>
-              <p>
-                  <label for="txtBirthday">Birthday:</label>
-                  <input type="text" id="txtBirthday" class="dateField" placeholder="Birthdate" title="Member Birthday" readonly="true" />
-              </p>
-              <p>
-                  <label for="memberGender">Gender:</label>
-                  <input type="text" id="txtMemberGender" placeholder="Male or Female" title="Member Gender" readonly="true" />
-              </p>
+                  <label for="txtMemberName">Member Name:</label>
+                  <input type="text" id="txtMemberName" placeholder="Anonymous" title="Name of member" readonly="true" />
+              </p> 
           </div>
         </div>
-        <div class="memberTypeInfoContainer">
-            <form id="formSellProductItem" name="formSellProductItem" method="post" action="">
-                <p>
-                    <div>
-                        <input type="hidden" id="hndLoadedMemberType" name="loadedMemberType" value="" />
-                        <label for="spnMemberType">Membership Type:</label>
-                        <span id="spnMemberType" class="memberTypeDetails">Daily</span>
-                    </div>
-                </p>
-                <p>
-                    <div>
-                        <input type="hidden" id="hndLoadedHasDiscount" name="loadedHasDiscount" value="" />
-                        <label for="spnHasDiscount">Has Discount:</label>
-                        <span id="spnHasDiscount" class="memberTypeDetails">No</span>
-                    </div>
-                </p>
-                <p class="serviceTypeContainer">
-                    <input type="hidden" id="hndLoadedServiceType" name="loadedServiceType" value="" />
-                    <input type="hidden" id="hndSTPriceDaily" name="stPriceDaily" value="" />
-                    <input type="hidden" id="hndSTPriceDiscountedDaily" name="stPriceDiscountedDaily" value="" />
-                    <input type="hidden" id="hndSTPriceMonthly" name="stPriceMonthly" value="" />
-                    <input type="hidden" id="hndSTPriceDiscountedMonthly" name="stPriceDiscountedMonthly" value="" />
-                    <label for="selServiceType" class="selectLabel">Service Type:</label>
-                    <select id="selServiceType" name="serviceType">
-                        <option value="-1">-Please select-</option>
-                        <option value="boxing">Boxing</option>
-                        <option value="weights">Weights</option>
-                    </select>
-                </p>
-                <div class="monthlyEffectivity">
-                    <h3>Monthly Effective:</h3>
-                    <p>
-                        <div class="dateContainer">
-                            <input type="hidden" id="hndLoadedMStartDate" name="loadedMStartDate" value="" />
-                            <label for="txtMemberStart" class="smaller">Start:</label>
-                            <input type="text" id="txtMemberStart" name="memberStart" class="dateField" placeholder="Select Date" title="Member Start" />
-                        </div>
-                        <div class="dateContainer">
-                            <input type="hidden" id="hndLoadedMEndDate" name="loadedMEndDate" value="" />
-                            <label for="txtMemberEnd" class="smaller">End:</label>
-                            <input type="text" id="txtMemberEnd" name="memberEnd" class="dateField" placeholder="Select Date" title="Member End" />
-                        </div>
-                    </p>
-                    <p>
-                        <div>
-                            <input type="hidden" id="hndLoadedMonthlyStatus" name="loadedMonthlyStatus" value="No" />
-                            <label for="spnMonthlyStatus">Monthly Active Status:</label>
-                            <span id="spnMonthlyStatus" class="memberTypeDetails">No</span>
-                        </div>
-                    </p>
-                    <p>
-                        <div>
-                            <label for="txtRemarks">Remarks:</label>
-                            <textarea id="txtRemarks" name="otherInfo" placeholder="Remarks"></textarea>
-                        </div>
-                    </p>
-                    <p>
-                        <div>
-                            <input type="checkbox" id="chkPaid" name="amountPaid" value="Paid" class="myCheckboxes" />
-                            <input type="hidden" id="hdPaid" name="paid" value="" />
-                            <label for="chkPaid" style="margin-left: 7px;">Amount Paid</label>
-                        </div>
-                    </p>
-                </div>
-                <div class="amountDue">
-                    <p class="amountDue">
-                        <input type="hidden" id="hndLoadedPriceDaily" name="loadedPriceDaily" value="" />
-                        <input type="hidden" id="hndLoadedPriceDiscountedDaily" name="loadedPriceDiscountedDaily" value="" />
-                        <input type="hidden" id="hndLoadedPriceMonthly" name="loadedPriceMonthly" value="" />
-                        <input type="hidden" id="hndLoadedPriceDiscountedMonthly" name="loadedPriceDiscountedMonthly" value="" />
-                        <input type="hidden" id="hndLoadedAmountDue" name="loadedAmountDue" value="" />
-                        <label>Due:</label>
-                        <span>Php</span>
-                        <span id="spanAmountDue" class="due" title="Amount Due">0.00</span>
-                    </p>
-                </div>
-            </form>
+        <div id="dvItemSellContainer">
+            <p>
+                <input type="hidden" id="hndLoadedItemId" name="loadedItemId" value="" />
+                <input type="hidden" id="hndLoadedMemberId" name="loadedMemberId" value="" />
+                <label for="txtItemQuantitiy">Quantity:</label>
+                <input type="text" id="txtItemQuantitiy" placeholder="0" title="Item Quantity" />
+            </p>
+            <p>
+                <label for="txtOtherInfo">Other Info:</label>
+                <textarea id="txtOtherInfo" name="otherInfo" cols="45" rows="5" placeholder="N/A" title="Other information"></textarea>
+            </p>
+            <p class="amountDue">
+                <input type="hidden" id="hndLoadedAmountDue" name="loadedAmountDue" value="" />
+                <label>Price:</label>
+                <span>Php</span>
+                <span id="spanAmountDue" class="due" title="Amount Due">0.00</span>
+            </p>
         </div>
-        <div id="dvAttendanceListContainer">
-            <div id="dvSearch">
-                <p>
-                    <label for="txtAttendanceSearchKey">Search:</label>
-                    <input type="text" id="txtAttendanceSearchKey" name="attendanceSearchkey" placeholder="Search Member" title="Search member by ID, name, etc" />
-                    <img src="resources/images/icons/empty-icon.png" class="clearSearchButton" onclick="clearSearchAttendance();" title="Clear Search Fields" />
-                </p> 
-            </div>
+        <div id="dvItemSoldListContainer">
             <div id="dvList"></div>
         </div>
-        <div class="workoutRegButtons">
-            <button class="submitButton" onclick="registerMemberWorkout()">Register Member Workout</button>
-            <button class="submitButton" onclick="clearDetails()">Clear Details</button>
+        <div id="dvItemSoldTotalPriceContainer">
+            <p class="amountDue">
+                <input type="hidden" id="hndLoadedAmountDue" name="loadedAmountDue" value="" />
+                <label>Due:</label>
+                <span>Php</span>
+                <span id="spanAmountDue" class="due" title="Amount Due">0.00</span>
+            </p>
+        </div>
+        <div class="sellProductButtons">
+            <button class="submitButton" onclick="registerMemberWorkout()">Sell Product Item</button>
+            <button class="submitButton" onclick="clearDetails()">Clear Items</button>
         </div>
     </div>
     <div class="footerContainer2">

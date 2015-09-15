@@ -97,12 +97,13 @@ var loadServiceTypeDetails = function(id){
 	if(id){
 		$.getJSON("../getServiceTypeDetails.php?typeCode=" + id, function(data){
 			if(data[0]){
-				$("#txTtypeCode").val(data[0].type_code);
+				$("#txTtypeCode").val(data[0].type_code).attr('readonly', true);
 				$("#txtServiceTypeName").val(data[0].type_name);
 				$("#txtPriceDaily").val(numberWithCommas(data[0].price_daily));
 				$("#txtPriceDiscountedDaily").val(data[0].price_daily_discounted);
 				$("#txtPriceMonthly").val(numberWithCommas(data[0].price_monthly));
 				$("#txtPriceDiscountedMonthly").val(data[0].price_monthly_discounted);
+				$('#txtOtherInfo').text(data[0].remarks);
 				
                 if(roleType == 'administrator'){
                     $('#btnRemoveServiceType').show();
@@ -176,6 +177,7 @@ var loadDummyServiceTypeInfo = function(){
 
 var clearServiceTypeFields = function(){
 	$('input[type="text"], textarea').val("");
+	$("#txTtypeCode").removeAttr('readonly');
 	$('#btnRemoveServiceType').hide();
 	$('div.msgContainer').hide();
 };
