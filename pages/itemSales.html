@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>(GRMSys): Workout Sales</title>
+    <title>(GRMSys): Product Item Sales</title>
     <link type="text/css" rel="stylesheet" href="resources/css/home.css" />
     <link type="text/css" rel="stylesheet" href="resources/css/commons.css" />
     <link type="text/css" rel="stylesheet" href="resources/css/datepicker.css" />
     <link type="text/css" rel="stylesheet" href='resources/css/flat/yellow.css' media="screen">
     <link type="text/css" rel="stylesheet" href="resources/css/jquery-ui.min.css" />
     <link type="text/css" rel="stylesheet" href="resources/css/jquery-ui.theme.min.css" />
-    <link type="text/css" rel="stylesheet" href="resources/css/workoutSales.css" />
+    <link type="text/css" rel="stylesheet" href="resources/css/itemSales.css" />
 	<link type="text/css" rel="stylesheet" href='resources/css/homeStyleMenu.css'>
 
     <script type='text/javascript' src='resources/js/jquery-1.11.1.min.js'></script>
@@ -20,20 +20,20 @@
     <script type='text/javascript' src='resources/js/jquery.mask.min.js'></script>
     <script type='text/javascript' src='resources/js/common.js'></script>
     <script type='text/javascript' src='resources/js/date.js'></script>
-    <script type='text/javascript' src='resources/js/workoutSalesPage.js'></script>
+    <script type='text/javascript' src='resources/js/itemSales.js'></script>
     <script type="text/javascript">
         var roleType = "<?php echo $_SESSION['role_type']; ?>"
         $(document).ready(function(){
-			initWorkoutSalesComponents();
-			reloadWorkoutSalesTable();
+			//initWorkoutSalesComponents();
+			//reloadWorkoutSalesTable();
         });
     </script>
 </head>
 <body>
     <div class="headerContainer" title="Return to home page">
         <div class="headerIconLabel" title="Return to home page">
-            <img src="resources/images/icons/people.png" class="headerSmallImage" alt="Members" />
-            <span>Workout Sales</span>
+            <img src="resources/images/icons/sales.png" class="headerSmallImage" alt="Members" />
+            <span>Product Item Sales</span>
         </div>
         <div class="headerLogout" title="Logout">
             <a href="javascript:void(0);" onclick="location.href='logout.php'">
@@ -43,28 +43,49 @@
         </div>
     </div>
     <?php include('_home_menu.html'); ?>
-	<div class="workoutRegistrationPageContainer">
+	<div class="itemSalesPageContainer">
         <div class="dailySalesContainer">
             <div class="dateContainer">
-                <label for="txtLogDate">Workout Date:</label>
-                <input type="text" id="txtLogDate" name="log_date" class="dateField" placeholder="mm-dd-yyyy" title="Workout Date" />
+                <label for="txtLogDate">Sales Date:</label>
+                <input type="text" id="txtLogDate" name="log_date" class="dateField" placeholder="mm-dd-yyyy" title="Sales Date" />
             </div>
             <div id="dvList">&nbsp;</div>
             <div class="flexContainer">
                 <div class="flexItem">
                     <p class="saleReport">
-                        <label>Daily Fitness Sales:</label>
+                        <label>Daily Item Sales:</label>
                         <span class="due">Php</span>
-                        <span id="spanTotalDailyFitnessSales" class="due" title="Total Daily Fitness Sales">0.00</span>
+                        <span id="spanTotalDailyProductItemsSales" class="due" title="Total Daily Product Items Sales">0.00</span>
                     </p>
                 </div>
+            </div>
+        </div>
+            <div class="dateContainer">
+                <label for="selSalesMonth">Sales Month:</label>
+                <select id="selSalesMonth" name="salesMonth" placeholder="Select Month" title="Sales Month">
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                </select>
+            </div>
+            <div id="dvList">&nbsp;</div>
+            <div>
                 <div class="flexItem">
                     <p class="saleReport">
                         <label>Report (Month-Year):</label>
                         <span id="spanReportMonthYear" class="group" title="Report (Month-Year)"></span>
-                        <label>Total Fitness Sales:</label>
+                        <label>Total Item Sales:</label>
                         <span class="due">Php</span>
-                        <span id="spanTotalFitnessMonthlySales" class="due" title="Total Fitness Sales">0.00</span>
+                        <span id="spanTotalProductItemsMonthlySales" class="due" title="Total Product Items Sales">0.00</span>
                     </p>
                 </div>
             </div>

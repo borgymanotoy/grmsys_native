@@ -1,0 +1,23 @@
+<table class="itemSoldTable" cellpadding="0" cellspacing="0">
+	<caption>Product item sold</caption>
+	<thead>
+		<tr>
+			<th>Product item name</th>
+			<th>Quantity</th>
+			<th>Total</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php
+			while( $row = mysqli_fetch_array($result) ) { 
+		?>
+		<tr>
+			<td><?php  echo $row['item_name']; ?></td>
+			<td><?php  echo $row['item_quantity']; ?></td>
+			<td><?php  echo $row['unit_total']; ?></td>
+		</tr>
+		<?php
+			}
+		?>
+	</tbody>
+</table>

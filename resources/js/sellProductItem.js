@@ -1,5 +1,7 @@
 var initSellProductItemComponents = function (){
 
+	//setSellProductItemStatus(false, "Please complete all fields.");
+
 	$("div.headerIconLabel").bind("click", function(){
 		goToHome();
 	});
@@ -51,6 +53,18 @@ var initSellProductItemComponents = function (){
 		}
 	});
 
+	$("input.numeric").numeric();
+
+	$("input").bind("change", function(){
+		clearSellProductItemStatus();
+	});
+
+	$('#txtItemQuantitiy').bind('change', function(){
+		clearSellProductItemStatus();
+		computeItemTotal();
+	});
+};
+
 var loadItemDetails = function(id){
 	if(id){
 		$.getJSON("../getItemDetails.php?id=" + id, function(data){
@@ -64,39 +78,83 @@ var loadItemDetails = function(id){
 	}
 };
 
-/*
-	$('#txtItemSearchKey').bind('keyup', function(){
-		var searchkey = $(this).val();
-		console.info("searchkey: " +searchkey);
-		//searchItemSalesList(searchkey);
-	});
-*/
+var computeItemTotal = function(){
+	var itemPrice = $('#txtItemPrice').val();
+	var quantity = $('#txtItemQuantitiy').val();
+	itemPrice = itemPrice.replace(/,/g, "");
+	itemPrice = parseFloat(itemPrice);
+	quantity = parseInt(quantity);
+	console.info("[itemPrice]: " + itemPrice);
+	var itemTotal = itemPrice * quantity;
+	$('#hndItemTotalAmount').val(itemTotal);
+	$('#spanItemTotalAmount').html(numberWithCommas(itemTotal));
+};
 
-/*
-	loadServiceType($('#selServiceType'));
-	$('#selServiceType').bind('change', function(){
-		computeAmountDue();
-	});
+var sellProductItem = function(){
+	if('' != $('#hndLoadedItemId').val() && '' != $('#txtItemQuantitiy').val()){
+		$.post("../productItemSold.php", $("#formSellItem").serialize()).done(function(id){
+			//setSellProductItemStatus(true, id);
+			$('#hndItemSellId').val(id);
+			setSellProductItemStatus(true, "Sold item successfully. Select new item to sell or click the empty cart button below.");
+			clearDetails();
+			refreshItemSoldList(id);
+		}).fail(function(error){
+			setSellProductItemStatus(false, "Sell Product Item Error: " + error.statusText);
+		});
+	}
+	else {
+		console.log("Please complete all fields.");
+		setSellProductItemStatus(false, "Please complete all fields.");
+	}
+};
 
-	$('#txtMemberStart').Zebra_DatePicker({
-		direction: true,
-		pair: $('#txtMemberEnd'),
-		onSelect: function(view, elements) {
-			memberMonthlyDatesChanged($(this).val(), $('#txtMemberEnd').val());
+var refreshItemSoldList = function(id){
+	console.info('id: ' + id);
+	if(id){
+		var url = "../itemSoldList.php?itemId=" + id;
+		$("#dvList").load(url, function(){
+			loadItemSoldGrandTotal(id);
+		});
+	}	
+};
+
+var initItemSoldTable = function(){
+	$("table.itemSoldTable").delegate('td','mouseover mouseleave', function(e) {
+		if (e.type == 'mouseover') {
+			$(this).parent().addClass("hover");
+			$("colgroup").eq($(this).index()).addClass("hover");
+		}
+		else {
+			$(this).parent().removeClass("hover");
+			$("colgroup").eq($(this).index()).removeClass("hover");
 		}
 	});
 
-	$('#txtMemberEnd').Zebra_DatePicker({
-		direction: 1,
-		onSelect: function(view, elements) {
-			memberMonthlyDatesChanged($('#txtMemberStart').val(), $(this).val());
-		}
-	});
-*/
+	$("table.itemSoldTable tr:odd").addClass("odd");
+	$("table.itemSoldTable tr:even").addClass("even");
+};
 
-	$("input").bind("change", function(){
-		clearSellProductItemStatus();
-	});
+var loadItemSoldGrandTotal = function(id){
+	if(id){
+		var url = "../getItemSoldGrandTotal.php?itemId=" + id;
+		$.getJSON(url, function(data){
+			if(data[0]){
+				var amt = parseFloat(data[0].grand_total);
+				$('#grandTotalAmount').val(data[0].grand_total);
+				//$('#spanGrandTotalAmount').html(amt.toFixed(2));
+				$('#spanGrandTotalAmount').html(numberWithCommas(amt.toFixed(2)));
+			}
+		});
+	}
+};
+
+var setSellProductItemStatus = function(isSuccess, msg){
+	var objStatus = $('#spanSellProductItemStatus');
+	 objStatus.removeClass("success").removeClass("error");
+	if(isSuccess)
+		objStatus.addClass("success").html(msg);
+	else
+		objStatus.addClass("error").html(msg);	
 };
 
 var clearItemDetails = function(){
@@ -132,7 +190,9 @@ var clearDetails = function(){
 var clearEverything = function(){
 	clearDetails();
 	$('#txtMemberSearchKey, #txtMemberId, #txtMemberName').val('');
-	$('#hndItemTotalAmount, #hndGrandTotalAmount, #hndLoadedMemberId').val('');
+	$('#hndLoadedMemberId').val('');
+	$('#hndItemTotalAmount, #hndGrandTotalAmount').val('0');
 	$('#spanItemTotalAmount, #spanGrandTotalAmount').html('0.00');
 	$('#dvList').empty();
+	clearSellProductItemStatus();
 };

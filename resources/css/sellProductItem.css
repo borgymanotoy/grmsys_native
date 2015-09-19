@@ -45,10 +45,10 @@ div#dvItemSellContainer {
     padding: 10px;
 }
 
-div#dvItemSellContainer > p > input[type='text'], 
-div#dvItemSellContainer > p > input[type='password'], 
-div#dvItemSellContainer > p > textarea,
-div#dvItemSellContainer > p.amountDue {
+div#dvItemSellContainer > #formSellItem > p > input[type='text'], 
+div#dvItemSellContainer > #formSellItem > p > input[type='password'], 
+div#dvItemSellContainer > #formSellItem > p > textarea,
+div#dvItemSellContainer > #formSellItem > p.amountDue {
 	width: 250px;
 }
 

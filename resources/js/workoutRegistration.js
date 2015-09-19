@@ -380,4 +380,6 @@ var clearDetails = function(){
 	$('#txtRemarks').val('');
 
 	$("#chkPaid").iCheck("uncheck").iCheck('enable');
+	
+	clearMemberWorkoutStatus();
 };

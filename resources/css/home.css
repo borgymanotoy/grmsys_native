@@ -379,6 +379,17 @@ span#spanMemberStatus, span#spanMemberWorkoutStatus {
 	margin-bottom: 10px;
 	font-weight: bold;
 }
+span#spanSellProductItemStatus {
+	display: block;
+	width: 450px;
+	padding: 10px;
+	background-color: #333;
+	font-size: 12px;
+	margin-left: -20px;
+	margin-top: -20px;
+	margin-bottom: 10px;
+	font-weight: bold;
+}
 span#spanUserStatus {
 	display: block;
 	width: 470px;

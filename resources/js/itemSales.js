@@ -1,41 +1,28 @@
-var initWorkoutSalesComponents = function(){
+var initItemSalesComponents = function(){
 	$('#txtLogDate').Zebra_DatePicker({
 		direction: false,
 		onSelect: function(view, elements) {
-			reloadWorkoutSalesTable($(this).val());
+			reloadItemDailySalesTable($(this).val());
 		}
 	});	
 };
 
-var reloadWorkoutSalesTable = function(strDate){
+var reloadItemDailySalesTable = function(strDate){
 	var url = "../workoutSalesList.php";
 	if(strDate) url += "?log_date=" + strDate;
 	$("#dvList").load(url, function(){
 		initWorkoutSalesTable();
-		loadFitnessDailyTotalSales(strDate);
-		loadFitnessMonthlyTotalSales(strDate);
+		loadItemDailySales(strDate);
+		//loadItemMonthlySales(strDate);
 	});
 };
 		
-var initWorkoutSalesTable = function(){
-	/*
-	$("table.workoutSalesTable").delegate('td','mouseover mouseleave', function(e) {
-		if (e.type == 'mouseover') {
-			$(this).parent().addClass("hover");
-			$("colgroup").eq($(this).index()).addClass("hover");
-		}
-		else {
-			$(this).parent().removeClass("hover");
-			$("colgroup").eq($(this).index()).removeClass("hover");
-		}
-	});
-	*/
-
-	$("table.workoutSalesTable tr:odd").addClass("odd");
-	$("table.workoutSalesTable tr:even").addClass("even");
+var initItemSalesTable = function(){
+	$("table.itemSoldTable tr:odd").addClass("odd");
+	$("table.itemSoldTable tr:even").addClass("even");
 };
 
-var loadFitnessDailyTotalSales = function(strDate){
+var loadItemDailySales = function(strDate){
 	var url = "../getFitnessDailySalesTotal.php";
 	if(strDate) url += "?log_date=" + strDate;
 	$.getJSON(url, function(data){
@@ -46,7 +33,7 @@ var loadFitnessDailyTotalSales = function(strDate){
 	});
 };
 
-var loadFitnessMonthlyTotalSales = function(strMonthYear){
+var loadItemMonthlySales = function(strMonthYear){
 	var url = "../getFitnessMonthlySalesTotal.php";
 	if(strMonthYear) url += "?month_year=" + strMonthYear;
 	$.getJSON(url, function(data){
