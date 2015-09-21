@@ -75,6 +75,11 @@ var reloadItemDailySalesTable = function(strDate){
 	if(strDate) url += "?log_date=" + strDate;
 	$("#dvList").load(url, function(){
 		initItemSalesTable();
+
+		var title = "List of Product Items Sold";
+		if(strDate) title += " (" + strDate + ")";
+		$('table.itemSellTable > caption').html(title);
+
 		loadItemDailySales(strDate);
 	});
 };
@@ -84,6 +89,11 @@ var reloadItemWeeklySalesTable = function(dateStart, dateEnd){
 	if(dateStart && dateEnd) url += "?start_date=" + dateStart + "&end_date=" + dateEnd;
 	$("#dvList").load(url, function(){
 		initItemSalesTable();
+
+		var title = "List of Product Items Sold";
+		if(dateStart && dateEnd) title += " (" + dateStart + " to " + dateEnd + ")";
+		$('table.itemSellTable > caption').html(title);
+
 		loadItemWeeklySales(dateStart, dateEnd);
 	});
 };
@@ -93,6 +103,11 @@ var reloadItemMonthlySalesTable = function(dateStart, dateEnd){
 	if(dateStart && dateEnd) url += "?start_date=" + dateStart + "&end_date=" + dateEnd;
 	$("#dvList").load(url, function(){
 		initItemSalesTable();
+
+		var title = "List of Product Items Sold";
+		if(dateStart && dateEnd) title += " (" + dateStart + " to " + dateEnd + ")";
+		$('table.itemSellTable > caption').html(title);
+
 		loadItemMonthlySales(dateStart, dateEnd);
 	});
 };

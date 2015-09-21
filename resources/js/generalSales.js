@@ -1,14 +1,14 @@
-var initWorkoutSalesComponents = function(){
+var initGeneralSalesComponents = function(){
 	$('#txtLogDate').Zebra_DatePicker({
 		direction: false,
 		onSelect: function(view, elements) {
 			var date = $(this).val();
-			reloadWorkoutDailySalesTable(date);
+			reloadGeneralDailySalesTable(date);
 		}
 	});	
 };
 
-var initWorkoutWeeklySalesComponents = function(){
+var initGeneralWeeklySalesComponents = function(){
 	$('#txtLogDate').Zebra_DatePicker({
 		direction: false,
 		onSelect: function(view, elements) {
@@ -20,12 +20,12 @@ var initWorkoutWeeklySalesComponents = function(){
 			var weekSunday = Date.parse(weekMonday.toString("MM-dd-yyyy")).sunday();			
 			var dateStart = weekMonday.toString("MM-dd-yyyy");
 			var dateEnd = weekSunday.toString("MM-dd-yyyy");
-			reloadWorkoutWeeklySalesTable(dateStart, dateEnd);
+			reloadGeneralWeeklySalesTable(dateStart, dateEnd);
 		}
 	});	
 };
 
-var initWorkoutMonthlySalesComponents = function(){
+var initGeneralMonthlySalesComponents = function(){
 	$('#txtLogDate').Zebra_DatePicker({
 		direction: false,
 		onSelect: function(view, elements) {
@@ -36,93 +36,87 @@ var initWorkoutMonthlySalesComponents = function(){
 			lastDateOfMonth.moveToLastDayOfMonth();
 			var dateStart = firstDateOfMonth.toString("MM-dd-yyyy");
 			var dateEnd = lastDateOfMonth.toString("MM-dd-yyyy");
-			reloadWorkoutMonthlySalesTable(dateStart, dateEnd);
+			reloadGeneralMonthlySalesTable(dateStart, dateEnd);
 		}
 	});	
 };
 
-var reloadWorkoutDailySalesTable = function(strDate){
-	var url = "../workoutDailySalesList.php";
+var reloadGeneralDailySalesTable = function(strDate){
+	var url = "../generalDailySalesList.php";
 	if(strDate) url += "?log_date=" + strDate;
 	$("#dvList").load(url, function(){
-
-		var title = "Fitness Sales Daily List";
+		var title = "Gym Daily Sales";
 		if(strDate) title += " (" + strDate + ")";
-		$('table.workoutSalesTable > caption').html(title);
-
-		loadWorkoutDailySales(strDate);
+		$('table.generalSalesTable > caption').html(title);
+		loadGeneralDailySales(strDate);
 	});
 };
 
-var reloadWorkoutWeeklySalesTable = function(dateStart, dateEnd){
-	var url = "../workoutWeeklySalesList.php";
+var reloadGeneralWeeklySalesTable = function(dateStart, dateEnd){
+	var url = "../generalWeeklySalesList.php";
 	if(dateStart && dateEnd) url += "?start_date=" + dateStart + "&end_date=" + dateEnd;
 	$("#dvList").load(url, function(){
-
-		var title = "Fitness Weekly Sales";
+		var title = "Gym Weekly Sales";
 		if(dateStart && dateEnd) title += " (" + dateStart + " to " + dateEnd + ")";
-		$('table.weeklyWorkoutSalesTable > caption').html(title);
-
-		loadWorkoutWeeklySales(dateStart, dateEnd);
+		$('table.weeklyGeneralSalesTable > caption').html(title);
+		loadGeneralWeeklySales(dateStart, dateEnd);
 	});
 };
 
-var reloadWorkoutMonthlySalesTable = function(dateStart, dateEnd){
-	var url = "../workoutMonthlySalesList.php";
+var reloadGeneralMonthlySalesTable = function(dateStart, dateEnd){
+	var url = "../generalMonthlySalesList.php";
 	if(dateStart && dateEnd) url += "?start_date=" + dateStart + "&end_date=" + dateEnd;
 	$("#dvList").load(url, function(){
-
-		var title = "Fitness Monthly Sales";
+		var title = "Gym Monthly Sales";
 		if(dateStart && dateEnd) title += " (" + dateStart + " to " + dateEnd + ")";
-		$('table.weeklyWorkoutSalesTable > caption').html(title);
-
-		loadWorkoutMonthlySales(dateStart, dateEnd);
+		$('table.monthlyGeneralSalesTable > caption').html(title);
+		loadGeneralMonthlySales(dateStart, dateEnd);
 	});
 };
 
-var loadWorkoutDailySales = function(strDate){
-	var url = "../getWorkoutDailySalesTotal.php";
+var loadGeneralDailySales = function(strDate){
+	var url = "../getGeneralDailySalesTotal.php";
 	if(strDate) url += "?log_date=" + strDate;
 	$.getJSON(url, function(data){
 		if(data[0]){
 			if(data[0].total_sales){
 				var amt = parseFloat(data[0].total_sales);
-				$('#spanTotalDailyWorkoutSales').html(numberWithCommas(amt.toFixed(2)));				
+				$('#spanTotalDailyGeneralSales').html(numberWithCommas(amt.toFixed(2)));				
 			}
 		}
 		else {
-			$('#spanTotalDailyWorkoutSales').html('0.00');
+			$('#spanTotalDailyGeneralSales').html('0.00');
 		}
 	});
 };
 
-var loadWorkoutWeeklySales = function(dateStart, dateEnd){
-	var url = "../getWorkoutWeeklySalesTotal.php";
+var loadGeneralWeeklySales = function(dateStart, dateEnd){
+	var url = "../getGeneralWeeklySalesTotal.php";
 	if(dateStart && dateEnd) url += "?start_date=" + dateStart + "&end_date=" + dateEnd;
 	$.getJSON(url, function(data){
 		if(data[0]){
 			if(data[0].total_sales){
 				var amt = parseFloat(data[0].total_sales);
-				$('#spanTotalWeeklyWorkoutSales').html(numberWithCommas(amt.toFixed(2)));
+				$('#spanTotalWeeklyGeneralSales').html(numberWithCommas(amt.toFixed(2)));
 			}
 			else {
-				$('#spanTotalWeeklyWorkoutSales').html('0.00');
+				$('#spanTotalWeeklyGeneralSales').html('0.00');
 			}
 		}
 	});
 };
 
-var loadWorkoutMonthlySales = function(dateStart, dateEnd){
-	var url = "../getWorkoutMonthlySalesTotal.php";
+var loadGeneralMonthlySales = function(dateStart, dateEnd){
+	var url = "../getGeneralMonthlySalesTotal.php";
 	if(dateStart && dateEnd) url += "?start_date=" + dateStart + "&end_date=" + dateEnd;
 	$.getJSON(url, function(data){
 		if(data[0]){
 			if(data[0].total_sales){
 				var amt = parseFloat(data[0].total_sales);
-				$('#spanTotalMonthlyWorkoutSales').html(numberWithCommas(amt.toFixed(2)));
+				$('#spanTotalMonthlyGeneralSales').html(numberWithCommas(amt.toFixed(2)));
 			}
 			else {
-				$('#spanTotalMonthlyWorkoutSales').html('0.00');
+				$('#spanTotalMonthlyGeneralSales').html('0.00');
 			}
 		}
 	});

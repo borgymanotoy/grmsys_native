@@ -1,0 +1,21 @@
+<table class="generalSalesTable" cellpadding="0" cellspacing="0">
+	<caption>Gym Sales Daily List</caption>
+	<thead>
+		<tr>
+			<th>Sales Type</th>
+			<th>Total</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php
+			while( $row = mysqli_fetch_array($result) ) { 
+		?>
+		<tr>
+			<td><?php  echo $row['transaction_type']; ?></td>
+			<td><?php  echo $row['total_sales']; ?></td>
+		</tr>
+		<?php
+			}
+		?>
+	</tbody>
+</table>
