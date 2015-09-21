@@ -173,13 +173,13 @@ li.noATag>span{color: #445555; font-size: 12px;}
   content    : '+';
   margin-left: 5px;
 }
-.cssmenu ul li.last>a{
+.cssmenu ul li.last>a, .cssmenu ul li.has-sub>a{
   padding: 16px 5px 16px 5px;
   width: 160px;
   background: rgba(204, 204, 204, 0.9);
   border-left: 6px solid #F3c003;
  }
-.cssmenu ul li.last>a:hover{
+.cssmenu ul li.last>a:hover, .cssmenu ul li.has-sub>a:hover{
   background: rgba(20, 20, 20, 0.9);
   color: #ddd;
 }
@@ -223,7 +223,7 @@ ul.reports li>a{padding: 16px 5px 16px 5px; width: 160px;}
 ul.reports li.has-sub:nth-child(1) span{padding: 16px 23px 16px 20px; width: 127px;}
 ul.reports li a>span{padding: 16px 5px 16px 15px; width: 145px;}
 ul.reports ul li{left: -19px;}
-ul.reports li.last a>span{padding-left: 20px; font-weight: bold;}
+ul.reports li.last a>span, ul.reports li.has-sub a>span{padding-left: 20px; font-weight: bold;}
 ul.reports li.has-sub:nth-child(1) li.last a>span,
 ul.reports li.has-sub:nth-child(2) li.last a>span{padding-left: 50px;}
 

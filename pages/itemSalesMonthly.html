@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>(GRMSys): Product Item Sales</title>
+    <title>(GRMSys): Product Item Sales (Monthly)</title>
     <link type="text/css" rel="stylesheet" href="resources/css/home.css" />
     <link type="text/css" rel="stylesheet" href="resources/css/commons.css" />
     <link type="text/css" rel="stylesheet" href="resources/css/datepicker.css" />
@@ -24,8 +24,8 @@
     <script type="text/javascript">
         var roleType = "<?php echo $_SESSION['role_type']; ?>"
         $(document).ready(function(){
-			initItemSalesComponents();
-			reloadItemDailySalesTable();
+			initItemMonthlySalesComponents();
+			reloadItemMonthlySalesTable();
         });
     </script>
 </head>
@@ -33,7 +33,7 @@
     <div class="headerContainer" title="Return to home page">
         <div class="headerIconLabel" title="Return to home page">
             <img src="resources/images/icons/sales.png" class="headerSmallImage" alt="Members" />
-            <span>Product Item Sales</span>
+            <span>Product Item Sales (Monthly)</span>
         </div>
         <div class="headerLogout" title="Logout">
             <a href="javascript:void(0);" onclick="location.href='logout.php'">
@@ -46,7 +46,7 @@
 	<div class="itemSalesPageContainer">
         <div class="dailySalesContainer">
             <div class="itemSalesDateContainer">
-                <label for="txtLogDate">Sales Date:</label>
+                <label for="txtLogDate">Select Date:</label>
                 <input type="text" id="txtLogDate" name="log_date" class="dateField" placeholder="mm-dd-yyyy" title="Sales Date" />
             </div>
             <div align="center">
@@ -55,9 +55,9 @@
             <div class="flexContainer">
                 <div class="flexItem">
                     <p class="saleReport">
-                        <label>Daily Item Sales:</label>
+                        <label>Total Monthly Sales:</label>
                         <span class="due">Php</span>
-                        <span id="spanTotalDailyProductItemsSales" class="due" title="Total Daily Product Items Sales">0.00</span>
+                        <span id="spanTotalMonthlyProductItemsSales" class="due" title="Total Weekly Product Items Sales">0.00</span>
                     </p>
                 </div>
             </div>
