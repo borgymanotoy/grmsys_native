@@ -1,0 +1,194 @@
+table.workoutSalesTable {
+	/* padding: 10px 25px; */
+	border-left: 5px solid #555;
+	border-bottom: 5px solid #555;
+	border-right: 5px solid #555;
+	width: 100%;
+	border-collapse: collapse;
+}
+table.workoutSalesTable > caption {
+	padding: 5px 0px;
+	width: 98.8%;
+	background-color: #F3C00E;
+	border-left: 5px solid #555;
+	border-top: 5px solid #555;
+	border-right: 5px solid #555;
+	color: #363434;
+	font-weight: bold;
+	font-size: 1.25em;
+}
+
+
+table.workoutSalesTable > tbody > tr:nth-child(even) > td { background: #DDDBDB none repeat scroll 0% 0%; }
+table.workoutSalesTable > tbody > tr:nth-child(odd) > td { background: #EFD98E none repeat scroll 0% 0%; }
+
+
+table.workoutSalesTable > thead > tr > th {
+	padding: 5px 10px;
+	font-weight: bold;
+	background-color: #555;
+	font-size: 1.2em;
+}
+table.workoutSalesTable > thead > tr > th:nth-child(1){
+	width: 50px;
+	text-align: left;
+}
+table.workoutSalesTable > thead > tr > th:nth-child(2){
+	width: 200px;
+	text-align: left;
+}
+table.workoutSalesTable > thead > tr > th:nth-child(3){
+	width: 75px;
+	text-align: center;
+}
+
+table.workoutSalesTable > tbody > tr > td {
+	padding: 5px 10px;
+	font-weight: normal;
+	/* background-color: #ccc; */
+	color: #222;
+	font-size: 1.1em;
+}
+
+table.workoutSalesTable > tbody > tr > td:nth-child(1){
+	width: 50px;
+	text-align: left;
+}
+table.workoutSalesTable > tbody > tr > td:nth-child(2){
+	width: 200px;
+	text-align: left;
+}
+table.workoutSalesTable > tbody > tr > td:nth-child(3){
+	width: 75px;
+	text-align: center;
+}
+
+/* START: Weekly Table */
+table.weeklyWorkoutSalesTable {
+	/* padding: 10px 25px; */
+	border-left: 5px solid #555;
+	border-bottom: 5px solid #555;
+	border-right: 5px solid #555;
+	width: 100%;
+	border-collapse: collapse;
+}
+table.weeklyWorkoutSalesTable > caption {
+	padding: 5px 0px;
+	width: 98.8%;
+	background-color: #F3C00E;
+	border-left: 5px solid #555;
+	border-top: 5px solid #555;
+	border-right: 5px solid #555;
+	color: #363434;
+	font-weight: bold;
+	font-size: 1.25em;
+}
+
+
+table.weeklyWorkoutSalesTable > tbody > tr:nth-child(even) > td { background: #DDDBDB none repeat scroll 0% 0%; }
+table.weeklyWorkoutSalesTable > tbody > tr:nth-child(odd) > td { background: #EFD98E none repeat scroll 0% 0%; }
+
+
+table.weeklyWorkoutSalesTable > thead > tr > th {
+	padding: 5px 10px;
+	font-weight: bold;
+	background-color: #555;
+	font-size: 1.2em;
+}
+table.weeklyWorkoutSalesTable > thead > tr > th:nth-child(1){
+	width: 250px;
+	text-align: left;
+}
+table.weeklyWorkoutSalesTable > thead > tr > th:nth-child(2){
+	width: 150px;
+	text-align: left;
+}
+
+table.weeklyWorkoutSalesTable > tbody > tr > td {
+	padding: 5px 10px;
+	font-weight: normal;
+	/* background-color: #ccc; */
+	color: #222;
+	font-size: 1.1em;
+}
+
+table.weeklyWorkoutSalesTable > tbody > tr > td:nth-child(1){
+	width: 250px;
+	text-align: left;
+}
+table.weeklyWorkoutSalesTable > tbody > tr > td:nth-child(2){
+	width: 150px;
+	text-align: left;
+}
+
+p.pSearchContainer {
+	width: 400px;
+}
+
+div.dailySalesContainer {
+	background: rgba(30, 30, 30, 0.8) none repeat scroll 0% 0%;	
+}
+div#dvList {
+	min-height: 400px;
+	max-height: 400px;
+	overflow-y: auto;
+	width: 800px;
+}
+
+div.amountDue {
+	position: absolute;
+	width: 92%;
+	bottom: 0;
+}
+p.saleReport {
+	font-size: 24px;
+	font-weight: bold;
+	padding: 10px;
+	/* border: 2px solid #222; */
+	background: rgba(30, 30, 30, 0.8) none repeat scroll 0% 0%;
+	min-width: 400px;
+}
+p.saleWeeklyReport {
+	font-size: 24px;
+	font-weight: bold;
+	padding: 10px;
+	/* border: 2px solid #222; */
+	background: rgba(30, 30, 30, 0.8) none repeat scroll 0% 0%;
+	min-width: 500px;
+}
+p.saleReport > label {
+    color: #F3C00E;
+    font-size: 18px;
+    width: 180px;
+}
+p.saleWeeklyReport > label {
+    color: #F3C00E;
+    font-size: 18px;
+    width: 250px;
+}
+p.saleReport > span.group, p.saleWeeklyReport > span.group {
+	font-size: 18px;
+	color: #fff;
+	margin-right: 25px;
+}
+p.saleReport > span.due, p.saleWeeklyReport > span.due {
+	font-size: 28px;
+	color: #BC2A2A;
+}
+
+div.workoutSalesPageContainer {
+	top: 110px;
+	left: 50%;
+	margin-left: -500px;
+	position: relative;
+	width: 1000px;
+	padding: 10px;
+}
+
+
+div.workoutSalesDateContainer {
+	display: inline-block;
+	margin-bottom: 15px;
+	padding: 20px;
+	background: rgba(50, 50, 50, 0.7) none repeat scroll 0% 0%;
+}
