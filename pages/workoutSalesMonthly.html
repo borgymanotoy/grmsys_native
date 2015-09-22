@@ -21,6 +21,7 @@
     <script type='text/javascript' src='resources/js/common.js'></script>
     <script type='text/javascript' src='resources/js/date.js'></script>
     <script type='text/javascript' src='resources/js/workoutSales.js'></script>
+    <script type='text/javascript' src='resources/js/jQuery.print.js'></script>
     <script type="text/javascript">
         var roleType = "<?php echo $_SESSION['role_type']; ?>"
         $(document).ready(function(){
@@ -49,18 +50,23 @@
                 <label for="txtLogDate">Sales Date:</label>
                 <input type="text" id="txtLogDate" name="log_date" class="dateField" placeholder="mm-dd-yyyy" title="Sales Date" />
             </div>
-            <div align="center">
-                <div id="dvList">&nbsp;</div>
-            </div>
-            <div class="flexContainer">
-                <div class="flexItem">
-                    <p class="saleWeeklyReport">
-                        <label>Monthly Workout Sales:</label>
-                        <span class="due">Php</span>
-                        <span id="spanTotalMonthlyWorkoutSales" class="due" title="Total Monthly Workout Sales">0.00</span>
-                    </p>
+            <div id="dvPrintable">
+                <div align="center">
+                    <div id="dvList">&nbsp;</div>
+                </div>
+                <div class="flexContainer">
+                    <div class="flexItem">
+                        <p class="saleWeeklyReport">
+                            <label>Monthly Workout Sales:</label>
+                            <span class="due">Php</span>
+                            <span id="spanTotalMonthlyWorkoutSales" class="due" title="Total Monthly Workout Sales">0.00</span>
+                        </p>
+                    </div>
                 </div>
             </div>
+            <div class="reportButtons">
+                <img id="imgPrintIcon" src="resources/images/icons/printer03.png" class="printImage" alt="Print" title="Print Page" />
+            </div> 
         </div>
 	</div>
     <div class="footerContainer2">

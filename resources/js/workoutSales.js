@@ -5,7 +5,13 @@ var initWorkoutSalesComponents = function(){
 			var date = $(this).val();
 			reloadWorkoutDailySalesTable(date);
 		}
-	});	
+	});
+
+	$('#imgPrintIcon').bind("click", function(){
+		$("#dvPrintable").print({
+			stylesheet : 'resources/css/reports.css'
+		});
+	});
 };
 
 var initWorkoutWeeklySalesComponents = function(){
@@ -22,6 +28,12 @@ var initWorkoutWeeklySalesComponents = function(){
 			var dateEnd = weekSunday.toString("MM-dd-yyyy");
 			reloadWorkoutWeeklySalesTable(dateStart, dateEnd);
 		}
+	});
+
+	$('#imgPrintIcon').bind("click", function(){
+		$("#dvPrintable").print({
+			stylesheet : 'resources/css/reports.css'
+		});
 	});	
 };
 
@@ -38,6 +50,12 @@ var initWorkoutMonthlySalesComponents = function(){
 			var dateEnd = lastDateOfMonth.toString("MM-dd-yyyy");
 			reloadWorkoutMonthlySalesTable(dateStart, dateEnd);
 		}
+	});
+
+	$('#imgPrintIcon').bind("click", function(){
+		$("#dvPrintable").print({
+			stylesheet : 'resources/css/reports.css'
+		});
 	});	
 };
 

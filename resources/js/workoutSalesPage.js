@@ -4,7 +4,14 @@ var initWorkoutSalesComponents = function(){
 		onSelect: function(view, elements) {
 			reloadWorkoutSalesTable($(this).val());
 		}
-	});	
+	});
+
+	$('#imgPrintIcon').bind("click", function(){
+		alert('Please select \'Landscape\' Paper Orientation in the Printer Properties to display the report correctly.');
+		$("#dvPrintable").print({
+			stylesheet : 'resources/css/reportSmallFonts.css'
+		});
+	});
 };
 
 var reloadWorkoutSalesTable = function(strDate){

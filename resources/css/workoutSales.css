@@ -69,8 +69,8 @@ div.dailySalesContainer {
 	background: rgba(30, 30, 30, 0.8) none repeat scroll 0% 0%;	
 }
 div#dvList {
-	min-height: 400px;
-	max-height: 400px;
+	min-height: 350px;
+	max-height: 350px;
 	overflow-y: auto;
 }
 
@@ -100,4 +100,10 @@ p.saleReport > span.group {
 p.saleReport > span.due {
 	font-size: 28px;
 	color: #BC2A2A;
+}
+
+div.reportButtons {
+    bottom: 5px;
+    position: absolute;
+    right: 5px;
 }

@@ -23,6 +23,12 @@ var initItemSalesComponents = function(){
 
 			reloadItemDailySalesTable(date);
 		}
+	});
+
+	$('#imgPrintIcon').bind("click", function(){
+		$("#dvPrintable").print({
+			stylesheet : 'resources/css/reports.css'
+		});
 	});	
 };
 
@@ -46,6 +52,12 @@ var initItemWeeklySalesComponents = function(){
 
 			reloadItemWeeklySalesTable(dateStart, dateEnd);
 		}
+	});
+
+	$('#imgPrintIcon').bind("click", function(){
+		$("#dvPrintable").print({
+			stylesheet : 'resources/css/reports.css'
+		});
 	});	
 };
 
@@ -67,6 +79,12 @@ var initItemMonthlySalesComponents = function(){
 
 			reloadItemMonthlySalesTable(dateStart, dateEnd);
 		}
+	});
+
+	$('#imgPrintIcon').bind("click", function(){
+		$("#dvPrintable").print({
+			stylesheet : 'resources/css/reports.css'
+		});
 	});	
 };
 

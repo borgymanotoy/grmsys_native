@@ -131,8 +131,8 @@ div.dailySalesContainer {
 	background: rgba(30, 30, 30, 0.8) none repeat scroll 0% 0%;	
 }
 div#dvList {
-	min-height: 400px;
-	max-height: 400px;
+	min-height: 350px;
+	max-height: 350px;
 	overflow-y: auto;
 	width: 800px;
 }
@@ -193,4 +193,14 @@ div.workoutSalesDateContainer {
 	margin-bottom: 15px;
 	padding: 20px;
 	background: rgba(50, 50, 50, 0.7) none repeat scroll 0% 0%;
+}
+
+div#dvPrintable {
+	position: relative;
+}
+
+div.reportButtons {
+    bottom: 35px;
+    position: absolute;
+    right: 25px;
 }

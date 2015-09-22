@@ -1,0 +1,73 @@
+body {
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 10px;
+}
+
+div#dvPrintable table > caption {
+	font-size: 12px;
+	font-weight: bold;
+	padding: 5px 25px;
+	border: 0;
+	width: 90%;
+}
+
+div#dvPrintable table {
+	border: 3px solid #333;
+	width: 90%;
+}
+
+div#dvPrintable table > thead > tr > th, div#dvPrintable table > tbody > tr > td {
+	padding: 8px 25px;
+}
+
+div#dvPrintable table tr th {
+	border-bottom: 1px solid #333;
+	color: #000;
+}
+
+div#dvPrintable table > tbody > tr:nth-child(even) > td { background: #FFF none repeat scroll 0% 0%; }
+div#dvPrintable table > tbody > tr:nth-child(odd) > td { background: #DAD8D4 none repeat scroll 0% 0%; }
+
+img.headerSmallImage {
+	padding: 5px;
+	height: 48px;
+	vertical-align: middle;
+	margin-top: 15px;
+	border-radius: 5px;
+}
+
+img.headerSmallImage:hover {
+	background: #D4DCDE none repeat scroll 0% 0%;
+}
+
+p.saleReport {
+	font-size: 24px;
+	font-weight: bold;
+	padding: 10px;
+	min-width: 400px;
+}
+p.saleWeeklyReport {
+	font-size: 24px;
+	font-weight: bold;
+	padding: 10px;
+	min-width: 500px;
+}
+p.saleReport > label {
+    color: #060320;
+    font-size: 18px;
+    width: 180px;
+}
+p.saleWeeklyReport > label {
+    color: #060320;
+    font-size: 18px;
+    width: 250px;
+}
+p span.group {
+	font-size: 18px;
+	color: #470B09;
+	margin-right: 25px;
+}
+p > span.due {
+	font-size: 28px;
+	color: #000;
+}

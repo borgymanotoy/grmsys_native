@@ -5,7 +5,13 @@ var initGeneralSalesComponents = function(){
 			var date = $(this).val();
 			reloadGeneralDailySalesTable(date);
 		}
-	});	
+	});
+
+	$('#imgPrintIcon').bind("click", function(){
+		$("#dvPrintable").print({
+			stylesheet : 'resources/css/reports.css'
+		});
+	});
 };
 
 var initGeneralWeeklySalesComponents = function(){
@@ -22,6 +28,12 @@ var initGeneralWeeklySalesComponents = function(){
 			var dateEnd = weekSunday.toString("MM-dd-yyyy");
 			reloadGeneralWeeklySalesTable(dateStart, dateEnd);
 		}
+	});
+
+	$('#imgPrintIcon').bind("click", function(){
+		$("#dvPrintable").print({
+			stylesheet : 'resources/css/reports.css'
+		});
 	});	
 };
 
@@ -38,6 +50,12 @@ var initGeneralMonthlySalesComponents = function(){
 			var dateEnd = lastDateOfMonth.toString("MM-dd-yyyy");
 			reloadGeneralMonthlySalesTable(dateStart, dateEnd);
 		}
+	});
+
+	$('#imgPrintIcon').bind("click", function(){
+		$("#dvPrintable").print({
+			stylesheet : 'resources/css/reports.css'
+		});
 	});	
 };
 

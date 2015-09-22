@@ -185,10 +185,15 @@ div.workoutSalesPageContainer {
 	padding: 10px;
 }
 
-
 div.workoutSalesDateContainer {
 	display: inline-block;
 	margin-bottom: 15px;
 	padding: 20px;
 	background: rgba(50, 50, 50, 0.7) none repeat scroll 0% 0%;
+}
+
+div.reportButtons {
+    bottom: 35px;
+    position: absolute;
+    right: 25px;
 }

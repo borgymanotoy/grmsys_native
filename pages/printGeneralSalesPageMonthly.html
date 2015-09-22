@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>(GRMSys): Print General Sales (Monthly)</title>
+    <link type="text/css" rel="stylesheet" href='resources/css/reports.css'>
+    <script type='text/javascript' src='resources/js/jquery-1.11.1.min.js'></script>
+    <script type='text/javascript' src='resources/js/jQuery.print.js'></script>
+    <script type="text/javascript">
+        var roleType = "<?php echo $_SESSION['role_type']; ?>"
+        $(document).ready(function(){
+            $('#imgPrintIcon').bind("click", function(){
+                //$.print("#dvPrintable");
+                $("#dvPrintable").print({
+                    stylesheet : 'resources/css/reports.css'
+                    /*
+                    globalStyles : false, // Use Global styles
+                    mediaPrint : false, // Add link with attrbute media=print
+                    stylesheet : 'resources/css/reports.css', //Custom stylesheet
+                    iframe : false, //Print in a hidden iframe
+                    noPrintSelector : ".avoid-this", // Don't print this
+                    append : "GRMSys Version 1.0.0<br/>", // Add this on top
+                    prepend : "<br/>borgymanotoy.net", // Add this at bottom
+                    manuallyCopyFormValues: true, // Manually add form values
+                    deferred: $.Deferred(), // resolves after print and restructure the code for better maintainability
+                    timeout: 250 // timeout
+                    */
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="dvPrintable">
+        <table class="printTable" cellpadding="0" cellspacing="0">
+            <caption>Gym Sales Monthly List</caption>
+            <thead>
+                <tr>
+                    <th>Sales Type</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    while( $row = mysqli_fetch_array($result) ) { 
+                ?>
+                <tr>
+                    <td><?php  echo $row['transaction_type']; ?></td>
+                    <td><?php  echo $row['total_sales']; ?></td>
+                </tr>
+                <?php
+                    }
+                ?>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <img id="imgPrintIcon" src="resources/images/icons/printer03.png" class="headerSmallImage" alt="Print" title="Print Page" />
+    </div>
+</body>
+</html>

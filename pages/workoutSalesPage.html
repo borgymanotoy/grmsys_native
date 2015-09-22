@@ -21,6 +21,7 @@
     <script type='text/javascript' src='resources/js/common.js'></script>
     <script type='text/javascript' src='resources/js/date.js'></script>
     <script type='text/javascript' src='resources/js/workoutSalesPage.js'></script>
+    <script type='text/javascript' src='resources/js/jQuery.print.js'></script>
     <script type="text/javascript">
         var roleType = "<?php echo $_SESSION['role_type']; ?>"
         $(document).ready(function(){
@@ -49,25 +50,30 @@
                 <label for="txtLogDate">Workout Date:</label>
                 <input type="text" id="txtLogDate" name="log_date" class="dateField" placeholder="mm-dd-yyyy" title="Workout Date" />
             </div>
-            <div id="dvList">&nbsp;</div>
-            <div class="flexContainer">
-                <div class="flexItem">
-                    <p class="saleReport">
-                        <label>Daily Fitness Sales:</label>
-                        <span class="due">Php</span>
-                        <span id="spanTotalDailyFitnessSales" class="due" title="Total Daily Fitness Sales">0.00</span>
-                    </p>
-                </div>
-                <div class="flexItem">
-                    <p class="saleReport">
-                        <label>Report (Month-Year):</label>
-                        <span id="spanReportMonthYear" class="group" title="Report (Month-Year)"></span>
-                        <label>Total Fitness Sales:</label>
-                        <span class="due">Php</span>
-                        <span id="spanTotalFitnessMonthlySales" class="due" title="Total Fitness Sales">0.00</span>
-                    </p>
+            <div id="dvPrintable">
+                <div id="dvList">&nbsp;</div>
+                <div class="flexContainer">
+                    <div class="flexItem">
+                        <p class="saleReport">
+                            <label>Daily Fitness Sales:</label>
+                            <span class="due">Php</span>
+                            <span id="spanTotalDailyFitnessSales" class="due" title="Total Daily Fitness Sales">0.00</span>
+                        </p>
+                    </div>
+                    <div class="flexItem">
+                        <p class="saleReport">
+                            <label>Report (Month-Year):</label>
+                            <span id="spanReportMonthYear" class="group" title="Report (Month-Year)"></span>
+                            <label>Total Fitness Sales:</label>
+                            <span class="due">Php</span>
+                            <span id="spanTotalFitnessMonthlySales" class="due" title="Total Fitness Sales">0.00</span>
+                        </p>
+                    </div>
                 </div>
             </div>
+            <div class="reportButtons">
+                <img id="imgPrintIcon" src="resources/images/icons/printer03.png" class="printImage" alt="Print" title="Print Page" />
+            </div> 
         </div>
 	</div>
     <div class="footerContainer2">

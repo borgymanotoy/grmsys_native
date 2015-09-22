@@ -4,7 +4,13 @@ var initAttendancePageComponents = function(){
 		onSelect: function(view, elements) {
 			reloadWorkoutTable($(this).val());
 		}
-	});	
+	});
+
+	$('#imgPrintIcon').bind("click", function(){
+		$("#dvPrintable").print({
+			stylesheet : 'resources/css/reportSmallFonts.css'
+		});
+	});
 };
 
 var reloadWorkoutTable = function(strDate){

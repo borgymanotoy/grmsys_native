@@ -61,3 +61,9 @@ table.attendanceTable > tbody > tr > td:nth-child(2){
 table.attendanceTable > tbody > tr > td:nth-child(7){
 	text-align: center;
 }
+
+div.reportButtons {
+    bottom: 5px;
+    position: absolute;
+    right: 5px;
+}

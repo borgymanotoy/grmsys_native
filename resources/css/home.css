@@ -543,6 +543,19 @@ img.headerImage {
 	vertical-align: middle;
 }
 
+img.printImage {
+	padding: 5px;
+	height: 48px;
+	vertical-align: middle;
+	margin-top: 15px;
+	border-radius: 5px;
+}
+
+img.printImage:hover {
+	background: #D4DCDE none repeat scroll 0% 0%;
+}
+
+
 div.headerMenuButton {
 	position: absolute;
 	top: 0px;
