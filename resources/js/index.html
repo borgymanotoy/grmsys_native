@@ -1,0 +1,425 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8">
+	<title>Biyahe: Sample Template</title>
+	<link rel="stylesheet" href="css/styleMenu.css">
+	<link rel="stylesheet" href="css/footer.css">
+	<link rel="stylesheet" href="css/bodyAndHeader.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.jqplot.min.css" />
+	<style>
+		#tblSampleColors { font-weight: bold; color: #666; }
+		.title { 
+			font-family: 'OpenSanRegular';
+			font-size: 22px;
+			font-weight: bold;
+			line-height: 22px;
+			color: black;
+			padding: 10px;
+		}
+		#tblSalesList {
+			width: 700px;
+			border-bottom: 3px solid orange;
+			/*
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+			background: none repeat scroll 0 0 rgba(255, 255, 255, 0.5);
+			*/
+		}
+		#tblSalesList tr td, {
+			font-family: 'OpenSanRegular';
+		    font-size: 11px;
+			font-weight: normal;	
+			color: #010101;
+			height: 30px;
+		}
+
+		/*
+		#tblSalesList > th:first-child {
+		    border-radius: 6px 0 0 0;
+		    -moz-border-radius: 6px 0 0 0;
+		}
+		#tblSalesList > th:last-child {
+		    border-radius: 0 6px 0 0;
+		    -moz-border-radius: 0 6px 0 0;
+		}
+		#tblSalesList > th:only-child{
+		    border-radius: 6px 6px 0 0;
+		    -moz-border-radius: 6px 6px 0 0;
+		}
+		*/
+
+		.tableHeader {
+			background: none repeat scroll 0 0 #ffd119;
+			font-family: "OpenSanRegular";
+			font-size: 14px;
+			font-weight: normal;
+			color: #333333; /* #010101 */
+			border-bottom: 3px solid orange;
+		}
+		.data {
+			font-family: "OpenSanRegular";
+			font-size: 14px;
+			font-weight: normal;
+		}
+
+		.oddRow { background-color: #FFFFFF; }
+		.evenRow { background-color: #FFFFA8; }
+	</style>
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.jqplot.min.js"></script>
+	<script type="text/javascript" src="js/jqplot.barRenderer.min.js"></script>
+	<script type="text/javascript" src="js/jqplot.highlighter.min.js"></script>
+	<script type="text/javascript" src="js/jqplot.cursor.min.js"></script>
+	<script type="text/javascript" src="js/jqplot.pointLabels.min.js"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+	        $("#tblSalesList tr:odd").addClass("oddRow");
+	        $("#tblSalesList tr:even").addClass("evenRow");
+
+			var par = $('#loginForm');
+			$('#loginForm').hide();
+			$('#loginMenu').click (function() {
+				$('#loginForm').toggle(300);
+				$(this).parent().css({'z-index' : '999'});
+			});
+
+		    var s1 = [[2002, 112000], [2003, 122000], [2004, 104000], [2005, 99000], [2006, 121000],
+		    [2007, 148000], [2008, 114000], [2009, 133000], [2010, 161000], [2011, 173000]];
+		    var s2 = [[2002, 10200], [2003, 10800], [2004, 11200], [2005, 11800], [2006, 12400],
+		    [2007, 12800], [2008, 13200], [2009, 12600], [2010, 13100]];
+		 
+		    plot1 = $.jqplot("divSampleChart", [s2, s1], {
+		        // Turns on animation for all series in this plot.
+		        animate: true,
+		        // Will animate plot on calls to plot1.replot({resetAxes:true})
+		        animateReplot: true,
+		        cursor: {
+		            show: true,
+		            zoom: true,
+		            looseZoom: true,
+		            showTooltip: false
+		        },
+		        series:[
+		            {
+		                pointLabels: {
+		                    show: true
+		                },
+		                renderer: $.jqplot.BarRenderer,
+		                showHighlight: false,
+		                yaxis: 'y2axis',
+		                rendererOptions: {
+		                    // Speed up the animation a little bit.
+		                    // This is a number of milliseconds. 
+		                    // Default for bar series is 3000. 
+		                    animation: {
+		                        speed: 2500
+		                    },
+		                    barWidth: 15,
+		                    barPadding: -15,
+		                    barMargin: 0,
+		                    highlightMouseOver: false
+		                }
+		            },
+		            {
+		                rendererOptions: {
+		                    // speed up the animation a little bit.
+		                    // This is a number of milliseconds.
+		                    // Default for a line series is 2500.
+		                    animation: {
+		                        speed: 2000
+		                    }
+		                }
+		            }
+		        ],
+		        axesDefaults: {
+		            pad: 0
+		        },
+		        axes: {
+		            // These options will set up the x axis like a category axis.
+		            xaxis: {
+		                tickInterval: 1,
+		                drawMajorGridlines: false,
+		                drawMinorGridlines: true,
+		                drawMajorTickMarks: false,
+		                rendererOptions: {
+		                tickInset: 0.5,
+		                minorTicks: 1
+		            }
+		            },
+		            yaxis: {
+		                tickOptions: {
+		                    formatString: "Php%'d"
+		                },
+		                rendererOptions: {
+		                    forceTickAt0: true
+		                }
+		            },
+		            y2axis: {
+		                tickOptions: {
+		                    formatString: "Php%'d"
+		                },
+		                rendererOptions: {
+		                    // align the ticks on the y2 axis with the y axis.
+		                    alignTicks: true,
+		                    forceTickAt0: true
+		                }
+		            }
+		        },
+		        highlighter: {
+		            show: true,
+		            showLabel: true,
+		            tooltipAxes: 'y',
+		            sizeAdjust: 7.5 , tooltipLocation : 'ne'
+		        }
+		    });
+		});
+		var changeBackground = function(colorRGB, selection) {
+			$(".menuContainer").css("background-color", "#" + colorRGB);
+			$(".cssmenu").css("background-color", "#" + colorRGB);
+			//$(".cssmenu a").css("background-color", "#" + colorRGB);
+			$(".searchCargoContainer").css("background-color", "#" + colorRGB);
+			$("#txtSearchCargo").val(selection);
+			//$(".searchCargoBox").css("background-color", "#9D4F00");
+		};
+
+		var alertSelectedColor = function(){
+			alert("You selected [" + $("#txtSearchCargo").val() + "]");
+		};
+
+		var alertSelectedColorByEnterKey = function(event) {
+		  var key = event.which;
+		  if(key == 13) {
+		    alertSelectedColor();
+		  }
+		};
+	</script>
+</head>
+	<body>
+		<center>
+			<div class="headerContainer" align="left">
+				<div class="UserIdAndBalanceContainer">
+					<div class="labelBalance">
+						<p>Current Balance:</p>
+					</div>
+					<div class="currentBalance">
+						<p>Php <span>900,500,000,000.00</span></p>
+					</div>
+					<div class="borderLine"></div>
+					<div class="labelContactAndEmail">
+						<p>Contact Number:</p>
+						<p>Email Address:</p>
+					</div>
+					<div class="contactAndEmail">
+						<p><span>+639876543210</span></p>
+						<p><span>juandelacruz@biyahe.com.ph</span></p>
+					</div>
+				</div>
+				<div class="headerBackground"></div>
+				<div class="divLogo"><img class="imagelogo" src="images/biyahe-logo.png"></div>
+			</div> <!-- end of hearderContainter -->
+			<div class="menuContainer">
+				<div class="cssmenu menuAlignToSearchBox">
+					<ul>
+						<li><a href='#'><img src="images/users.png" class="menuIcon" /><span>users</span></a>
+							<ul>
+								<li class='has-sub'><a href='#'><span>Finance Admin</span></a>
+									<ul>
+										<li class='last'><a href='#'><span>Create Finance Admin</span></a></li>
+										<li class='last'><a href='#'><span>View Finance Admin</span></a></li>
+									</ul>
+								</li>
+								<li class='has-sub'><a href='#'><span>Fulfillment Officer</span></a>
+									<ul>
+										<li><a href='#'><span>Create Fulfillment Officer</span></a></li>
+										<li class='last'><a href='#'><span>View Fulfillment Officer</span></a></li>
+									</ul>
+								</li>
+								<li class='has-sub'><a href='#'><span>Company Admin</span></a>
+									<ul>
+										<li class='last'><a href='#'><span>Create Company Admin</span></a></li>
+										<li class='last'><a href='#'><span>View Company Admin</span></a></li>
+									</ul>
+								</li>
+								<li class='has-sub'><a href='#'><span>Accounting</span></a>
+									<ul>
+										<li class='last'><a href='#'><span>Create Accounting</span></a></li>
+										<li class='last'><a href='#'><span>View Accounting</span></a></li>
+									</ul>
+								</li>
+								<li class='has-sub'><a href='#'><span>Agent</span></a>
+									<ul>
+										<li class='last'><a href='#'><span>Create Agent</span></a></li>
+										<li class='last'><a href='#'><span>View Agent</span></a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li><a href='#'><img src="images/reports.png" class="menuIcon" /><span>Reports</span></a>
+							<ul>
+								<li class='has-sub'><a href='#'><span>Sales</span></a>
+									<ul>
+										<li><a href='#'><span>Weekly</span></a></li>
+										<li class='last'><a href='#'><span>Monthly</span></a></li>
+										<li class='last'><a href='#'><span>Yearly</span></a></li>
+										<li class='last'><a href='#'><span>Custom Date</span></a></li>
+									</ul>
+								</li>
+								<li class='has-sub'><a href='#'><span>Transaction</span></a>
+									<ul>
+										<li><a href='#'><span>Weekly</span></a></li>
+										<li class='last'><a href='#'><span>Monthly</span></a></li>
+										<li class='last'><a href='#'><span>Yearly</span></a></li>
+										<li class='last'><a href='#'><span>Custom Date</span></a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div class="searchContainer">
+					<input class="searchBox" type="text" id="txtSearchCargo" title="Enter HAWB ID to search" placeholder="Selected color" maxlength="18" onkeydown="alertSelectedColorByEnterKey(event);" />
+					<a href="javascript:void();" onclick="alertSelectedColor();" class="search-button"><img src="images/search-icon.png" /></a>
+				</div>
+				<div class="loginContainer">
+					<div class="loginMenu">
+						<p id="loginMenu" class="userIcon"></p>
+						<a>Welcome:</a>
+						<span>Juan dela Cruz</span>
+					</div>
+					<div id="loginForm" class="loginFormContainer">
+						<div class="arrow-up"></div>
+						<ul>
+							<li><a href="#"><img src="images/profile.png"  />My Profile</a></li>
+							<li><a href="#" style="padding-right: 120px;"><img src="images/inbox.png"  />Inbox</a></li>
+							<li><a href="#" style="padding-right: 100px;"><img src="images/logout.png"  />Logout</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="dataContainer">
+				<div align="center" class="title">Biyahe Report Template Page</div>
+				<br/>
+				<div id="divSampleChart" style="margin-bottom:20px; width:700px; height:300px; text-align: center;"></div>
+				<br/>
+					<table id="tblSalesList" cellspacing="0" cellpadding="5" width="100%" border="0" align="center" style="margin-bottom: 10px;">
+		            <tbody>
+		              <tr>
+		                <th width="10%" class="tableHeader"><strong>Year</strong></th>
+		                <th width="30%" class="tableHeader"><div align="left"><strong>Income Type</strong></div></th>
+		                <th width="60%" class="tableHeader"><div align="left"><strong>Sales</strong></div></th>
+		              </tr>
+		              <tr>
+		                <td width="10%" align="center" class="data">2002</td>
+		                <td width="30%" class="data">Biyahe</td>
+		                <td width="60%" class="data">Php 112,000</td>
+		              </tr>
+		              <tr>
+		                <td width="10%" align="center" class="data">2002</td>
+		                <td width="30%" class="data">Cargoking</td>
+		                <td width="60%" class="data">Php 102,000</td>
+		              </tr>
+		              <tr>
+		                <td width="10%" align="center" class="data">2003</td>
+		                <td width="30%" class="data">Biyahe</td>
+		                <td width="60%" class="data">Php 122,000</td>
+		              </tr>
+		              <tr>
+		                <td width="10%" align="center" class="data">2003</td>
+		                <td width="30%" class="data">Cargoking</td>
+		                <td width="60%" class="data">Php 108,000</td>
+		              </tr>
+		              <tr>
+		                <td width="10%" align="center" class="data">2004</td>
+		                <td width="30%" class="data">Biyahe</td>
+		                <td width="60%" class="data">Php 104,000</td>
+		              </tr>
+		              <tr>
+		                <td width="10%" align="center" class="data">2004</td>
+		                <td width="30%" class="data">Cargoking</td>
+		                <td width="60%" class="data">Php 112,000</td>
+		              </tr>
+		              <tr>
+		                <td width="10%" align="center" class="data">2005</td>
+		                <td width="30%" class="data">Biyahe</td>
+		                <td width="60%" class="data">Php 99,000</td>
+		              </tr>
+		              <tr>
+		                <td width="10%" align="center" class="data">2005</td>
+		                <td width="30%" class="data">Cargoking</td>
+		                <td width="60%" class="data">Php 112,000</td>
+		              </tr>
+		              <tr>
+		                <td width="10%" align="center" class="data">2006</td>
+		                <td width="30%" class="data">Biyahe</td>
+		                <td width="60%" class="data">Php 121,000</td>
+		              </tr>
+		              <tr>
+		                <td width="10%" align="center" class="data">2006</td>
+		                <td width="30%" class="data">Cargoking</td>
+		                <td width="60%" class="data">Php 124,000</td>
+		              </tr>
+		              <tr>
+		                <td width="10%" align="center" class="data">2007</td>
+		                <td width="30%" class="data">Biyahe</td>
+		                <td width="60%" class="data">Php 148,000</td>
+		              </tr>
+		              <tr>
+		                <td width="10%" align="center" class="data">2007</td>
+		                <td width="30%" class="data">Cargoking</td>
+		                <td width="60%" class="data">Php 128,000</td>
+		              </tr>
+		              <tr>
+		                <td width="10%" align="center" class="data">2008</td>
+		                <td width="30%" class="data">Biyahe</td>
+		                <td width="60%" class="data">Php 114,000</td>
+		              </tr>
+		              <tr>
+		                <td width="10%" align="center" class="data">2008</td>
+		                <td width="30%" class="data">Cargoking</td>
+		                <td width="60%" class="data">Php 132,000</td>
+		              </tr>
+		              <tr>
+		                <td width="10%" align="center" class="data">2009</td>
+		                <td width="30%" class="data">Biyahe</td>
+		                <td width="60%" class="data">Php 133,000</td>
+		              </tr>
+		              <tr>
+		                <td width="10%" align="center" class="data">2009</td>
+		                <td width="30%" class="data">Cargoking</td>
+		                <td width="60%" class="data">Php 126,000</td>
+		              </tr>
+		              <tr>
+		                <td width="10%" align="center" class="data">2010</td>
+		                <td width="30%" class="data">Biyahe</td>
+		                <td width="60%" class="data">Php 161,000</td>
+		              </tr>
+		              <tr>
+		                <td width="10%" align="center" class="data">2010</td>
+		                <td width="30%" class="data">Cargoking</td>
+		                <td width="60%" class="data">Php 131,000</td>
+		              </tr>
+		              <tr>
+		                <td width="10%" align="center" class="data">2011</td>
+		                <td width="30%" class="data">Biyahe</td>
+		                <td width="60%" class="data">Php 173,000</td>
+		              </tr>
+		              <tr>
+		                <td width="10%" align="center" class="data">2011</td>
+		                <td width="30%" class="data">Cargoking</td>
+		                <td width="60%" class="data">Php 143,000</td>
+		              </tr>
+                	</tbody>
+                </table>
+                <br/>
+			</div>
+			<div class="footer">
+				<div class="footerlogo"><img class="txtLogin" src="images/jgtt_logo.png" alt="Powered by John Gold" /></div>
+				<div class="footerspan">&nbsp<span class"footerspan">Copyright © 2014 - biyahe.com.ph. All right reserved<span></div>
+			</div>
+		</center>
+	</body>
+</html>
