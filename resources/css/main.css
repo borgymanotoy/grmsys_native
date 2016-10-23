@@ -9,12 +9,20 @@ div.parentContainer{
 */
 
 div.barContainer {
-	background: rgba(25, 25, 25, 0.8);
+	background:rgba(25, 25, 25, 0.8);
 	height: 20em;
 	width: 100%;
 	position: fixed;
 	top: 50%;
 	margin-top: -10em;
+}
+div.barContainer2 {
+    background:rgba(25, 25, 25, 0.8);
+    height: 32em;
+    width: 100%;
+    position: fixed;
+    top: 50%;
+    margin-top: -10em;
 }
 
 div.loginContainer {
@@ -32,6 +40,22 @@ div.loginContainer {
 	*/
 	padding: 15px 25px;
 	border: 2px solid #333;
+}
+div.loginContainer2 {
+    position: absolute;
+    top: 32%;
+    left: 50%;
+    margin-top: -8em;
+    margin-left: -15em;
+    height: 22em;
+    width: 30em;
+    background: rgba(80, 80, 80, 0.75);
+    /* 
+        border-radius: 8px;
+        border: 2px dashed #ccc;
+    */
+    padding: 15px 25px;
+    border: 2px solid #333;
 }
 
 div.headerContainer, div.footerContainer {

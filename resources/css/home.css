@@ -229,7 +229,7 @@ div.userPageContainer {
 */	
 	
     background: rgba(20, 20, 20, 0.9) none repeat scroll 0 0;
-    height: 640px;
+    height: 790px;
     left: 50%;
     margin-left: -600px;
     margin-top: 120px;
@@ -237,13 +237,23 @@ div.userPageContainer {
     position: absolute;
     width: 1200px;
 }
+/*div.userProfilePageContainer {
+    background: rgba(20, 20, 20, 0.9) none repeat scroll 0 0;
+    height: 640px;
+    left: 80%;
+    margin-left: -600px;
+    margin-top: 120px;
+    padding: 10px;
+    position: center;
+    width: 800px;
+}*/
 
 div.userContainer {
 	padding: 20px;
 	border: 1px solid #333;
 	background: rgba(20, 20, 20, 0.9);
 	width: 450px;
-	height: 542px;
+	height: 748px;
 	display: inline-block;
 }
 
@@ -491,7 +501,7 @@ div.footerContainer2 {
 div.footerContainer3 {
     height: 3em;
     left: 0;
-    margin-top: 80px;
+    margin-top: 260px;
     position: absolute;
 	top: 100%;
     /* width: 100%; */
@@ -511,7 +521,7 @@ div.footerContainer1 > span.left, div.footerContainer2 > span.left, div.footerCo
 }
 
 div.footerContainer1 > span b, div.footerContainer2 > span b, div.footerContainer3 > span b {
-	color: #F3C00E;
+	color: #FF0000;
 }
 
 div.footerContainer1 > span.right, div.footerContainer2 > span.right, div.footerContainer3 > span.right {
@@ -605,9 +615,23 @@ img.toolImage {
 	padding: 10px;
 }
 
-.dateContainer {
+/*.dateContainer {
 	display: inline-block;
 	margin-bottom: 15px;
+}*/
+#dateContainer {
+    background-color: antiquewhite;
+    padding: 20px;
+}
+#dateContainer > p > label {
+    display: inline-block;
+    width: 150px;
+    font-weight: bold;
+    font-family: 'Courier New';
+    font-style: 12px;
+}
+#dateContainer > p > input {
+    width: 100px;
 }
 
 div.monthlyEffectivity {
@@ -656,13 +680,13 @@ div#dvAttendanceListContainer{
 }
 
 tr.hover {
-	background-color: yellow;
+	background-color: red;
 	font-weight: bold;
 	cursor: pointer;
 }
 
 .odd {
-	background: #EFD98E none repeat scroll 0% 0%;
+	background: #f74343 none repeat scroll 0% 0%;
 }
 .even {
 	background: #DDDBDB none repeat scroll 0% 0%;

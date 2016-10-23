@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Gym Records Management System</title>
+    <link type="text/css" rel="stylesheet" href='resources/css/main.css' />
+    <link type="text/css" rel="stylesheet" href="resources/css/commons.css" />
+    <link type="text/css" rel="stylesheet" href='resources/css/jquery-ui.min.css' />
+    <link type="text/css" rel="stylesheet" href='resources/css/jquery-ui.theme.min.css' />
+    <script type='text/javascript' src='resources/js/jquery-1.11.1.min.js'></script>
+    <script type='text/javascript' src='resources/js/jquery-ui.min.js'></script>
+    <script type='text/javascript' src='resources/js/common.js'></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            showHideErrorMessage('<?php echo $statusMsg; ?>');
+            $("input[type='text'], input[type='password']").bind('change', function(){
+                showHideErrorMessage("");
+            });
+        });
+
+        var validateLoginFields = function(){
+            
+            console.log("validateLoginFields()");
+            
+            if('' != $('#txtUsername').val() && '' != $('#txtPassword').val()){
+                return true;
+            }
+            else {
+                showHideErrorMessage("Please fill-up all the fields.");
+                return false;
+            }
+        };
+        
+        var showHideErrorMessage = function(msg){
+            if(msg){
+                $("div.errorStatus").text(msg).show();
+            }
+            else {
+                $("div.errorStatus").hide();
+            }
+        };
+    </script>
+</head>
+
+<body text="#2A1FFF">
+    <div class="headerContainer">
+        <div>
+            <img src="resources/images/icons/muscle.png" class="headerImage" alt="Members" />
+            <span class="sysName">Gym Records Management System (GRMSys)</span>
+        </div>
+    </div>
+    
+    <div class="barContainer">
+        <div class="loginContainer">
+                <form action="processForgotPW.php" method="POST">
+        <p>
+            <label for="txtUsername" class="UserLabel">Username:</label>
+            <input type="text" id="txtUsername" name="username" placeholder="username" title="User Username" />
+        </p>
+        <p>
+            <input name="submit" type="submit" class="btn" id="btnForgotPW" title="Submit Forgot Password" value="Submit" />
+            <input name="reset" type="reset" class="btn" id="btnClear" value="Clear" />
+        </p>
+    </form>
+            </form>
+        </div>
+        <div class='errorStatus' align='center'></div>
+    </div>
+    <div class="footerContainer">
+        <span class="sysVersion">Version 0.0.1</span>
+    </div>
+</body>
+</html>

@@ -12,12 +12,20 @@
     <script type='text/javascript' src='resources/js/jquery-ui.min.js'></script>
     <script type='text/javascript' src='resources/js/common.js'></script>
     <script type="text/javascript">
-        var roleType = "<?php echo $_SESSION['role_type']; ?>"
+        var roleType = "<?php echo $_SESSION['role_type']; ?>";
+        var isActivated = "<?php echo $_SESSION['is_activated']; ?>";
         $(document).ready(function(){
-            if('administrator' == roleType){
+            if('Administrator' == roleType){
                 $('div.homeContainer area:nth-child(1)').bind('click', function(){ location.href='user.php'; }).css('cursor', 'pointer');
             }
             else {
+                //attendants
+                if (isActivated == 0) {
+                    alert("Please Change Password.");
+                    window.location = "userProfile.php";
+                };
+
+                //alert("isActivated: " + isActivated);
                 $('div.homeContainer area:nth-child(1)').css('cursor', 'not-allowed');
             }
         });
@@ -38,16 +46,7 @@
         </div>
     </div>
     <?php include('_home_menu.html'); ?>
-	<div class="homeContainer">
-        <img src="resources/images/home/home_tools2.png" class="homeToolButtons" alt="Home Tools" usemap="#homeToolsMap" />
-        <map name="homeToolsMap">
-            <area shape="rect" coords="0,0,200,500" href="javascript:void(0);" alt="User Registration" title="User Registration">
-            <area shape="rect" coords="200,0,400,500" href="javascript:void(0);"  onclick="location.href='member.php'" alt="Member Registration" title="Member Registration">
-            <area shape="rect" coords="400,0,600,500" href="javascript:void(0);"  onclick="location.href='item.php'" alt="Product(Item) Registration" title="Product(Item) Registration">
-            <area shape="rect" coords="600,0,800,500" href="javascript:void(0);"  onclick="location.href='memberWorkout.php'" alt="Workout Registration" title="Workout Registration">
-            <area shape="rect" coords="800,0,1000,500" href="javascript:void(0);"  onclick="location.href='sellProductItem.php'" alt="Sell Product(Item)" title="Sell Product(Item)">
-        </map>
-    </div>
+
     <div class="footerContainer2">
         <span class="footer left">Welcome <b><?php echo $_SESSION['name']; ?></b><?php echo $_SESSION['display_role_type']; ?> !</span>
         <span class="footer right"><b>Gym Records Management System (Version 0.0.1)</b></span>

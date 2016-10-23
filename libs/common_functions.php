@@ -8,6 +8,7 @@
 			}
 			if( !empty($user['lastname']) ) $completeName .= ' ' . $user['lastname'];
 		}
+
 		return $completeName;
 	}
 	

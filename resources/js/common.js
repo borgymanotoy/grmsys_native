@@ -33,6 +33,19 @@ var loadServiceType = function(objSel){
 		});
 	}
 };
+var loadRoleType = function(objSel, defaultRoleTypeCode){
+	if(objSel){
+		$.getJSON("../populateRoleTypes.php").done(function(data){
+			$(objSel).empty().append('<option value=\'\'>- Please select -</option>');
+			$.each(data, function(i, obj){
+				$(objSel).append('<option value=' + obj.type_code + '>' + obj.type_name + '</option>');
+			});
+
+			if(defaultRoleTypeCode)
+				$(objSel).val(defaultRoleTypeCode);
+		});
+	}
+};
 
 var showStatusMessage = function(msg){
 	$("#dialog-box").html(msg);

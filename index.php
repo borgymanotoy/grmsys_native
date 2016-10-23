@@ -1,6 +1,6 @@
 <?php
-	require_once('libs/common_functions.php');
-	
+	//require_once('libs/common_functions.php');
+
 	$success = $_REQUEST['success'];
 	
 	$statusMsg = null;

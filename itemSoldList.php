@@ -11,7 +11,7 @@
 	$recordCount = mysqli_num_rows(mysqli_query($conn, $sqlQuery));
 	if(0 < $recordCount){
 		$result = mysqli_query($conn, $sqlQuery) or die("Query fail: " . $sqlQuery);
-		include('pages/itemSoldList.html');	
+		include('pages/itemSoldList.html');
 	}
 
 	exit(0);

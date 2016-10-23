@@ -40,6 +40,7 @@ var initWorkoutRegistrationComponents = function (){
 		computeAmountDue();
 	});
 
+/*
 	$('#txtMemberStart').Zebra_DatePicker({
 		direction: true,
 		pair: $('#txtMemberEnd'),
@@ -53,6 +54,13 @@ var initWorkoutRegistrationComponents = function (){
 		onSelect: function(view, elements) {
 			memberMonthlyDatesChanged($('#txtMemberStart').val(), $(this).val());
 		}
+	});
+*/
+
+	$('#selSubscribeMonths').on('change', function(){
+		//var subscription = $(this).val();
+		//console.info('months-subscription : ' + subscription);
+		computeAmountDue();
 	});
 
 	$("input").bind("change", function(){
@@ -69,6 +77,10 @@ var memberMonthlyDatesChanged = function(strStartDate, strEndDate){
 	if(loadedMemberId && strStartDate && strEndDate){
 		var dtStart = Date.parse(strStartDate);
 		var dtEnd = Date.parse(strEndDate);
+
+		console.info('strStartDate : ' + strStartDate + ' : ' + Date.today().compareTo(dtStart));
+		console.info('strEndDate : ' + strEndDate + ' : ' + Date.today().compareTo(dtEnd));
+
 		if( (0 <= Date.today().compareTo(dtStart)) && (0 >= Date.today().compareTo(dtEnd)) ){
 			$('#spnMemberType').html('Monthly');
 			$('#hndLoadedMemberType').val('Monthly');
@@ -93,8 +105,6 @@ var computeAmountDue = function(){
 	var loadedPriceDiscountedDaily   = parseFloat($('#hndLoadedPriceDiscountedDaily').val());
 	var isActiveMontly               = $("#spnMonthlyStatus").html();
 
-	console.log("loadedMemberId: " + loadedMemberId);
-
 	if(loadedMemberId){
 		$.getJSON("../computeAmountDue.php?serviceType=" + serviceType).done(function(data){
 			if(data[0]){
@@ -103,14 +113,17 @@ var computeAmountDue = function(){
 				$("#hndSTPriceDiscountedDaily").val(obj.price_daily_discounted);
 				$("#hndSTPriceMonthly").val(obj.price_monthly);
 				$("#hndSTPriceDiscountedMonthly").val(obj.price_monthly_discounted);
-	
+
+				var subMonths = Number($('#selSubscribeMonths').val());
+
 				if(isActiveMontly == "Yes"){
 					var st_price_daily              = parseFloat(obj.price_daily);
 					var st_price_daily_discounted   = parseFloat(obj.price_daily_discounted);
 					if(loadedMemberType == 'Monthly'){
 						if(st_price_daily > loadedPriceDaily){
 							var amt = st_price_daily - loadedPriceDaily;
-							if(loadedHasDiscount == 'Yes')  amt = st_price_daily_discounted - loadedPriceDiscountedDaily;
+							if(loadedHasDiscount == 'Yes')
+								amt = st_price_daily_discounted - loadedPriceDiscountedDaily;
 							$("#hndLoadedAmountDue").val(amt);
 							$("#spanAmountDue").html(amt.toFixed(2));
 							$("#chkPaid").iCheck('uncheck');
@@ -130,20 +143,25 @@ var computeAmountDue = function(){
 							$('#hndLoadedAmountDue').val(st_price_daily);
 							$("#spanAmountDue").html(st_price_daily.toFixed(2));
 						}
-							
 					}
 				}
-				else {		
+				else {
 					var st_price_regular = 0;
 					var st_price_discounted = 0;
+
+					st_price_regular = parseFloat(obj.price_monthly) * subMonths;
+					st_price_discounted = parseFloat(obj.price_monthly_discounted) * subMonths;
+
+					/*
 					if(loadedMemberType == 'Daily'){
 						st_price_regular = parseFloat(obj.price_daily);
 						st_price_discounted = parseFloat(obj.price_daily_discounted);
 					}
 					else {
-						st_price_regular = parseFloat(obj.price_monthly);
-						st_price_discounted = parseFloat(obj.price_monthly_discounted);
+						st_price_regular = parseFloat(obj.price_monthly) * subMonths;
+						st_price_discounted = parseFloat(obj.price_monthly_discounted) * subMonths;
 					}
+					*/
 
 					if(loadedHasDiscount == 'Yes'){
 						$('#hndLoadedAmountDue').val(st_price_discounted);
@@ -153,6 +171,13 @@ var computeAmountDue = function(){
 						$('#hndLoadedAmountDue').val(st_price_regular);
 						$("#spanAmountDue").html(st_price_regular.toFixed(2));
 					}
+
+					var monthStart = Date.today().toString("MM-dd-yyyy");
+					var monthEnd = Date.today().addMonths(subMonths).toString("MM-dd-yyyy");
+
+					$('#hndLoadedMemberType').val('Monthly');
+					$('#hndMonthlyStart').val(monthStart);
+					$('#hndMonthlyEnd').val(monthEnd);
 				}
 			}
 		});
@@ -197,10 +222,25 @@ var loadMemberDetails = function(id){
 				$("#hndLoadedPriceDiscountedMonthly, #hndSTPriceDiscountedMonthly").val(data[0].price_monthly_discounted);
 
 				$("#hndLoadedAmountDue").val(data[0].amount_due);
-				$("#hndLoadedMonthlyStatus").val(data[0].member_type == 'Monthly' ? 'Yes' : 'No');
-				$("#spnMonthlyStatus").html(data[0].member_type == 'Monthly' ? 'Yes' : 'No');
+
+				var subsStart = null;
+				var subsEnd = null;
+				if(data[0].monthly_startdate) subsStart = Date.parse(data[0].monthly_startdate);
+				if(data[0].monthly_enddate) subsEnd = Date.parse(data[0].monthly_enddate);
+
+				if(subsStart && subsEnd && Date.today().between(subsStart, subsEnd)){
+					$("#hndLoadedMonthlyStatus").val('Yes');
+					$("#spnMonthlyStatus").html('Yes');
+					$('#selSubscribeMonths').attr('disabled', 'disabled');
+				}
+				else {
+					$("#hndLoadedMonthlyStatus").val('No');
+					$("#spnMonthlyStatus").html('No');
+				}
+
 				var amount_due = parseFloat(data[0].amount_due).toFixed(2);
 				$("#spanAmountDue").html(amount_due);
+				$("#loadedAmountDue").val(amount_due);
 
 				if(data[0].member_type == 'Monthly'){
 					$("#chkPaid").iCheck("check"); //.iCheck('disable');
@@ -217,6 +257,9 @@ var registerMemberWorkout = function(){
 	if($('#hndLoadedMemberId').val() && !$('#hndLoadedWorkoutId').val()){
 		if($('#chkPaid').is(':checked')){
 			$.post("../memberWorkoutRegistration.php", $("#formWorkoutRegistration").serialize()).done(function(msg){
+
+
+
 				setMemberWorkoutStatus(true, msg);
 				clearDetails();
 				refreshAttendanceList();

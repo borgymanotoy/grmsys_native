@@ -6,7 +6,7 @@
 
 	$sqlMonthlyTotal = " SELECT vwms.* FROM vw_workout_monthly_sales vwms  ";
 	if(!empty($monthYear))
-		$sqlMonthlyTotal .= " WHERE vwms.sales_group = $monthYear";
+		$sqlMonthlyTotal .= " WHERE vwms.sales_group = '$monthYear'";
 	else
 		$sqlMonthlyTotal .= " WHERE vwms.sales_group = CONCAT(DATE_FORMAT(NOW(), '%M'), '-', DATE_FORMAT(NOW(), '%Y')) ";
 

@@ -9,18 +9,18 @@ table.generalSalesTable {
 table.generalSalesTable > caption {
 	padding: 5px 0px;
 	width: 98.8%;
-	background-color: #F3C00E;
+	background-color: #FF0000;
 	border-left: 5px solid #555;
 	border-top: 5px solid #555;
 	border-right: 5px solid #555;
-	color: #363434;
+	color: #000000;
 	font-weight: bold;
 	font-size: 1.25em;
 }
 
 
 table.generalSalesTable > tbody > tr:nth-child(even) > td { background: #DDDBDB none repeat scroll 0% 0%; }
-table.generalSalesTable > tbody > tr:nth-child(odd) > td { background: #EFD98E none repeat scroll 0% 0%; }
+table.generalSalesTable > tbody > tr:nth-child(odd) > td { background: #f74343 none repeat scroll 0% 0%; }
 
 
 table.generalSalesTable > thead > tr > th {
@@ -69,11 +69,11 @@ table.monthlyGeneralSalesTable > caption,
 table.weeklyGeneralSalesTable > caption {
 	padding: 5px 0px;
 	width: 98.8%;
-	background-color: #F3C00E;
+	background-color: #FF0000;
 	border-left: 5px solid #555;
 	border-top: 5px solid #555;
 	border-right: 5px solid #555;
-	color: #363434;
+	color: #000000;
 	font-weight: bold;
 	font-size: 1.25em;
 }
@@ -82,7 +82,7 @@ table.weeklyGeneralSalesTable > caption {
 table.weeklyGeneralSalesTable > tbody > tr:nth-child(even) > td,
 table.monthlyGeneralSalesTable > tbody > tr:nth-child(even) > td { background: #DDDBDB none repeat scroll 0% 0%; }
 table.weeklyGeneralSalesTable > tbody > tr:nth-child(odd) > td,
-table.monthlyGeneralSalesTable > tbody > tr:nth-child(odd) > td { background: #EFD98E none repeat scroll 0% 0%; }
+table.monthlyGeneralSalesTable > tbody > tr:nth-child(odd) > td { background: #f74343 none repeat scroll 0% 0%; }
 
 
 table.weeklyGeneralSalesTable > thead > tr > th,
@@ -159,12 +159,12 @@ p.saleWeeklyReport {
 	min-width: 500px;
 }
 p.saleReport > label {
-    color: #F3C00E;
+    color: #FF0000;
     font-size: 18px;
     width: 180px;
 }
 p.saleWeeklyReport > label {
-    color: #F3C00E;
+    color: #FF0000;
     font-size: 18px;
     width: 250px;
 }

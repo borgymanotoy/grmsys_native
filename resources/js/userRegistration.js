@@ -1,8 +1,15 @@
-var initUserComponents = function(){
+var initUserComponents = function(defaultRoleTypeCode){
 	$("#popupSecurity, #dialog-box").hide();
 	$('.myRadioButtons').iCheck({ radioClass: 'iradio_flat-red' });
 	
-	$('#txtBirthdate').Zebra_DatePicker();
+	// $('#txtBirthdate').Zebra_DatePicker();
+	// 	direction: -1
+	   $('#txtBirthdate').Zebra_DatePicker({
+        direction: -1,
+        pair: false,
+        onSelect: function(view, elements) {
+        }
+    });
 	$("div.headerIconLabel").bind("click", function(){
 		goToHome();
 	});
@@ -13,11 +20,17 @@ var initUserComponents = function(){
 	//$('#txtContactNo').autoNumeric('init');
 	$("#txtContactNo").mask("(000) 000-0000");
 	$('#selRoleype').val('');
-	$('#btnRemoveUser, #btnChangePassword').hide();
+	// $('#btnRemoveUser, #btnChangePassword').hide();
 
 	$('#txtSearchKey').bind('keyup', function(){
 		var searchkey = $(this).val();
 		searchUserList(searchkey);
+	});
+
+	loadRoleType($('#selRoleype'), defaultRoleTypeCode);
+
+	$("input").bind("change", function(){
+		clearUserStatus();
 	});
 
 	//loadDummyUserInfo();
@@ -207,12 +220,14 @@ var loadUserDetails = function(id){
 				$("#txtConfirmPassword").val(data[0].password).attr('readonly', true);
 				$('#divSecurity').hide();
 
-                if(roleType == 'administrator'){
+                if(roleType == 'Administrator'){
                     $('#btnRemoveUser').show();
 					$('#btnChangePassword').show();
                 }
 				else {
-					$("#selRoleype option[value='administrator']").remove();
+					// $("#selRoleype option[value='Administrator']").remove();
+					$('#btnRemoveUser').hide();
+					$('#btnChangePassword').hide();
 				}
 				
 				$('#formUser').valid();
@@ -316,7 +331,7 @@ var clearSearchKeys = function(){
 };
 
 var clearSecurityDetails = function(){
-	$('#txtSCurrentPassword, #txtSNewPassword, #txtSConfirmPassword').val('');	
+	$('#txtSCurrentPassword, #txtSNewPassword, #txtSConfirmPassword').val('');
 };
 
 var showChangePassword = function(){

@@ -71,6 +71,7 @@ var loadItemDetails = function(id){
 			if(data[0]){
 				$("#txtItemId, #hndLoadedItemId").val(data[0].item_id);
 				$("#txtItemName").val(data[0].item_name);
+				$("#txtItemQty, #hndLoadedItemQtyLeft").val(data[0].quantity);
 				$("#txtItemPrice").val(numberWithCommas(data[0].item_price));
 				$("#txtItemOtherInfo").val(data[0].item_infos);
 			}
@@ -97,7 +98,7 @@ var sellProductItem = function(){
 			$('#hndItemSellId').val(id);
 			setSellProductItemStatus(true, "Sold item successfully. Select new item to sell or click the empty cart button below.");
 			clearDetails();
-			refreshItemSoldList(id);
+			refreshItemSoldList(id); //Mao ni
 		}).fail(function(error){
 			setSellProductItemStatus(false, "Sell Product Item Error: " + error.statusText);
 		});
@@ -108,14 +109,21 @@ var sellProductItem = function(){
 	}
 };
 
-var refreshItemSoldList = function(id){
+var refreshItemSoldList = function(id, page, sortColumn, order){
 	console.info('id: ' + id);
 	if(id){
 		var url = "../itemSoldList.php?itemId=" + id;
+		if(page) url += "?page=" + page;
+		if(sortColumn) url += "&sortBy=" + sortColumn;
+		if(order) url += "&order=" + order;
 		$("#dvList").load(url, function(){
 			loadItemSoldGrandTotal(id);
+			// alert('asas');
 		});
-	}	
+	}
+	else {
+		console.info('walay id');
+	}
 };
 
 var initItemSoldTable = function(){
@@ -154,7 +162,7 @@ var setSellProductItemStatus = function(isSuccess, msg){
 	if(isSuccess)
 		objStatus.addClass("success").html(msg);
 	else
-		objStatus.addClass("error").html(msg);	
+		objStatus.addClass("error").html(msg);
 };
 
 var clearItemDetails = function(){

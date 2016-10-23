@@ -109,6 +109,14 @@
                         <span id="spnHasDiscount" class="memberTypeDetails">No</span>
                     </div>
                 </p>
+                <p>
+                    <div>
+                        <input type="hidden" id="hndLoadedMonthlyStatus" name="loadedMonthlyStatus" value="No" />
+                        <label for="spnMonthlyStatus">Monthly Active:</label>
+                        <span id="spnMonthlyStatus" class="memberTypeDetails">No</span>
+                    </div>
+                </p>
+
                 <p class="serviceTypeContainer">
                     <input type="hidden" id="hndLoadedServiceType" name="loadedServiceType" value="" />
                     <input type="hidden" id="hndSTPriceDaily" name="stPriceDaily" value="" />
@@ -123,26 +131,29 @@
                     </select>
                 </p>
                 <div class="monthlyEffectivity">
-                    <h3>Monthly Effective:</h3>
+
                     <p>
-                        <div class="dateContainer">
-                            <input type="hidden" id="hndLoadedMStartDate" name="loadedMStartDate" value="" />
-                            <label for="txtMemberStart" class="smaller">Start:</label>
-                            <input type="text" id="txtMemberStart" name="memberStart" class="dateField" placeholder="Select Date" title="Member Start" />
-                        </div>
-                        <div class="dateContainer">
-                            <input type="hidden" id="hndLoadedMEndDate" name="loadedMEndDate" value="" />
-                            <label for="txtMemberEnd" class="smaller">End:</label>
-                            <input type="text" id="txtMemberEnd" name="memberEnd" class="dateField" placeholder="Select Date" title="Member End" />
-                        </div>
+                      <input type="hidden" id="hndMonthlyStart" name="memberStart" value="" />
+                      <input type="hidden" id="hndMonthlyEnd" name="memberEnd" value="" />
+                      <label for="selServiceType" class="selectLabel">Subscription:</label>
+                      <select id="selSubscribeMonths" name="subscribeMonths">
+                          <option value="-1">-Do not subscribe-</option>
+                          <option value="1">1 Month</option>
+                          <option value="2">2 Month</option>
+                          <option value="3">3 Months</option>
+                          <option value="4">4 Month</option>
+                          <option value="5">5 Month</option>
+                          <option value="6">6 Months</option>
+                          <option value="7">7 Month</option>
+                          <option value="8">8 Month</option>
+                          <option value="9">9 Months</option
+                          <option value="10">10 Month</option>
+                          <option value="11">11 Month</option>>
+                          <option value="12">1 Year</option>
+                          <option value="24">2 Years</option>
+                      </select>
                     </p>
-                    <p>
-                        <div>
-                            <input type="hidden" id="hndLoadedMonthlyStatus" name="loadedMonthlyStatus" value="No" />
-                            <label for="spnMonthlyStatus">Monthly Active Status:</label>
-                            <span id="spnMonthlyStatus" class="memberTypeDetails">No</span>
-                        </div>
-                    </p>
+
                     <p>
                         <div>
                             <label for="txtRemarks">Remarks:</label>

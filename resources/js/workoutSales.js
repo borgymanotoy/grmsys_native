@@ -23,7 +23,7 @@ var initWorkoutWeeklySalesComponents = function(){
 			if (!weekMonday.is().monday()) {
 				weekMonday.last().monday();
 			}
-			var weekSunday = Date.parse(weekMonday.toString("MM-dd-yyyy")).sunday();			
+			var weekSunday = Date.parse(weekMonday.toString("MM-dd-yyyy")).sunday();
 			var dateStart = weekMonday.toString("MM-dd-yyyy");
 			var dateEnd = weekSunday.toString("MM-dd-yyyy");
 			reloadWorkoutWeeklySalesTable(dateStart, dateEnd);

@@ -6,7 +6,7 @@
         <link type="text/css" rel="stylesheet" href="resources/css/home.css" />
         <link type="text/css" rel="stylesheet" href="resources/css/commons.css" />
         <link type="text/css" rel="stylesheet" href="resources/css/datepicker.css" />
-        <link type="text/css" rel="stylesheet" href='resources/css/flat/yellow.css' media="screen">
+        <link type="text/css" rel="stylesheet" href='resources/css/flat/red.css' media="screen">
         <link type="text/css" rel="stylesheet" href="resources/css/users.css" />
         <link type="text/css" rel="stylesheet" href='resources/css/homeStyleMenu.css'>
         <link type="text/css" rel="stylesheet" href="resources/css/jquery-ui.min.css" />
@@ -24,7 +24,7 @@
             var roleType = "<?php echo $_SESSION['role_type']; ?>"
             $(document).ready(function(){
                 initUserComponents();
-                refreshUsersList();                
+                refreshUsersList();
                 //loadDummyUserInfo();
             });
         </script>
@@ -50,7 +50,7 @@
                     <div class="parentContainer">
                         <div class="userInfoContainer">
                             <p>
-                                <label for="txtUserId">Identification Number:</label>
+                                <label for="txtUserId">Identification No.:</label>
                                 <input type="text" id="txtUserId" name="userId" placeholder="0" title="User Identification" readonly="true" />
                             </p>  
                             <p>
@@ -86,25 +86,45 @@
                                 </div>
                             </p>
                             <p class="roleTypeContainer">
-                                <label for="selRoleype">Role Type:</label>
-                                <select id="selRoleype" name="roleType">
-                                    <option value="">Please select role type</option>
-                                    <option value="administrator">Administrator</option>
-                                    <option value="attendant">Attendant</option>
-                                </select>
+                                <label for="selRoleype" class="selectLabel">Role Type:</label>
+                                <select id="selRoleype" name="roleType"></select>
                             </p>
                             <div id="divSecurity">
                                 <p>
                                     <label for="txtUsername" class="UserLabel">Username:</label>
-                                    <input type="text" id="txtUsername" name="username" placeholder="username" title="User Username" />
+                                    <input type="text" id="txtUsername" name="username" placeholder="username" title="User Username" autocomplete="off" />
                                 </p>
                                 <p>
                                     <label for="txtPassword" class="UserLabel">Password:</label>
-                                    <input type="password" id="txtPassword" name="password" title="User Password" />
+                                    <input type="password" id="txtPassword" name="password" title="User Password" autocomplete="off" />
                                 </p>
                                 <p>
                                     <label for="txtConfirmPassword" class="UserLabel">Confirm Password:</label>
                                     <input type="password" id="txtConfirmPassword" name="confirmpassword" title="Confirm Password" />
+                                </p>
+                                <p>
+                                    <label for="txtQuestion1" class="UserLabel">Question 1:</label>
+                                    <input type="text" id="txtQuestion1" name="question1" title="Question 1" />
+                                </p>
+                                <p>
+                                    <label for="txtAnswer1" class="UserLabel">Answer 1:</label>
+                                    <input type="text" id="txtAnswer1" name="answer1" title="Answer 1" />
+                                </p>
+                                <p>
+                                    <label for="txtQuestion2" class="UserLabel">Question 2:</label>
+                                    <input type="text" id="txtQuestion2" name="question2" title="Question 2" />
+                                </p>
+                                <p>
+                                    <label for="txtAnswer2" class="UserLabel">Answer 2:</label>
+                                    <input type="text" id="txtAnswer2" name="answer2" title="Answer 2" />
+                                </p>
+                                <p>
+                                    <label for="txtQuestion3" class="UserLabel">Question 3:</label>
+                                    <input type="text" id="txtQuestion3" name="question3" title="Question 3" />
+                                </p>
+                                <p>
+                                    <label for="txtAnswer3" class="UserLabel">Answer 3:</label>
+                                    <input type="text" id="txtAnswer3" name="answer3" title="Answer 3" />
                                 </p>
                             </div>
                         </div>

@@ -11,7 +11,7 @@
 
 	if(0 < $recordCount){
 		$result = mysqli_query($conn, $sqlQuery) or die("Query fail: " . $sqlQuery);
-		include('pages/membersList.html');	
+		include('pages/membersList.html');
 	}
 
 	exit(0);

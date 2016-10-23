@@ -17,6 +17,7 @@
                 <ul class="users">
                     <li class='last'><a href="javascript:void(0);" onclick="location.href='../user.php'"><span>Users</span></a></li>
                     <li class='last'><a href="javascript:void(0);" onclick="location.href='../member.php'"><span>Members</span></a></li>
+                    <li class='last'><a href="javascript:void(0);" onclick="location.href='../userProfile.php'"><span>View User Profile</span></a></li>
                 </ul>
             </li>
             <!-- End of Users List -->
@@ -29,6 +30,7 @@
                 <ul class="utilities">
                     <li class='last'><a href="javascript:void(0);" onclick="location.href='../item.php'"><span>Items</span></a></li>
                     <li class='last'><a href="javascript:void(0);" onclick="location.href='../serviceType.php'"><span>Service Types</span></a></li>
+                    <li class='last'><a href="javascript:void(0);" onclick="location.href='../roleType.php'"><span>Role Types</span></a></li>
                 </ul>
             </li>
             <!-- End of Utilities List -->
@@ -52,7 +54,12 @@
                     <span>Reports</span>
                 </a>
                 <ul class="reports">
-                    <li class='last'><a href="javascript:void(0);" onclick="location.href='../attendancePage.php'"><span>Attendance Logs</span></a></li>
+                    <li class='has-sub'><a><span>Attendance Logs</span></a>
+                        <ul>
+                            <li class='last'><a href="javascript:void(0);" onclick="location.href='../attendancePage.php'"><span>By Date</span></a></li>
+                            <li class='last'><a href="javascript:void(0);" onclick="location.href='../memberAttendancePage.php'"><span>By Member</span></a></li>
+                        </ul>
+                    </li>
                     <li class='last'><a href="javascript:void(0);" onclick="location.href='../workoutSalesPage.php'"><span>Workout Payments</span></a></li>
                     <li class='has-sub'><a><span>Workout Sales</span></a>
                         <ul>

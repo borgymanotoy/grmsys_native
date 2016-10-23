@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>(GRMSys): Role Type Registration</title>
+    <link type="text/css" rel="stylesheet" href="resources/css/home.css" />
+    <link type="text/css" rel="stylesheet" href="resources/css/commons.css" />
+    <link type="text/css" rel="stylesheet" href="resources/css/serviceType.css" />
+    <link type="text/css" rel="stylesheet" href='resources/css/flat/yellow.css' media="screen">
+    <link type="text/css" rel="stylesheet" href="resources/css/jquery-ui.min.css" />
+    <link type="text/css" rel="stylesheet" href='resources/css/homeStyleMenu.css'>
+    <link type="text/css" rel="stylesheet" href="resources/css/jquery-ui.theme.min.css" />
+    <script type='text/javascript' src='resources/js/jquery-1.11.1.min.js'></script>
+    <script type='text/javascript' src='resources/js/jquery-ui.min.js'></script>
+    <script type='text/javascript' src='resources/js/jquery.validate.min.js'></script>
+    <script type='text/javascript' src='resources/js/autoNumeric.js'></script>
+    <script type='text/javascript' src='resources/js/common.js'></script>
+    <script type='text/javascript' src='resources/js/roleTypeRegistration.js'></script>
+    <script type="text/javascript">
+        var roleType = "<?php echo $_SESSION['role_type']; ?>"
+        $(document).ready(function(){
+            initRoleTypeComponents();
+            refreshRoleTypeList();
+        });
+    </script>
+</head>
+<body>
+    <div class="headerContainer">
+        <div class="headerIconLabel" title="Return to home page">
+            <img src="resources/images/icons/exercises.png" class="headerSmallImage" alt="Service Types" />
+            <span>Role Type (Users) Registration</span>
+        </div>
+        <div class="headerLogout" title="Logout">
+            <a href="javascript:void(0);" onclick="location.href='logout.php'">
+                <span>Logout</span>
+                <img src="resources/images/icons/exit.png" class="headerMenuImage" alt="Logout" title="Logout" />
+            </a>
+        </div>
+    </div>
+    <?php include('_home_menu.html'); ?>
+    <div class="serviceTypePageContainer">
+        <div class="serviceTypeContainer">
+            <span id="spanRoleTypeStatus" class="success"></span>
+            <form id="formRoleType" name="formRoleType" method="post" action="">
+                <p>
+                    <label for="txTtypeCode">Role Type Code:</label>
+                    <input type="text" id="txTtypeCode" name="typeCode" title="Fitness Type (Code)" />
+                </p>  
+                <p>
+                    <label for="txtRoleTypeName">Role Type Name:</label>
+                    <input type="text" id="txtRoleTypeName" name="typeName" title="Fitness Type Name (ie. Zumba)" />
+                </p> 
+                <p>
+                    <label for="txtOtherInfo">Remarks:</label>
+                    <textarea id="txtOtherInfo" name="otherInfo" cols="45" rows="5" title="Other Information"></textarea>
+                </p>  
+            </form>
+            <div class="buttonContainer">
+                <button class="submitButton" onclick="addUpdateRoleType()">Save Details</button>
+                <button class="submitButton" onclick="clearRoleTypeFields()">Clear Details</button>
+                <button id="btnRemoveRoleType" class="submitButton" onclick="showConfirmRemoveRoleTypeDialog()">Remove Type</button>
+            </div>
+        </div>
+        <div id="dvServiceTypeListContainer">
+            <div id="dvSearch">
+                <p>
+                    <label for="txtSearchKey">Search key:</label>
+                    <input type="text" id="txtSearchKey" name="searchkey" placeholder="Role Service Type" title="Search Service Type by code or name" />
+                    <img src="resources/images/icons/empty-icon.png" class="clearSearchButton" onclick="clearSearchKeys();" title="Clear Search Fields" />
+                </p> 
+            </div>
+            <div id="dvList"></div>
+        </div>
+    </div>
+    <div class="footerContainer2">
+        <span class="footer left">Welcome <b><?php echo $_SESSION['name']; ?></b><?php echo $_SESSION['display_role_type']; ?> !</span>
+        <span class="footer right"><b>Gym Records Management System (Version 0.0.1)</b></span>
+    </div>
+    <div id="dialog-box"></div>
+</body>
+</html>

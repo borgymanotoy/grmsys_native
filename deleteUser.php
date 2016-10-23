@@ -5,8 +5,8 @@
 	$userId = mysqli_real_escape_string($conn, $_POST['userId']);	
 
 	if(0 < $userId){
-		$sqlCallProcedure = "CALL pRemoveUser($userId)";
-		$successAddUpdate = mysqli_query($conn, $sqlCallProcedure);
+		$sqlDeleteUser = "UPDATE user SET is_active = 0 WHERE id = $userId";
+		$successAddUpdate = mysqli_query($conn, $sqlDeleteUser);
 		$errNo  = mysqli_errno($conn);
 		$errMSg = mysqli_error($conn);
 		

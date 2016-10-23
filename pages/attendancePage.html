@@ -46,8 +46,14 @@
     <?php include('_home_menu.html'); ?>
 	<div class="workoutRegistrationPageContainer">
 		<div class="dateContainer">
-			<label for="txtLogDate">Workout Date:</label>
-			<input type="text" id="txtLogDate" name="log_date" class="dateField" placeholder="mm-dd-yyyy" title="Workout Date" />
+            <p>
+                <label for="txtDateStart">Date Start:</label>
+                <input type="text" id="txtDateStart" placeholder="MM/DD/YY" class="datepicker" />
+            </p>
+            <p>
+                <label for="txtDateEnd">Date End:</label>
+                <input type="text" id="txtDateEnd" placeholder="MM/DD/YY" class="datepicker" />
+            </p>
 		</div>
 		<div id="dvPrintable">
 			<div id="dvList">

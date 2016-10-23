@@ -1,0 +1,1 @@
+CALL grmsys_db.pUpdateMasterPassword('admin', '@dm!n!str@t0r');
