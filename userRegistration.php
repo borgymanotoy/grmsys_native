@@ -21,7 +21,7 @@
 	$answer3 = mysqli_real_escape_string($conn, $_POST['answer3']);
 
 
-	$dateBirth = date($birthday);
+	$dateBirth = convertStringToDate($birthday);
 
 	//Get isActivated parameter value
 	$isActivated = mysqli_real_escape_string($conn, $_POST['isActivated']);
@@ -32,12 +32,12 @@
 		//Existing User
 
 		if($role_type != "Administrator" && (0 == $isActivated || !$isActivated) )
-			$sqlUser = "UPDATE user SET username = '$username', password = md5('$password'), firstname = '$firstname', lastname = '$lastname', middlename = '$middlename', contactNo = '$contactNo', address = '$address', birthdate = '$dateBirth', gender = '$gender', role_type = '$role_type', question1 = '$question1', answer1 = '$answer1', question2 = '$question2', answer2 = '$answer2', question3 = '$question3', answer3 = '$answer3', is_activated = '1', activation_date = now(), last_modified_date=now() WHERE id = $userId";
+			$sqlUser = "UPDATE user SET username = '$username', password = md5('$password'), firstname = '$firstname', lastname = '$lastname', middlename = '$middlename', contactNo = '$contactNo', address = '$address', birthdate = $dateBirth, gender = '$gender', role_type = '$role_type', question1 = '$question1', answer1 = '$answer1', question2 = '$question2', answer2 = '$answer2', question3 = '$question3', answer3 = '$answer3', is_activated = '1', activation_date = now(), last_modified_date=now() WHERE id = $userId";
 		else
-			$sqlUser = "UPDATE user SET username = '$username', password = md5('$password'), firstname = '$firstname', lastname = '$lastname', middlename = '$middlename', contactNo = '$contactNo', address = '$address', birthdate = '$dateBirth', gender = '$gender', role_type = '$role_type', question1 = '$question1', answer1 = '$answer1', question2 = '$question2', answer2 = '$answer2', question3 = '$question3', answer3 = '$answer3', last_modified_date=now() WHERE id = $userId";
+			$sqlUser = "UPDATE user SET username = '$username', password = md5('$password'), firstname = '$firstname', lastname = '$lastname', middlename = '$middlename', contactNo = '$contactNo', address = '$address', birthdate = $dateBirth, gender = '$gender', role_type = '$role_type', question1 = '$question1', answer1 = '$answer1', question2 = '$question2', answer2 = '$answer2', question3 = '$question3', answer3 = '$answer3', last_modified_date=now() WHERE id = $userId";
 	}
 	else {
-		$sqlUser = "INSERT INTO user (username, password, firstname, lastname, middlename, contactNo, address, birthdate, gender, role_type, question1, answer1, question2, answer2, question3, answer3, creation_date, last_modified_date) VALUES ('" . $username . "',md5('" . $password . "'),'" . $firstname . "','" . $lastname . "','" . $middlename . "','" . $contactNo . "','" . $address . "','" . $dateBirth . "','" . $gender . "','" . $role_type . "','" . $question1 . "','" . $answer1 . "','" . $question2 . "','" . $answer2 . "','" . $question3 . "','" . $answer3 . "', now(), now())";
+		$sqlUser = "INSERT INTO user (username, password, firstname, lastname, middlename, contactNo, address, birthdate, gender, role_type, question1, answer1, question2, answer2, question3, answer3, creation_date, last_modified_date) VALUES ('" . $username . "',md5('" . $password . "'),'" . $firstname . "','" . $lastname . "','" . $middlename . "','" . $contactNo . "','" . $address . "'," . $dateBirth . ",'" . $gender . "','" . $role_type . "','" . $question1 . "','" . $answer1 . "','" . $question2 . "','" . $answer2 . "','" . $question3 . "','" . $answer3 . "', now(), now())";
 	}
 
 	if(!empty($sqlUser)){
@@ -50,13 +50,20 @@
 			if($errNo == 1062)
 				header('HTTP/1.0 500 Unable to add existing user.');
 		else
-				header('HTTP/1.0 500 DB Error (' . $errNo . ': ' . $errMSg. ').' );
+				//header('HTTP/1.0 500 DB Error (' . $errNo . ': ' . $errMSg. ').' );
+			header('HTTP/1.0 500 [SQL]: ' . $sqlUser);
 		exit(0);
 		}
 		else {
-			if(0 < $userId)
+			if(0 < $userId){
+				if(!$isActivated){
+					session_start();
+					$_SESSION['is_activated'] = 1;
+					session_write_close();
+				}
 				echo "Successfully updated user!";
-		else
+			}
+			else
 				echo "Successfully registered user!";
 		}
 	}

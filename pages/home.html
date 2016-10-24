@@ -14,6 +14,7 @@
     <script type="text/javascript">
         var roleType = "<?php echo $_SESSION['role_type']; ?>";
         var isActivated = "<?php echo $_SESSION['is_activated']; ?>";
+
         $(document).ready(function(){
             if('Administrator' == roleType){
                 $('div.homeContainer area:nth-child(1)').bind('click', function(){ location.href='user.php'; }).css('cursor', 'pointer');

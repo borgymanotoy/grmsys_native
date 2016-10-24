@@ -744,7 +744,30 @@ CREATE OR REPLACE
 	DEFINER = 'root'@'localhost'
 VIEW vw_users
 AS
-	select `u`.`id` AS `user_id`,`u`.`firstname` AS `firstname`,`u`.`lastname` AS `lastname`,`u`.`middlename` AS `middlename`,trim(concat(ifnull(`u`.`firstname`,''),' ',if((`u`.`middlename` is not null),concat(substr(`u`.`middlename`,1,1),'. '),''),ifnull(`u`.`lastname`,''))) AS `user_name`,`u`.`contactno` AS `contactno`,`u`.`address` AS `address`,`u`.`birthdate` AS `birthdate`,`u`.`gender` AS `gender`,`u`.`username` AS `username`,`u`.`password` AS `password`,`u`.`question1` AS `question1`,`u`.`answer1` AS `answer1`,`u`.`question2` AS `question2`,`u`.`answer2` AS `answer2`,`u`.`question3` AS `question3`,`u`.`answer3` AS `answer3`,`u`.`role_type` AS `role_type`,`u`.`is_activated` AS `is_activated`,`u`.`creation_date` AS `creation_date`,`u`.`last_modified_date` AS `last_modified_date` from `user` `u` where ((`u`.`id` > 1) and (`u`.`is_active` = 1));
+  select 
+    `u`.`id` AS `user_id`,
+      `u`.`firstname` AS `firstname`,
+      `u`.`lastname` AS `lastname`,
+      `u`.`middlename` AS `middlename`,
+      trim(concat(ifnull(`u`.`firstname`,''),' ',if((`u`.`middlename` is not null),concat(substr(`u`.`middlename`,1,1),'. '),''),ifnull(`u`.`lastname`,''))) AS `user_name`,
+      `u`.`contactno` AS `contactno`,
+      `u`.`address` AS `address`,
+      date_format(`u`.`birthdate`, '%m-%d-%Y') AS `birthdate`,
+      `u`.`gender` AS `gender`,
+      `u`.`username` AS `username`,
+      `u`.`password` AS `password`,
+      `u`.`question1` AS `question1`,
+      `u`.`answer1` AS `answer1`,
+      `u`.`question2` AS `question2`,
+      `u`.`answer2` AS `answer2`,
+      `u`.`question3` AS `question3`,
+      `u`.`answer3` AS `answer3`,
+      `u`.`role_type` AS `role_type`,
+      `u`.`is_activated` AS `is_activated`,
+      `u`.`creation_date` AS `creation_date`,
+      `u`.`last_modified_date` AS `last_modified_date` 
+  from `user` `u` 
+  where ((`u`.`id` > 1) and (`u`.`is_active` = 1));
 
 --
 -- Definition for view vw_workout_sales

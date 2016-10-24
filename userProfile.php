@@ -15,7 +15,8 @@
     echo "[userId]: " . $userId;
 
     $rsUserProfile = mysqli_query($conn, $sqlUserProfile);
-    $row = mysqli_fetch_row($rsUserProfile);
+    //$row = mysqli_fetch_row($rsUserProfile);
+    $row = mysqli_fetch_assoc($rsUserProfile);
 
     // $sqlUserProfileRole = "SELECT role_type FROM vw_users WHERE user_id = $userId";
 
@@ -49,7 +50,7 @@
             var roleType = "<?php echo $_SESSION['role_type']; ?>";
             var isActivated = "<?php echo $_SESSION['is_activated']; ?>";
             $(document).ready(function(){
-                initUserComponents('<?php echo $row[17]; ?>');
+                initUserComponents("<?php echo $row['role_type']; ?>");
                 refreshUsersList();
 
                 $('#hdnRoleType').val(roleType);
@@ -89,42 +90,42 @@
             <div class="userContainer">
                 <span id="spanUserStatus" class="success"></span>
                 <form id="formUser" name="formUser" method="post" action="">
-                    <input type="hidden" id="hdnIsActivated" name="isActivated" value="<?php echo $row[12]; ?>">
+                    <input type="hidden" id="hdnIsActivated" name="isActivated" value="<?php echo $row['is_activated']; ?>">
                     <div class="parentContainer">
                         <div class="userInfoContainer">
                             <p>
                                 <label for="txtUserId">Identification No.:</label>
-                                <input type="text" id="txtUserId" name="userId" value="<?php echo $row[0]; ?>" placeholder="0" title="User Identification" readonly="true" />
+                                <input type="text" id="txtUserId" name="userId" value="<?php echo $row['user_id']; ?>" placeholder="0" title="User Identification" readonly="true" />
                             </p>  
                             <p>
                                 <label for="txtFirstname">Firstname:</label>
-                                <input type="text" id="txtFirstname" name="firstname" value="<?php echo $row[1]; ?>" placeholder="Juan" title="User Firstname" />
+                                <input type="text" id="txtFirstname" name="firstname" value="<?php echo $row['firstname']; ?>" placeholder="Juan" title="User Firstname" />
                             </p>
                             <p>
                                 <label for="txtLastname">Lastname:</label>
-                                <input type="text" id="txtLastname" name="lastname" value="<?php echo $row[2]; ?>" placeholder="Dela Cruz" title="User Lastname" />
+                                <input type="text" id="txtLastname" name="lastname" value="<?php echo $row['lastname']; ?>" placeholder="Dela Cruz" title="User Lastname" />
                             </p>
                             <p>
                                 <label for="txtMiddlename">Middlename:</label>
-                                <input type="text" id="txtMiddlename" name="middlename" value="<?php echo $row[3]; ?>" placeholder="Dimaloko" title="User Middlename" />
+                                <input type="text" id="txtMiddlename" name="middlename" value="<?php echo $row['middlename']; ?>" placeholder="Dimaloko" title="User Middlename" />
                             </p>
                             <p>
                                 <label for="txtContactNo">Contact Number:</label>
-                                <input type="text" id="txtContactNo" name="contactNo" value="<?php echo $row[5]; ?>" class="contactno" placeholder="(918) 123-4567" title="User Contact Number" />
+                                <input type="text" id="txtContactNo" name="contactNo" value="<?php echo $row['contactno']; ?>" class="contactno" placeholder="(918) 123-4567" title="User Contact Number" />
                             </p>
                             <p>
                                 <label for="txtAddress">Address:</label>
-                                <textarea id="txtAddress" name="address" cols="45" rows="5" placeholder="Address" title="User Address"><?php echo $row[6]; ?></textarea>
+                                <textarea id="txtAddress" name="address" cols="45" rows="5" placeholder="Address" title="User Address"><?php echo $row['address']; ?></textarea>
                             </p>
                             <p>
                                 <label for="txtBirthdate">Birthday:</label>
-                                <input type="text" id="txtBirthdate" name="birthday" value="<?php echo $row[7]; ?>" class="dateField" placeholder="Select Date" title="User Birthday" />
+                                <input type="text" id="txtBirthdate" name="birthday" value="<?php echo $row['birthdate']; ?>" class="dateField" placeholder="Select Date" title="User Birthday" />
                             </p>
                             <p>
                                 <div class="genderContainer">
-                                    <input type="radio" id="rdbGenderMale" name="gender" value="<?php echo $row[8]; ?>" value="M" class="myRadioButtons" checked />
+                                    <input type="radio" id="rdbGenderMale" name="gender" value="<?php echo $row['gender']; ?>" value="M" class="myRadioButtons" checked />
                                     <label for="rdbGenderMale" class="choiceLabel">Male:</label>
-                                    <input type="radio" id="rdbGenderFemale" name="gender" value="<?php echo $row[8]; ?>" value="F" class="myRadioButtons" />
+                                    <input type="radio" id="rdbGenderFemale" name="gender" value="<?php echo $row['gender']; ?>" value="F" class="myRadioButtons" />
                                     <label for="rdbGenderFemale" class="choiceLabel">Female:</label>
                                 </div>
                             </p>
@@ -136,7 +137,7 @@
                             <div id="divSecurity">
                                 <p>
                                     <label for="txtUsername" class="UserLabel">Username:</label>
-                                    <input type="text" id="txtUsername" name="username" value="<?php echo $row[9]; ?>" placeholder="username" title="User Username" />
+                                    <input type="text" id="txtUsername" name="username" value="<?php echo $row['username']; ?>" placeholder="username" title="User Username" />
                                 </p>
                                 <p>
                                     <label for="txtPassword" class="UserLabel">Password:</label>
@@ -149,27 +150,27 @@
                                 </p>
                                 <p>
                                     <label for="txtQuestion1" class="UserLabel">Question 1:</label>
-                                    <input type="text" id="txtQuestion1" name="question1" title="Question 1" value="<?php echo $row[11]; ?>"/>
+                                    <input type="text" id="txtQuestion1" name="question1" title="Question 1" value="<?php echo $row['question1']; ?>"/>
                                 </p>
                                 <p>
                                     <label for="txtAnswer1" class="UserLabel">Answer 1:</label>
-                                    <input type="text" id="txtAnswer1" name="answer1" title="Answer 1" value="<?php echo $row[12]; ?>" />
+                                    <input type="text" id="txtAnswer1" name="answer1" title="Answer 1" value="<?php echo $row['answer1']; ?>" />
                                 </p>
                                 <p>
                                     <label for="txtQuestion2" class="UserLabel">Question 2:</label>
-                                    <input type="text" id="txtQuestion2" name="question2" title="Question 2" value="<?php echo $row[13]; ?>" />
+                                    <input type="text" id="txtQuestion2" name="question2" title="Question 2" value="<?php echo $row['question2']; ?>" />
                                 </p>
                                 <p>
                                     <label for="txtAnswer2" class="UserLabel">Answer 2:</label>
-                                    <input type="text" id="txtAnswer2" name="answer2" title="Answer 2" value="<?php echo $row[14]; ?>"/>
+                                    <input type="text" id="txtAnswer2" name="answer2" title="Answer 2" value="<?php echo $row['answer2']; ?>"/>
                                 </p>
                                 <p>
                                     <label for="txtQuestion3" class="UserLabel">Question 3:</label>
-                                    <input type="text" id="txtQuestion3" name="question3" title="Question 3" value="<?php echo $row[15]; ?>" />
+                                    <input type="text" id="txtQuestion3" name="question3" title="Question 3" value="<?php echo $row['question3']; ?>" />
                                 </p>
                                 <p>
                                     <label for="txtAnswer3" class="UserLabel">Answer 3:</label>
-                                    <input type="text" id="txtAnswer3" name="answer3" title="Answer 3" value="<?php echo $row[16]; ?>"/>
+                                    <input type="text" id="txtAnswer3" name="answer3" title="Answer 3" value="<?php echo $row['answer3']; ?>"/>
                                 </p>
                             </div>
                         </div>

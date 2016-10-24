@@ -7,6 +7,7 @@ var initUserComponents = function(defaultRoleTypeCode){
 	   $('#txtBirthdate').Zebra_DatePicker({
         direction: -1,
         pair: false,
+        format: 'm-d-Y',
         onSelect: function(view, elements) {
         }
     });
